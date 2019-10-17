@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Юлия Гуткина](https://up.htmlacademy.ru/react/2/user/128700).
-* Наставник: `Неизвестно`.
+* Наставник: [Семён Левенсон](https://htmlacademy.ru/profile/id1026395).
 
 ---
 
