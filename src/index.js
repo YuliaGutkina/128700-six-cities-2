@@ -10,10 +10,12 @@ const init = () => {
     `Canal View Prinsengracht`,
     `Nice, cozy, warm big bed apartment`
   ];
+  const onCardTitleClick = () => {};
 
   ReactDOM.render(
       <App
         places={places}
+        onTitleClick={onCardTitleClick}
       />,
       document.querySelector(`#root`)
   );
