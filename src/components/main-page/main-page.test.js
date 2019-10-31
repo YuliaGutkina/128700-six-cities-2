@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {App} from "./app";
+import {MainPage} from "./main-page";
 
-it(`App correctly renders after relaunch`, () => {
+it(`Main page correctly renders after relaunch`, () => {
   const tree = renderer
     .create(
-        <App
+        <MainPage
           offers={[]}
           onCardTitleClick={jest.fn()}
         />)
