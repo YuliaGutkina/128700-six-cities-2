@@ -4,6 +4,7 @@ exports[`Offer card correctly renders after relaunch 1`] = `
 <article
   className="cities__place-card place-card"
   onMouseEnter={[MockFunction]}
+  onMouseLeave={[MockFunction]}
 >
   <div
     className="cities__image-wrapper place-card__image-wrapper"

@@ -7,10 +7,11 @@ export class OffersList extends PureComponent {
     super(props);
 
     this.state = {
-      activeCard: ``
+      activeCard: {}
     };
 
     this._cardHoverHandler = this._cardHoverHandler.bind(this);
+    this._cardHoverEndHandler = this._cardHoverEndHandler.bind(this);
   }
 
   render() {
@@ -20,14 +21,23 @@ export class OffersList extends PureComponent {
         key={offer.title}
         offer={offer}
         onTitleClick={onCardTitleClick}
-        onHover={this._cardHoverHandler}
+        onHover={(evt) => {
+          this._cardHoverHandler(evt, offer);
+        }}
+        onHoverEnd={this._cardHoverEndHandler}
       />)}
     </div>;
   }
 
-  _cardHoverHandler(evt) {
+  _cardHoverHandler(evt, offerData) {
     this.setState({
-      activeCard: evt.currentTarget
+      activeCard: offerData
+    });
+  }
+
+  _cardHoverEndHandler() {
+    this.setState({
+      activeCard: {}
     });
   }
 }
