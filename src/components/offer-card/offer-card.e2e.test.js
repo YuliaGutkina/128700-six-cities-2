@@ -27,7 +27,9 @@ it(`Click on title works correctly`, () => {
 });
 
 it(`Hover on card return correct data`, () => {
-  const hoverHandler = jest.fn(() => card);
+  const hoverHandler = jest.fn();
+  const mockEvent = {target: `abc`};
+
   const card = shallow(<OfferCard
     offer={{
       title: `Wood and stone place`,
@@ -42,7 +44,7 @@ it(`Hover on card return correct data`, () => {
     onHoverEnd={jest.fn()}
   />);
 
-  card.simulate(`mouseenter`);
+  card.simulate(`mouseenter`, mockEvent);
 
-  expect(hoverHandler).toHaveReturnedWith(card);
+  expect(hoverHandler).toHaveBeenCalledWith(mockEvent);
 });
