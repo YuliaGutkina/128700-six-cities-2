@@ -2,12 +2,15 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 export const OfferCard = (props) => {
-  const {offer, onTitleClick, onHover, onHoverEnd} = props;
+  const {offer, onTitleClick, onHover} = props;
+  const mouseLeaveHandler = () => {
+    onHover(null);
+  };
 
   return <article
     className="cities__place-card place-card"
     onMouseEnter={onHover}
-    onMouseLeave={onHoverEnd}
+    onMouseLeave={mouseLeaveHandler}
   >
     {offer.isPremium &&
     <div className="place-card__mark">
@@ -56,6 +59,5 @@ OfferCard.propTypes = {
     rating: PropTypes.number
   }),
   onTitleClick: PropTypes.func.isRequired,
-  onHover: PropTypes.func.isRequired,
-  onHoverEnd: PropTypes.func.isRequired
+  onHover: PropTypes.func.isRequired
 };

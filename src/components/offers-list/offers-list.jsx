@@ -7,11 +7,10 @@ export class OffersList extends PureComponent {
     super(props);
 
     this.state = {
-      activeCard: {}
+      activeCard: null
     };
 
     this._cardHoverHandler = this._cardHoverHandler.bind(this);
-    this._cardHoverEndHandler = this._cardHoverEndHandler.bind(this);
   }
 
   render() {
@@ -24,34 +23,20 @@ export class OffersList extends PureComponent {
         onHover={(evt) => {
           this._cardHoverHandler(evt, offer);
         }}
-        onHoverEnd={this._cardHoverEndHandler}
       />)}
     </div>;
   }
 
   _cardHoverHandler(evt, offerData) {
     this.setState({
-      activeCard: offerData
-    });
-  }
-
-  _cardHoverEndHandler() {
-    this.setState({
-      activeCard: {}
+      activeCard: evt ? offerData : null
     });
   }
 }
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        type: PropTypes.oneOf([`Apartment`, `Private room`, `House`, `Hotel`]).isRequired,
-        isPremium: PropTypes.bool,
-        src: PropTypes.string,
-        price: PropTypes.number,
-        rating: PropTypes.number
-      })
+      OfferCard.propTypes.offer
   ),
   onCardTitleClick: PropTypes.func.isRequired
 };

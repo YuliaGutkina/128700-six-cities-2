@@ -41,7 +41,6 @@ it(`Hover on card return correct data`, () => {
     }}
     onTitleClick={jest.fn()}
     onHover={hoverHandler}
-    onHoverEnd={jest.fn()}
   />);
 
   card.simulate(`mouseenter`, mockEvent);
