@@ -1,12 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {App} from "./app";
+import {OffersList} from "./offers-list";
+import {offers} from "../../mocks/offers";
 
-it(`App correctly renders after relaunch`, () => {
+it(`Offers list correctly renders after relaunch`, () => {
   const tree = renderer
     .create(
-        <App
-          offers={[]}
+        <OffersList
+          offers={offers}
           onCardTitleClick={jest.fn()}
         />)
     .toJSON();
