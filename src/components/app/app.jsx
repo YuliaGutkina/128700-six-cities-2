@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {MainPage} from "../main-page/main-page";
+import {OfferCard} from "../offer-card/offer-card";
 
 export const App = (props) => {
   const {offers, onCardTitleClick} = props;
@@ -39,14 +40,7 @@ export const App = (props) => {
 
 App.propTypes = {
   offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        type: PropTypes.oneOf([`Apartment`, `Private room`, `House`, `Hotel`]).isRequired,
-        isPremium: PropTypes.bool,
-        src: PropTypes.string,
-        price: PropTypes.number,
-        rating: PropTypes.number
-      })
+      OfferCard.propTypes.offer
   ),
   onCardTitleClick: PropTypes.func.isRequired
 };

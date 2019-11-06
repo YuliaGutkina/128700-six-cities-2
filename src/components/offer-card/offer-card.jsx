@@ -56,7 +56,8 @@ OfferCard.propTypes = {
     isPremium: PropTypes.bool,
     src: PropTypes.string,
     price: PropTypes.number,
-    rating: PropTypes.number
+    rating: PropTypes.number,
+    coordinates: PropTypes.arrayOf(PropTypes.number)
   }),
   onTitleClick: PropTypes.func.isRequired,
   onHover: PropTypes.func.isRequired
