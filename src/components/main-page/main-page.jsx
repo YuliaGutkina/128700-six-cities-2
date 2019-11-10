@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {OffersList} from "../offers-list/offers-list";
 import {OfferCard} from "../offer-card/offer-card";
+import {CityMap} from "../city-map/city-map";
 
 export const MainPage = (props) => {
   const {offers, onCardTitleClick} = props;
@@ -78,7 +79,10 @@ export const MainPage = (props) => {
           />
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map" />
+          <CityMap
+            initialCity={[52.38333, 4.9]}
+            items={offers}
+          />
         </div>
       </div>
     </div>
