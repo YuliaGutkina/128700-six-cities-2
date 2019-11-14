@@ -1,18 +1,21 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import {App} from "./components/app/app";
-import {offers} from "./mocks/offers";
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+
+import App from "./components/app/app";
+import {reducer} from "./reducer";
 
 const init = () => {
-
   const onCardTitleClick = () => {};
+  const store = createStore(reducer);
 
-  ReactDOM.render(
-      <App
-        offers={offers}
-        onCardTitleClick={onCardTitleClick}
-      />,
-      document.querySelector(`#root`)
+  ReactDOM.render(<Provider store={store}>
+    <App
+      onCardTitleClick={onCardTitleClick}
+    />
+  </Provider>,
+  document.querySelector(`#root`)
   );
 };
 

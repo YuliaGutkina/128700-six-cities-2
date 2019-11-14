@@ -6,6 +6,7 @@ it(`Main page correctly renders after relaunch`, () => {
   const tree = renderer
     .create(
         <MainPage
+          city={{}}
           offers={[]}
           onCardTitleClick={jest.fn()}
         />)

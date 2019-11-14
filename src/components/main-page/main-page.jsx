@@ -5,7 +5,7 @@ import {OfferCard} from "../offer-card/offer-card";
 import {CityMap} from "../city-map/city-map";
 
 export const MainPage = (props) => {
-  const {offers, onCardTitleClick} = props;
+  const {city, offers, onCardTitleClick} = props;
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
@@ -80,7 +80,7 @@ export const MainPage = (props) => {
         </section>
         <div className="cities__right-section">
           <CityMap
-            initialCity={[52.38333, 4.9]}
+            initialCity={city}
             items={offers}
           />
         </div>
@@ -93,5 +93,6 @@ MainPage.propTypes = {
   offers: PropTypes.arrayOf(
       OfferCard.propTypes.offer
   ),
+  city: CityMap.propTypes.initialCity,
   onCardTitleClick: PropTypes.func.isRequired
 };

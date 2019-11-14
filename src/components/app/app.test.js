@@ -6,6 +6,7 @@ it(`App correctly renders after relaunch`, () => {
   const tree = renderer
     .create(
         <App
+          city={{}}
           offers={[]}
           onCardTitleClick={jest.fn()}
         />)

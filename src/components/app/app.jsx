@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import {MainPage} from "../main-page/main-page";
 import {OfferCard} from "../offer-card/offer-card";
+import {CityMap} from "../city-map/city-map";
 
-export const App = (props) => {
-  const {offers, onCardTitleClick} = props;
+const App = (props) => {
+  const {city, offers, onCardTitleClick} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -31,6 +33,7 @@ export const App = (props) => {
         </div>
       </header>
       <MainPage
+        city={city}
         offers={offers}
         onCardTitleClick={onCardTitleClick}
       />
@@ -42,5 +45,15 @@ App.propTypes = {
   offers: PropTypes.arrayOf(
       OfferCard.propTypes.offer
   ),
+  city: CityMap.propTypes.initialCity,
   onCardTitleClick: PropTypes.func.isRequired
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  city: state.city,
+  offers: state.offers
+});
+
+
+export {App};
+export default connect(mapStateToProps)(App);

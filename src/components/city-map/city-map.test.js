@@ -17,7 +17,10 @@ it(`Map correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<CityMap
       items={offers}
-      initialCity={[52.38333, 4.9]}
+      initialCity={{
+        name: `Amsterdam`,
+        coordinates: [52.38333, 4.9]
+      }}
     />, options)
     .toJSON();
 

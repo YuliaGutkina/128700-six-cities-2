@@ -50,13 +50,13 @@ export class CityMap extends PureComponent {
     const {initialCity} = this.props;
 
     this._map = leaflet.map(this._mapRef.current, {
-      center: initialCity,
+      center: initialCity.coordinates,
       zoom,
       zoomControl: false,
       marker: true
     });
 
-    this._map.setView(initialCity, zoom);
+    this._map.setView(initialCity.coordinates, zoom);
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
@@ -69,5 +69,8 @@ CityMap.propTypes = {
   items: PropTypes.arrayOf(
       OfferCard.propTypes.offer
   ),
-  initialCity: PropTypes.arrayOf(PropTypes.number)
+  initialCity: PropTypes.shape({
+    name: PropTypes.string,
+    coordinates: PropTypes.arrayOf(PropTypes.number)
+  })
 };
