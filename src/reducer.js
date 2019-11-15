@@ -13,11 +13,8 @@ const ActionCreator = {
 };
 
 const initialState = {
-  city: {
-    name: `Amsterdam`,
-    coordinates: [52.38333, 4.9]
-  },
-  offers
+  city: offers[0].city,
+  places: offers[0].places
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,7 +23,7 @@ const reducer = (state = initialState, action) => {
       city: action.payload
     });
     case `RECEIVE_OFFERS`: return Object.assign({}, state, {
-      offers: action.payload
+      places: action.payload
     });
   }
 

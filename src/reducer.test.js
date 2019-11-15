@@ -2,23 +2,17 @@ import {ActionCreator, reducer} from "./reducer";
 import {offers} from "./mocks/offers";
 
 describe(`Reducer works correctly`, () => {
-  it(`Reducer without additional parameters shoul return initial state`, () => {
+  it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(undefined, {})).toEqual({
-      city: {
-        name: `Amsterdam`,
-        coordinates: [52.38333, 4.9]
-      },
-      offers
+      city: offers[0].city,
+      places: offers[0].places
     });
   });
 
   it(`Reducer should change city to given value`, () => {
     expect(reducer({
-      city: {
-        name: `Amsterdam`,
-        coordinates: [52.38333, 4.9]
-      },
-      offers
+      city: offers[0].city,
+      places: offers[0].places
     }, {
       type: `CHANGE_CITY`,
       payload: {
@@ -30,26 +24,20 @@ describe(`Reducer works correctly`, () => {
         name: `Paris`,
         coordinates: [54.38333, 4.69]
       },
-      offers
+      places: offers[0].places
     });
   });
 
   it(`Reducer should receive new offers from given value`, () => {
     expect(reducer({
-      city: {
-        name: `Amsterdam`,
-        coordinates: [52.38333, 4.9]
-      },
-      offers
+      city: offers[0].city,
+      places: offers[0].places
     }, {
       type: `RECEIVE_OFFERS`,
       payload: [{a: `abc`}, {b: `cde`}]
     })).toEqual({
-      city: {
-        name: `Amsterdam`,
-        coordinates: [52.38333, 4.9]
-      },
-      offers: [{a: `abc`}, {b: `cde`}]
+      city: offers[0].city,
+      places: [{a: `abc`}, {b: `cde`}]
     });
   });
 });

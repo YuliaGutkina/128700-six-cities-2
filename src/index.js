@@ -5,15 +5,13 @@ import {Provider} from 'react-redux';
 
 import App from "./components/app/app";
 import {reducer} from "./reducer";
+import {offers} from "./mocks/offers";
 
 const init = () => {
-  const onCardTitleClick = () => {};
   const store = createStore(reducer);
 
   ReactDOM.render(<Provider store={store}>
-    <App
-      onCardTitleClick={onCardTitleClick}
-    />
+    <App offers={offers}/>
   </Provider>,
   document.querySelector(`#root`)
   );

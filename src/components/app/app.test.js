@@ -8,7 +8,6 @@ it(`App correctly renders after relaunch`, () => {
         <App
           city={{}}
           offers={[]}
-          onCardTitleClick={jest.fn()}
         />)
     .toJSON();
 

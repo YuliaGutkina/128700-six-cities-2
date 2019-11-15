@@ -1,55 +1,22 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {OffersList} from "../offers-list/offers-list";
-import {OfferCard} from "../offer-card/offer-card";
 import {CityMap} from "../city-map/city-map";
+import Locations from "../locations/locations";
 
 export const MainPage = (props) => {
-  const {city, offers, onCardTitleClick} = props;
+  const {offers, city, places, onCardTitleClick} = props;
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
-    <div className="tabs">
-      <section className="locations container">
-        <ul className="locations__list tabs__list">
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Paris</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Cologne</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Brussels</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item tabs__item--active">
-              <span>Amsterdam</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Hamburg</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Dusseldorf</span>
-            </a>
-          </li>
-        </ul>
-      </section>
-    </div>
+    <Locations
+      offers={offers}
+    />
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">312 places to stay in Amsterdam</b>
+          <b className="places__found">{places.length} places to stay in {city.name}</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>
@@ -74,14 +41,14 @@ export const MainPage = (props) => {
                 */}
           </form>
           <OffersList
-            offers={offers}
+            places={places}
             onCardTitleClick={onCardTitleClick}
           />
         </section>
         <div className="cities__right-section">
           <CityMap
             initialCity={city}
-            items={offers}
+            items={places}
           />
         </div>
       </div>
@@ -90,9 +57,8 @@ export const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  offers: PropTypes.arrayOf(
-      OfferCard.propTypes.offer
-  ),
+  offers: PropTypes.array,
   city: CityMap.propTypes.initialCity,
+  places: PropTypes.array,
   onCardTitleClick: PropTypes.func.isRequired
 };
