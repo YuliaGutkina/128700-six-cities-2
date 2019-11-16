@@ -4,7 +4,6 @@ import classNames from "classnames";
 import {connect} from "react-redux";
 
 import {ActionCreator} from "../../reducer";
-import {OffersList} from "../offers-list/offers-list";
 import {offersData} from "../../mocks/offers-data";
 
 const Locations = (props) => {
@@ -35,13 +34,6 @@ const Locations = (props) => {
 };
 
 Locations.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        city: PropTypes.string,
-        initialCoordinates: PropTypes.arrayOf(PropTypes.number),
-        places: OffersList.propTypes.places
-      })
-  ),
   currentCity: PropTypes.string,
   onTabClick: PropTypes.func
 };
