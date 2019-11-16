@@ -9,86 +9,7 @@ exports[`Main page correctly renders after relaunch 1`] = `
   >
     Cities
   </h1>
-  <Memo(Connect(Locations))
-    currentCity="Amsterdam"
-    offers={
-      Array [
-        Object {
-          "city": "Amsterdam",
-          "initialCoordinates": Array [
-            52.38333,
-            4.9,
-          ],
-          "places": Array [
-            Object {
-              "coordinates": Array [
-                52.3909553943508,
-                4.85309666406198,
-              ],
-              "isPremium": true,
-              "price": 120,
-              "rating": 93,
-              "src": "img/apartment-01.jpg",
-              "title": "Beautiful & luxurious apartment at great location",
-              "type": "Apartment",
-            },
-            Object {
-              "coordinates": Array [
-                52.369553943508,
-                4.85309666406198,
-              ],
-              "isPremium": false,
-              "price": 80,
-              "rating": 80,
-              "src": "img/room.jpg",
-              "title": "Wood and stone place",
-              "type": "Private room",
-            },
-            Object {
-              "coordinates": Array [
-                52.3909553943508,
-                4.929309666406198,
-              ],
-              "isPremium": false,
-              "price": 132,
-              "rating": 80,
-              "src": "img/apartment-02.jpg",
-              "title": "Canal View Prinsengracht",
-              "type": "Apartment",
-            },
-            Object {
-              "coordinates": Array [
-                52.3809553943508,
-                4.939309666406198,
-              ],
-              "isPremium": true,
-              "price": 180,
-              "rating": 100,
-              "src": "img/apartment-03.jpg",
-              "title": "Nice, cozy, warm big bed apartment",
-              "type": "Apartment",
-            },
-          ],
-        },
-        Object {
-          "city": "Paris",
-          "initialCoordinates": Array [
-            48.864716,
-            2.349014,
-          ],
-          "places": Array [],
-        },
-        Object {
-          "city": "Hamburg",
-          "initialCoordinates": Array [
-            53.551086,
-            9.993682,
-          ],
-          "places": Array [],
-        },
-      ]
-    }
-  />
+  <Memo(Connect(Locations)) />
   <div
     className="cities"
   >
@@ -165,7 +86,7 @@ exports[`Main page correctly renders after relaunch 1`] = `
           </ul>
         </form>
         <OffersList
-          onCardTitleClick={[MockFunction]}
+          onCardTitleClick={[Function]}
           places={
             Array [
               Object {},
@@ -180,7 +101,10 @@ exports[`Main page correctly renders after relaunch 1`] = `
         <CityMap
           initialCity={
             Object {
-              "coordinates": undefined,
+              "coordinates": Array [
+                0,
+                0,
+              ],
               "name": "Amsterdam",
             }
           }

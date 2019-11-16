@@ -2,17 +2,29 @@ import {offersData} from "./mocks/offers-data";
 
 
 const receiveCityOffers = (city) => {
-  return offersData.filter((offer) => (offer.city === city))[0];
+  const cityData = offersData.filter((offer) => (offer.city === city))[0];
+
+  return cityData.places;
+};
+
+const receiveCityCoordinates = (city) => {
+  const cityData = offersData.filter((offer) => (offer.city === city))[0];
+
+  return cityData.initialCoordinates;
+};
+
+const receiveCityOffersSelector = (state) => {
+  return receiveCityOffers(state.city);
+};
+
+const receiveCityCoordinatesSelector = (state) => {
+  return receiveCityCoordinates(state.city);
 };
 
 const ActionCreator = {
   changeCity: (newCity) => ({
     type: `CHANGE_CITY`,
     payload: newCity
-  }),
-  receiveOffers: (city) => ({
-    type: `RECEIVE_OFFERS`,
-    payload: receiveCityOffers(city)
   })
 };
 
@@ -26,9 +38,6 @@ const reducer = (state = initialState, action) => {
     case `CHANGE_CITY`: return Object.assign({}, state, {
       city: action.payload
     });
-    case `RECEIVE_OFFERS`: return Object.assign({}, state, {
-      offers: action.payload
-    });
   }
 
   return state;
@@ -36,5 +45,7 @@ const reducer = (state = initialState, action) => {
 
 export {
   ActionCreator,
-  reducer
+  reducer,
+  receiveCityOffersSelector,
+  receiveCityCoordinatesSelector
 };

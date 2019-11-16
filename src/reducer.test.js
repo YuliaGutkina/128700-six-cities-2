@@ -1,4 +1,4 @@
-import {ActionCreator, reducer} from "./reducer";
+import {ActionCreator, receiveCityCoordinatesSelector, receiveCityOffersSelector, reducer} from "./reducer";
 import {offersData} from "./mocks/offers-data";
 
 
@@ -22,19 +22,6 @@ describe(`Reducer works correctly`, () => {
       offers: offersData[0]
     });
   });
-
-  it(`Reducer should receive new offers from given value`, () => {
-    expect(reducer({
-      city: offersData[0].city,
-      offers: offersData[0]
-    }, {
-      type: `RECEIVE_OFFERS`,
-      payload: offersData[1]
-    })).toEqual({
-      city: offersData[0].city,
-      offers: offersData[1]
-    });
-  });
 });
 
 describe(`Action Creators work correctly`, () => {
@@ -44,11 +31,20 @@ describe(`Action Creators work correctly`, () => {
       payload: `Paris`
     });
   });
+});
 
-  it(`Action Creator for receiving offers returns correct action`, () => {
-    expect(ActionCreator.receiveOffers(offersData[1].city)).toEqual({
-      type: `RECEIVE_OFFERS`,
-      payload: offersData[1]
-    });
+describe(`Selectors work correctly`, () => {
+  it(`Selector for receiving offers returns correct value`, () => {
+    expect(receiveCityOffersSelector({
+      city: offersData[0].city,
+      offers: {}
+    })).toEqual(offersData[0].places);
+  });
+
+  it(`Selector for receiving coordinates returns correct value`, () => {
+    expect(receiveCityCoordinatesSelector({
+      city: offersData[0].city,
+      offers: {}
+    })).toEqual(offersData[0].initialCoordinates);
   });
 });

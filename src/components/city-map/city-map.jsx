@@ -1,7 +1,6 @@
 import React, {PureComponent, createRef} from 'react';
 import leaflet from "leaflet";
 import PropTypes from "prop-types";
-import {Locations} from "../locations/locations";
 
 export class CityMap extends PureComponent {
   constructor(props) {
@@ -76,7 +75,7 @@ export class CityMap extends PureComponent {
 }
 
 CityMap.propTypes = {
-  items: Locations.propTypes.offers,
+  items: PropTypes.array,
   initialCity: PropTypes.shape({
     name: PropTypes.string,
     coordinates: PropTypes.arrayOf(PropTypes.number)

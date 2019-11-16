@@ -56,8 +56,6 @@ exports[`App correctly renders after relaunch 1`] = `
       </div>
     </div>
   </header>
-  <MainPage
-    onCardTitleClick={[Function]}
-  />
+  <Memo(Connect(MainPage)) />
 </div>
 `;

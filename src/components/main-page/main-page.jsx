@@ -1,23 +1,24 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
 import {OffersList} from "../offers-list/offers-list";
 import {CityMap} from "../city-map/city-map";
 import Locations from "../locations/locations";
+import {receiveCityCoordinatesSelector, receiveCityOffersSelector} from "../../reducer";
 
-export const MainPage = (props) => {
-  const {offersData, city, cityOffers, onCardTitleClick} = props;
+const MainPage = (props) => {
+  const onCardTitleClick = () => {};
+  const {city, cityCoordinates, cityOffers} = props;
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
-    <Locations
-      offers={offersData}
-      currentCity={city}
-    />
+    <Locations/>
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{cityOffers.places.length} places to stay in {city}</b>
+          <b className="places__found">{cityOffers.length} places to stay in {city}</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>
@@ -42,17 +43,17 @@ export const MainPage = (props) => {
                 */}
           </form>
           <OffersList
-            places={cityOffers.places}
+            places={cityOffers}
             onCardTitleClick={onCardTitleClick}
           />
         </section>
         <div className="cities__right-section">
           <CityMap
             initialCity={{
-              name: cityOffers.city,
-              coordinates: cityOffers.initialCoordinates
+              name: city,
+              coordinates: cityCoordinates
             }}
-            items={cityOffers.places}
+            items={cityOffers}
           />
         </div>
       </div>
@@ -61,18 +62,16 @@ export const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  offersData: PropTypes.arrayOf(
-      PropTypes.shape({
-        city: PropTypes.string,
-        initialCoordinates: PropTypes.arrayOf(PropTypes.number),
-        places: OffersList.propTypes.places
-      })
-  ),
   city: PropTypes.string,
-  cityOffers: PropTypes.shape({
-    city: PropTypes.string,
-    initialCoordinates: PropTypes.arrayOf(PropTypes.number),
-    places: OffersList.propTypes.places
-  }),
-  onCardTitleClick: PropTypes.func.isRequired
+  cityOffers: OffersList.propTypes.places,
+  cityCoordinates: PropTypes.arrayOf(PropTypes.number)
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  city: state.city,
+  cityOffers: receiveCityOffersSelector(state),
+  cityCoordinates: receiveCityCoordinatesSelector(state)
+});
+
+export {MainPage};
+export default connect(mapStateToProps)(MainPage);
