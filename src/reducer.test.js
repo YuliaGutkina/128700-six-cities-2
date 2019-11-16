@@ -1,65 +1,54 @@
 import {ActionCreator, reducer} from "./reducer";
-import {offers} from "./mocks/offers";
+import {offersData} from "./mocks/offers-data";
+
 
 describe(`Reducer works correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(undefined, {})).toEqual({
-      city: offers[0].city,
-      places: offers[0].places
+      city: offersData[0].city,
+      offers: offersData[0]
     });
   });
 
   it(`Reducer should change city to given value`, () => {
     expect(reducer({
-      city: offers[0].city,
-      places: offers[0].places
+      city: offersData[0].city,
+      offers: offersData[0]
     }, {
       type: `CHANGE_CITY`,
-      payload: {
-        name: `Paris`,
-        coordinates: [54.38333, 4.69]
-      }
+      payload: offersData[1].city
     })).toEqual({
-      city: {
-        name: `Paris`,
-        coordinates: [54.38333, 4.69]
-      },
-      places: offers[0].places
+      city: offersData[1].city,
+      offers: offersData[0]
     });
   });
 
   it(`Reducer should receive new offers from given value`, () => {
     expect(reducer({
-      city: offers[0].city,
-      places: offers[0].places
+      city: offersData[0].city,
+      offers: offersData[0]
     }, {
       type: `RECEIVE_OFFERS`,
-      payload: [{a: `abc`}, {b: `cde`}]
+      payload: offersData[1]
     })).toEqual({
-      city: offers[0].city,
-      places: [{a: `abc`}, {b: `cde`}]
+      city: offersData[0].city,
+      offers: offersData[1]
     });
   });
 });
 
 describe(`Action Creators work correctly`, () => {
   it(`Action Creator for changing city returns correct action`, () => {
-    expect(ActionCreator.changeCity({
-      name: `Paris`,
-      coordinates: [54.38333, 4.69]
-    })).toEqual({
+    expect(ActionCreator.changeCity(`Paris`)).toEqual({
       type: `CHANGE_CITY`,
-      payload: {
-        name: `Paris`,
-        coordinates: [54.38333, 4.69]
-      }
+      payload: `Paris`
     });
   });
 
   it(`Action Creator for receiving offers returns correct action`, () => {
-    expect(ActionCreator.receiveOffers([{a: `abc`}])).toEqual({
+    expect(ActionCreator.receiveOffers(offersData[1].city)).toEqual({
       type: `RECEIVE_OFFERS`,
-      payload: [{a: `abc`}]
+      payload: offersData[1]
     });
   });
 });

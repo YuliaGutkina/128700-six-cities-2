@@ -1,7 +1,7 @@
 import React, {PureComponent, createRef} from 'react';
 import leaflet from "leaflet";
 import PropTypes from "prop-types";
-import {OfferCard} from "../offer-card/offer-card";
+import {Locations} from "../locations/locations";
 
 export class CityMap extends PureComponent {
   constructor(props) {
@@ -23,13 +23,18 @@ export class CityMap extends PureComponent {
   render() {
     return <section
       className="cities__map map"
-      id="map"
       ref={this._mapRef}
     />;
   }
 
   componentDidMount() {
     this._initMap();
+    this._setMapView();
+    this._renderMarkers();
+  }
+
+  componentDidUpdate() {
+    this._setMapView();
     this._renderMarkers();
   }
 
@@ -55,6 +60,11 @@ export class CityMap extends PureComponent {
       zoomControl: false,
       marker: true
     });
+  }
+
+  _setMapView() {
+    const {zoom} = this._mapConfig;
+    const {initialCity} = this.props;
 
     this._map.setView(initialCity.coordinates, zoom);
     leaflet
@@ -66,9 +76,7 @@ export class CityMap extends PureComponent {
 }
 
 CityMap.propTypes = {
-  items: PropTypes.arrayOf(
-      OfferCard.propTypes.offer
-  ),
+  items: Locations.propTypes.offers,
   initialCity: PropTypes.shape({
     name: PropTypes.string,
     coordinates: PropTypes.arrayOf(PropTypes.number)

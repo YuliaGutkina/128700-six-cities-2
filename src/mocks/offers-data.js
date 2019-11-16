@@ -1,9 +1,7 @@
-export const offers = [
+export const offersData = [
   {
-    city: {
-      name: `Amsterdam`,
-      coordinates: [52.38333, 4.9]
-    },
+    city: `Amsterdam`,
+    initialCoordinates: [52.38333, 4.9],
     places: [
       {
         title: `Beautiful & luxurious apartment at great location`,
@@ -44,17 +42,13 @@ export const offers = [
     ]
   },
   {
-    city: {
-      name: `Paris`,
-      coordinates: [48.864716, 2.349014]
-    },
+    city: `Paris`,
+    initialCoordinates: [48.864716, 2.349014],
     places: []
   },
   {
-    city: {
-      name: `Hamburg`,
-      coordinates: [53.551086, 9.993682]
-    },
+    city: `Hamburg`,
+    initialCoordinates: [53.551086, 9.993682],
     places: []
   }
 ];

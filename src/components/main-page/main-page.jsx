@@ -5,18 +5,19 @@ import {CityMap} from "../city-map/city-map";
 import Locations from "../locations/locations";
 
 export const MainPage = (props) => {
-  const {offers, city, places, onCardTitleClick} = props;
+  const {offersData, city, cityOffers, onCardTitleClick} = props;
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <Locations
-      offers={offers}
+      offers={offersData}
+      currentCity={city}
     />
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{places.length} places to stay in {city.name}</b>
+          <b className="places__found">{cityOffers.places.length} places to stay in {city}</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>
@@ -41,14 +42,17 @@ export const MainPage = (props) => {
                 */}
           </form>
           <OffersList
-            places={places}
+            places={cityOffers.places}
             onCardTitleClick={onCardTitleClick}
           />
         </section>
         <div className="cities__right-section">
           <CityMap
-            initialCity={city}
-            items={places}
+            initialCity={{
+              name: cityOffers.city,
+              coordinates: cityOffers.initialCoordinates
+            }}
+            items={cityOffers.places}
           />
         </div>
       </div>
@@ -57,8 +61,18 @@ export const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  offers: PropTypes.array,
-  city: CityMap.propTypes.initialCity,
-  places: PropTypes.array,
+  offersData: PropTypes.arrayOf(
+      PropTypes.shape({
+        city: PropTypes.string,
+        initialCoordinates: PropTypes.arrayOf(PropTypes.number),
+        places: OffersList.propTypes.places
+      })
+  ),
+  city: PropTypes.string,
+  cityOffers: PropTypes.shape({
+    city: PropTypes.string,
+    initialCoordinates: PropTypes.arrayOf(PropTypes.number),
+    places: OffersList.propTypes.places
+  }),
   onCardTitleClick: PropTypes.func.isRequired
 };

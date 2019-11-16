@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {CityMap} from "./city-map";
-import {offers} from "../../mocks/offers";
+import {offersData} from "../../mocks/offers-data";
 
 function createNodeMock(element) {
   if (element.type === `section`) {
@@ -16,7 +16,7 @@ it(`Map correctly renders after relaunch`, () => {
   const options = {createNodeMock};
   const tree = renderer
     .create(<CityMap
-      items={offers}
+      items={offersData}
       initialCity={{
         name: `Amsterdam`,
         coordinates: [52.38333, 4.9]

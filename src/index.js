@@ -5,13 +5,13 @@ import {Provider} from 'react-redux';
 
 import App from "./components/app/app";
 import {reducer} from "./reducer";
-import {offers} from "./mocks/offers";
+import {offersData} from "./mocks/offers-data";
 
 const init = () => {
   const store = createStore(reducer);
 
   ReactDOM.render(<Provider store={store}>
-    <App offers={offers}/>
+    <App offersData={offersData}/>
   </Provider>,
   document.querySelector(`#root`)
   );
