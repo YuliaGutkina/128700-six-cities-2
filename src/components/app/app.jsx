@@ -30,3 +30,5 @@ export const App = () => {
     </div>
   );
 };
+
+App.propTypes = {};
