@@ -1,16 +1,17 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 import {App} from "./app";
 import {offersData} from "../../mocks/offers-data";
 
 it(`App correctly renders after relaunch`, () => {
-  const tree = renderer
-    .create(
-        <App
-          offers={offersData}
-        />)
-    .toJSON();
+  const renderer = new ShallowRenderer();
+  renderer.render(
+      <App
+        offers={offersData}
+      />
+  );
+  const result = renderer.getRenderOutput();
 
-  expect(tree).toMatchSnapshot();
+  expect(result).toMatchSnapshot();
 });
