@@ -51,8 +51,8 @@ export const OfferCard = (props) => {
 
 OfferCard.propTypes = {
   offer: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([`Apartment`, `Private room`, `House`, `Hotel`]).isRequired,
+    title: PropTypes.string,
+    type: PropTypes.oneOf([`Apartment`, `Private room`, `House`, `Hotel`]),
     isPremium: PropTypes.bool,
     src: PropTypes.string,
     price: PropTypes.number,

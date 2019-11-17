@@ -1,11 +1,7 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import {MainPage} from "../main-page/main-page";
-import {OfferCard} from "../offer-card/offer-card";
+import MainPage from "../main-page/main-page";
 
-export const App = (props) => {
-  const {offers, onCardTitleClick} = props;
-
+export const App = () => {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -30,17 +26,9 @@ export const App = (props) => {
           </div>
         </div>
       </header>
-      <MainPage
-        offers={offers}
-        onCardTitleClick={onCardTitleClick}
-      />
+      <MainPage/>
     </div>
   );
 };
 
-App.propTypes = {
-  offers: PropTypes.arrayOf(
-      OfferCard.propTypes.offer
-  ),
-  onCardTitleClick: PropTypes.func.isRequired
-};
+App.propTypes = {};

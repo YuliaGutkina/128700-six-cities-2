@@ -1,15 +1,13 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import ShallowRenderer from 'react-test-renderer/shallow';
+
 import {App} from "./app";
 
 it(`App correctly renders after relaunch`, () => {
-  const tree = renderer
-    .create(
-        <App
-          offers={[]}
-          onCardTitleClick={jest.fn()}
-        />)
-    .toJSON();
+  const renderer = new ShallowRenderer();
+  renderer.render(
+      <App/>
+  );
 
-  expect(tree).toMatchSnapshot();
+  expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

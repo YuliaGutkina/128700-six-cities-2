@@ -1,7 +1,7 @@
 import React, {PureComponent, createRef} from 'react';
 import leaflet from "leaflet";
 import PropTypes from "prop-types";
-import {OfferCard} from "../offer-card/offer-card";
+import {OffersList} from "../offers-list/offers-list";
 
 export class CityMap extends PureComponent {
   constructor(props) {
@@ -23,13 +23,18 @@ export class CityMap extends PureComponent {
   render() {
     return <section
       className="cities__map map"
-      id="map"
       ref={this._mapRef}
     />;
   }
 
   componentDidMount() {
     this._initMap();
+    this._setMapView();
+    this._renderMarkers();
+  }
+
+  componentDidUpdate() {
+    this._setMapView();
     this._renderMarkers();
   }
 
@@ -50,13 +55,18 @@ export class CityMap extends PureComponent {
     const {initialCity} = this.props;
 
     this._map = leaflet.map(this._mapRef.current, {
-      center: initialCity,
+      center: initialCity.coordinates,
       zoom,
       zoomControl: false,
       marker: true
     });
+  }
 
-    this._map.setView(initialCity, zoom);
+  _setMapView() {
+    const {zoom} = this._mapConfig;
+    const {initialCity} = this.props;
+
+    this._map.setView(initialCity.coordinates, zoom);
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
@@ -66,8 +76,9 @@ export class CityMap extends PureComponent {
 }
 
 CityMap.propTypes = {
-  items: PropTypes.arrayOf(
-      OfferCard.propTypes.offer
-  ),
-  initialCity: PropTypes.arrayOf(PropTypes.number)
+  items: OffersList.propTypes.places,
+  initialCity: PropTypes.shape({
+    name: PropTypes.string,
+    coordinates: PropTypes.arrayOf(PropTypes.number)
+  })
 };

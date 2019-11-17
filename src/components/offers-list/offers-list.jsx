@@ -14,9 +14,9 @@ export class OffersList extends PureComponent {
   }
 
   render() {
-    const {offers, onCardTitleClick} = this.props;
+    const {places, onCardTitleClick} = this.props;
     return <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer) => <OfferCard
+      {places.map((offer) => <OfferCard
         key={offer.title}
         offer={offer}
         onTitleClick={onCardTitleClick}
@@ -35,7 +35,7 @@ export class OffersList extends PureComponent {
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(
+  places: PropTypes.arrayOf(
       OfferCard.propTypes.offer
   ),
   onCardTitleClick: PropTypes.func.isRequired
