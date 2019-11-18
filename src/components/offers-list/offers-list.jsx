@@ -1,42 +1,24 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from "prop-types";
 import {OfferCard} from "../offer-card/offer-card";
 
-export class OffersList extends PureComponent {
-  constructor(props) {
-    super(props);
+export const OffersList = (props) => {
+  const {places, onCardTitleClick} = props;
 
-    this.state = {
-      activeCard: null
-    };
-
-    this._cardHoverHandler = this._cardHoverHandler.bind(this);
-  }
-
-  render() {
-    const {places, onCardTitleClick} = this.props;
-    return <div className="cities__places-list places__list tabs__content">
-      {places.map((offer) => <OfferCard
-        key={offer.title}
-        offer={offer}
-        onTitleClick={onCardTitleClick}
-        onHover={(evt) => {
-          this._cardHoverHandler(evt, offer);
-        }}
-      />)}
-    </div>;
-  }
-
-  _cardHoverHandler(evt, offerData) {
-    this.setState({
-      activeCard: evt ? offerData : null
-    });
-  }
-}
+  return <div className="cities__places-list places__list tabs__content">
+    {places.map((offer) => <OfferCard
+      key={offer.title}
+      offer={offer}
+      onTitleClick={onCardTitleClick}
+      onHover={() => {}}
+    />)}
+  </div>;
+};
 
 OffersList.propTypes = {
   places: PropTypes.arrayOf(
       OfferCard.propTypes.offer
   ),
-  onCardTitleClick: PropTypes.func.isRequired
+  onCardTitleClick: PropTypes.func.isRequired,
+  onSetActive: PropTypes.func
 };
