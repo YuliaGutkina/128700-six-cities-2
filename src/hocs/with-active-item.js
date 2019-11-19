@@ -8,6 +8,8 @@ const withActiveItem = (Component) => {
       this.state = {
         activeItem: null
       };
+
+      this._setActive = this._setActive.bind(this);
     }
 
     render() {
@@ -17,9 +19,9 @@ const withActiveItem = (Component) => {
       />;
     }
 
-    _setActive(item) {
+    _setActive(e, item) {
       this.setState({
-        activeItem: item
+        activeItem: e ? item : null
       });
     }
   }

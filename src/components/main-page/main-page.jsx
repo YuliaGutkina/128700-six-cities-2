@@ -8,7 +8,6 @@ import Locations from "../locations/locations";
 import {receiveCityCoordinatesSelector, receiveCityOffersSelector} from "../../reducer";
 import withActiveItem from "../../hocs/with-active-item";
 
-const LocationsWrapped = withActiveItem(Locations);
 const OffersListWrapped = withActiveItem(OffersList);
 
 const MainPage = (props) => {
@@ -17,7 +16,7 @@ const MainPage = (props) => {
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
-    <LocationsWrapped/>
+    <Locations/>
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
