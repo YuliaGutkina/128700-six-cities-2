@@ -6,6 +6,9 @@ import {OffersList} from "../offers-list/offers-list";
 import {CityMap} from "../city-map/city-map";
 import Locations from "../locations/locations";
 import {receiveCityCoordinatesSelector, receiveCityOffersSelector} from "../../reducer";
+import withActiveItem from "../../hocs/with-active-item";
+
+const OffersListWrapped = withActiveItem(OffersList);
 
 const MainPage = (props) => {
   const onCardTitleClick = () => {};
@@ -42,7 +45,7 @@ const MainPage = (props) => {
                 </select>
                 */}
           </form>
-          <OffersList
+          <OffersListWrapped
             places={cityOffers}
             onCardTitleClick={onCardTitleClick}
           />
