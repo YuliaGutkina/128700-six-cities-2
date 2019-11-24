@@ -1,42 +1,65 @@
-import {offersData} from "./mocks/offers-data";
-
-
-const receiveCityOffers = (city) => {
-  const cityData = offersData.filter((offer) => (offer.city === city))[0];
-
-  return cityData.places;
-};
-
-const receiveCityCoordinates = (city) => {
-  const cityData = offersData.filter((offer) => (offer.city === city))[0];
-
-  return cityData.initialCoordinates;
-};
-
 const receiveCityOffersSelector = (state) => {
-  return receiveCityOffers(state.city);
+  const currentCity = state.city;
+
+  return state.offers.filter((offer) => (offer.city.name === currentCity));
 };
 
-const receiveCityCoordinatesSelector = (state) => {
-  return receiveCityCoordinates(state.city);
+const receiveCitiesListSelector = (state) => {
+  const offers = state.offers;
+
+  return Array.from(new Set(offers.map((offer) => offer.city.name)))
+    .map((cityName) => ({
+      name: cityName,
+      location: offers.find((item) => item.city.name === cityName).location
+    }));
+};
+
+const receiveCityInfoSelector = (state) => {
+  const [currentCity] = receiveCitiesListSelector(state).filter((city) => city.name === state.city);
+
+  return currentCity;
 };
 
 const ActionCreator = {
   changeCity: (newCity) => ({
     type: `CHANGE_CITY`,
     payload: newCity
+  }),
+  requireAuthorization: (status) => ({
+    type: `REQUIRE_AUTHORIZATION`,
+    payload: status,
+  }),
+  loadOffers: (offers) => ({
+    type: `LOAD_OFFERS`,
+    payload: offers
   })
 };
 
 const initialState = {
-  city: offersData[0].city,
-  offers: offersData[0]
+  city: `Amsterdam`,
+  offers: [],
+  isAuthorizationRequired: false
+};
+
+const Operation = {
+  loadOffers: () => (dispatch, _getState, api) => {
+    return api.get(`/hotels`)
+      .then((response) => {
+        dispatch(ActionCreator.loadOffers(response.data));
+      });
+  }
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case `CHANGE_CITY`: return Object.assign({}, state, {
       city: action.payload
+    });
+    case `REQUIRE_AUTHORIZATION`: return Object.assign({}, state, {
+      isAuthorizationRequired: action.payload
+    });
+    case `LOAD_OFFERS`: return Object.assign({}, state, {
+      offers: action.payload
     });
   }
 
@@ -45,7 +68,9 @@ const reducer = (state = initialState, action) => {
 
 export {
   ActionCreator,
+  Operation,
   reducer,
   receiveCityOffersSelector,
-  receiveCityCoordinatesSelector
+  receiveCitiesListSelector,
+  receiveCityInfoSelector
 };

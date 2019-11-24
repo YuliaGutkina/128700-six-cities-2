@@ -3,16 +3,16 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import {OffersList} from "../offers-list/offers-list";
-import {CityMap} from "../city-map/city-map";
+import CityMap from "../city-map/city-map";
 import Locations from "../locations/locations";
-import {receiveCityCoordinatesSelector, receiveCityOffersSelector} from "../../reducer";
+import {receiveCityOffersSelector} from "../../reducer";
 import withActiveItem from "../../hocs/with-active-item";
 
 const OffersListWrapped = withActiveItem(OffersList);
 
 const MainPage = (props) => {
   const onCardTitleClick = () => {};
-  const {city, cityCoordinates, cityOffers} = props;
+  const {city, cityOffers} = props;
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
@@ -30,12 +30,14 @@ const MainPage = (props) => {
                 <use xlinkHref="#icon-arrow-select" />
               </svg>
             </span>
+            { /*
             <ul className="places__options places__options--custom places__options--opened">
               <li className="places__option places__option--active" tabIndex={0}>Popular</li>
               <li className="places__option" tabIndex={0}>Price: low to high</li>
               <li className="places__option" tabIndex={0}>Price: high to low</li>
               <li className="places__option" tabIndex={0}>Top rated first</li>
             </ul>
+            */}
             {/*
                 <select class="places__sorting-type" id="places-sorting">
                   <option class="places__option" value="popular" selected="">Popular</option>
@@ -51,13 +53,7 @@ const MainPage = (props) => {
           />
         </section>
         <div className="cities__right-section">
-          <CityMap
-            initialCity={{
-              name: city,
-              coordinates: cityCoordinates
-            }}
-            items={cityOffers}
-          />
+          <CityMap/>
         </div>
       </div>
     </div>
@@ -66,14 +62,13 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   city: PropTypes.string,
+  citiesList: PropTypes.array,
   cityOffers: OffersList.propTypes.places,
-  cityCoordinates: PropTypes.arrayOf(PropTypes.number)
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   city: state.city,
-  cityOffers: receiveCityOffersSelector(state),
-  cityCoordinates: receiveCityCoordinatesSelector(state)
+  cityOffers: receiveCityOffersSelector(state)
 });
 
 export {MainPage};

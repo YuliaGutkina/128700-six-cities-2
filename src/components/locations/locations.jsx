@@ -3,29 +3,28 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import {connect} from "react-redux";
 
-import {ActionCreator} from "../../reducer";
-import {offersData} from "../../mocks/offers-data";
+import {ActionCreator, receiveCitiesListSelector} from "../../reducer";
 
 const Locations = (props) => {
-  const {currentCity, onTabClick} = props;
+  const {citiesList, currentCity, onTabClick} = props;
 
   return <div className="tabs">
     <section className="locations container">
       <ul className="locations__list tabs__list">
-        {offersData.map((offer) => <li key={offer.city} className="locations__item">
+        {citiesList.map((city) => <li key={city.name} className="locations__item">
           <a
             className={
               classNames(
                   `locations__item-link`,
                   `tabs__item`,
-                  {"tabs__item--active": (offer.city === currentCity)}
+                  {"tabs__item--active": (city.name === currentCity)}
               )}
             href="#"
             onClick={() => {
-              onTabClick(offer.city);
+              onTabClick(city.name);
             }}
           >
-            <span>{offer.city}</span>
+            <span>{city.name}</span>
           </a>
         </li>)}
       </ul>
@@ -35,17 +34,19 @@ const Locations = (props) => {
 
 Locations.propTypes = {
   currentCity: PropTypes.string,
+  citiesList: PropTypes.array,
   onTabClick: PropTypes.func
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  currentCity: state.city
+  currentCity: state.city,
+  citiesList: receiveCitiesListSelector(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onTabClick: (city) => {
     dispatch(ActionCreator.changeCity(city));
-  }
+  },
 });
 
 export {Locations};

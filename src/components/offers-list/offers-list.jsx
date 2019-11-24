@@ -7,7 +7,7 @@ export const OffersList = (props) => {
 
   return <div className="cities__places-list places__list tabs__content">
     {places.map((offer) => <OfferCard
-      key={offer.title}
+      key={offer.id}
       offer={offer}
       onTitleClick={onCardTitleClick}
       onHover={(e) => {

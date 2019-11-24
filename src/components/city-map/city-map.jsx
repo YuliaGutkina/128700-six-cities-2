@@ -1,9 +1,12 @@
 import React, {PureComponent, createRef} from 'react';
 import leaflet from "leaflet";
 import PropTypes from "prop-types";
-import {OffersList} from "../offers-list/offers-list";
+import {connect} from "react-redux";
 
-export class CityMap extends PureComponent {
+import {OffersList} from "../offers-list/offers-list";
+import {receiveCityInfoSelector, receiveCityOffersSelector} from "../../reducer";
+
+class CityMap extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -13,8 +16,7 @@ export class CityMap extends PureComponent {
       icon: leaflet.icon({
         iconUrl: `img/pin.svg`,
         iconSize: [30, 30]
-      }),
-      zoom: 12
+      })
     };
 
     this._initMap = this._initMap.bind(this);
@@ -43,7 +45,10 @@ export class CityMap extends PureComponent {
     const {icon} = this._mapConfig;
 
     items.forEach((item) => {
-      const offerCords = item.coordinates;
+      const offerCords = [
+        item.location.latitude,
+        item.location.longitude
+      ];
       leaflet
         .marker(offerCords, {icon})
         .addTo(this._map);
@@ -51,22 +56,31 @@ export class CityMap extends PureComponent {
   }
 
   _initMap() {
-    const {zoom} = this._mapConfig;
-    const {initialCity} = this.props;
+    // const {currentCity} = this.props;
+    // const initialLocation = currentCity.location;
+
+    const initialLocation = {
+      latitude: 48.85661,
+      longitude: 2.351499,
+      zoom: 13
+    };
 
     this._map = leaflet.map(this._mapRef.current, {
-      center: initialCity.coordinates,
-      zoom,
+      center: [initialLocation.latitude, initialLocation.longitude],
+      zoom: initialLocation.zoom,
       zoomControl: false,
       marker: true
     });
   }
 
   _setMapView() {
-    const {zoom} = this._mapConfig;
-    const {initialCity} = this.props;
+    const initialLocation = {
+      latitude: 48.85661,
+      longitude: 2.351499,
+      zoom: 13
+    };
 
-    this._map.setView(initialCity.coordinates, zoom);
+    this._map.setView([initialLocation.latitude, initialLocation.longitude], initialLocation.zoom);
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
@@ -77,8 +91,13 @@ export class CityMap extends PureComponent {
 
 CityMap.propTypes = {
   items: OffersList.propTypes.places,
-  initialCity: PropTypes.shape({
-    name: PropTypes.string,
-    coordinates: PropTypes.arrayOf(PropTypes.number)
-  })
+  currentCity: PropTypes.object
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  items: receiveCityOffersSelector(state),
+  currentCity: receiveCityInfoSelector(state)
+});
+
+export {CityMap};
+export default connect(mapStateToProps)(CityMap);
