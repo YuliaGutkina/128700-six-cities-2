@@ -8,6 +8,7 @@ import Locations from "../locations/locations";
 import {receiveCityOffersSelector} from "../../reducer";
 import withActiveItem from "../../hocs/with-active-item";
 
+
 const OffersListWrapped = withActiveItem(OffersList);
 
 const MainPage = (props) => {
@@ -70,6 +71,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   city: state.city,
   cityOffers: receiveCityOffersSelector(state)
 });
+
 
 export {MainPage};
 export default connect(mapStateToProps)(MainPage);

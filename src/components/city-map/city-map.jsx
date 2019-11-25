@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {OffersList} from "../offers-list/offers-list";
 import {receiveCityInfoSelector, receiveCityOffersSelector} from "../../reducer";
 
+
 class CityMap extends PureComponent {
   constructor(props) {
     super(props);
@@ -16,7 +17,12 @@ class CityMap extends PureComponent {
       icon: leaflet.icon({
         iconUrl: `img/pin.svg`,
         iconSize: [30, 30]
-      })
+      }),
+      initialLocation: {
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13
+      }
     };
 
     this._initMap = this._initMap.bind(this);
@@ -56,31 +62,26 @@ class CityMap extends PureComponent {
   }
 
   _initMap() {
-    // const {currentCity} = this.props;
-    // const initialLocation = currentCity.location;
+    const {currentCity} = this.props;
+    const {initialLocation} = this._mapConfig;
 
-    const initialLocation = {
-      latitude: 48.85661,
-      longitude: 2.351499,
-      zoom: 13
-    };
+    const location = currentCity ? currentCity.location : initialLocation;
 
     this._map = leaflet.map(this._mapRef.current, {
-      center: [initialLocation.latitude, initialLocation.longitude],
-      zoom: initialLocation.zoom,
+      center: [location.latitude, location.longitude],
+      zoom: location.zoom,
       zoomControl: false,
       marker: true
     });
   }
 
   _setMapView() {
-    const initialLocation = {
-      latitude: 48.85661,
-      longitude: 2.351499,
-      zoom: 13
-    };
+    const {currentCity} = this.props;
+    const {initialLocation} = this._mapConfig;
 
-    this._map.setView([initialLocation.latitude, initialLocation.longitude], initialLocation.zoom);
+    const location = currentCity ? currentCity.location : initialLocation;
+
+    this._map.setView([location.latitude, location.longitude], location.zoom);
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
@@ -98,6 +99,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   items: receiveCityOffersSelector(state),
   currentCity: receiveCityInfoSelector(state)
 });
+
 
 export {CityMap};
 export default connect(mapStateToProps)(CityMap);

@@ -10,13 +10,12 @@ const receiveCitiesListSelector = (state) => {
   return Array.from(new Set(offers.map((offer) => offer.city.name)))
     .map((cityName) => ({
       name: cityName,
-      location: offers.find((item) => item.city.name === cityName).location
+      location: offers.find((item) => item.city.name === cityName).city.location
     }));
 };
 
 const receiveCityInfoSelector = (state) => {
   const [currentCity] = receiveCitiesListSelector(state).filter((city) => city.name === state.city);
-
   return currentCity;
 };
 

@@ -1,0 +1,27 @@
+// import {createSelector} from "reselect";
+import NameSpace from "../name-spaces";
+
+
+const NAME_SPACE = NameSpace.DATA;
+
+const receiveCityOffersSelector = (state) => {
+  const currentCity = state[NAME_SPACE].city;
+
+  return state.offers.filter((offer) => (offer.city.name === currentCity));
+};
+
+const receiveCitiesListSelector = (state) => {
+  const offers = state[NAME_SPACE].offers;
+
+  return Array.from(new Set(offers.map((offer) => offer.city.name)))
+    .map((cityName) => ({
+      name: cityName,
+      location: offers.find((item) => item.city.name === cityName).location
+    }));
+};
+
+
+export {
+  receiveCityOffersSelector,
+  receiveCitiesListSelector,
+};
