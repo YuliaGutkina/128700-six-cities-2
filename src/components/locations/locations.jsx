@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import {connect} from "react-redux";
 
-import {ActionCreator, receiveCitiesListSelector} from "../../reducer";
+import {receiveCitiesListSelector} from "../../reducer/data/selectors";
+import {ActionCreator} from "../../reducer/data/data";
 
 const Locations = (props) => {
   const {citiesList, currentCity, onTabClick} = props;
@@ -39,7 +40,6 @@ Locations.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  currentCity: state.city,
   citiesList: receiveCitiesListSelector(state)
 });
 

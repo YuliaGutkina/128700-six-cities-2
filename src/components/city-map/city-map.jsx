@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import {OffersList} from "../offers-list/offers-list";
-import {receiveCityInfoSelector, receiveCityOffersSelector} from "../../reducer";
+import {receiveCityInfoSelector, receiveCityOffersSelector} from "../../reducer/data/selectors";
 
 
 class CityMap extends PureComponent {

@@ -5,8 +5,8 @@ import {connect} from "react-redux";
 import {OffersList} from "../offers-list/offers-list";
 import CityMap from "../city-map/city-map";
 import Locations from "../locations/locations";
-import {receiveCityOffersSelector} from "../../reducer";
 import withActiveItem from "../../hocs/with-active-item";
+import {receiveCityInfoSelector, receiveCityOffersSelector} from "../../reducer/data/selectors";
 
 
 const OffersListWrapped = withActiveItem(OffersList);
@@ -14,15 +14,18 @@ const OffersListWrapped = withActiveItem(OffersList);
 const MainPage = (props) => {
   const onCardTitleClick = () => {};
   const {city, cityOffers} = props;
+  const cityName = city ? city.name : ``;
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
-    <Locations/>
+    <Locations
+      currentCity={cityName}
+    />
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{cityOffers.length} places to stay in {city}</b>
+          <b className="places__found">{cityOffers.length} places to stay in {cityName}</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>
@@ -62,13 +65,13 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  city: PropTypes.string,
+  city: PropTypes.object,
   citiesList: PropTypes.array,
   cityOffers: OffersList.propTypes.places,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  city: state.city,
+  city: receiveCityInfoSelector(state),
   cityOffers: receiveCityOffersSelector(state)
 });
 

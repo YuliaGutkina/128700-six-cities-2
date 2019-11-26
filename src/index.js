@@ -6,8 +6,10 @@ import thunk from "redux-thunk";
 import {compose} from "recompose";
 
 import {App} from "./components/app/app";
-import {Operation, reducer} from "./reducer";
+import reducer from "./reducer";
 import {createAPI} from "./api";
+import {Operation} from "./reducer/data/data";
+
 
 const init = () => {
   const api = createAPI((...args) => store.dispatch(...args));

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {OfferCard} from "../offer-card/offer-card";
 
+
 export const OffersList = (props) => {
   const {places, onCardTitleClick, onSetActive} = props;
 
@@ -16,6 +17,7 @@ export const OffersList = (props) => {
     />)}
   </div>;
 };
+
 
 OffersList.propTypes = {
   places: PropTypes.arrayOf(

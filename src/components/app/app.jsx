@@ -1,6 +1,7 @@
 import React from 'react';
 import MainPage from "../main-page/main-page";
 
+
 export const App = () => {
   return (
     <div className="page page--gray page--main">
@@ -30,5 +31,6 @@ export const App = () => {
     </div>
   );
 };
+
 
 App.propTypes = {};
