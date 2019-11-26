@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
+
 export const OfferCard = (props) => {
   const {offer, onTitleClick, onHover} = props;
   const mouseLeaveHandler = () => {
@@ -12,14 +13,14 @@ export const OfferCard = (props) => {
     onMouseEnter={onHover}
     onMouseLeave={mouseLeaveHandler}
   >
-    {offer.isPremium &&
+    {offer[`is_premium`] &&
     <div className="place-card__mark">
       <span>Premium</span>
     </div>
     }
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#">
-        <img className="place-card__image" src={offer.src} width={260} height={200} alt="Place image" />
+        <img className="place-card__image" src={offer[`preview_image`]} width={260} height={200} alt="Place image" />
       </a>
     </div>
     <div className="place-card__info">
@@ -50,15 +51,7 @@ export const OfferCard = (props) => {
 };
 
 OfferCard.propTypes = {
-  offer: PropTypes.shape({
-    title: PropTypes.string,
-    type: PropTypes.oneOf([`Apartment`, `Private room`, `House`, `Hotel`]),
-    isPremium: PropTypes.bool,
-    src: PropTypes.string,
-    price: PropTypes.number,
-    rating: PropTypes.number,
-    coordinates: PropTypes.arrayOf(PropTypes.number)
-  }),
+  offer: PropTypes.object,
   onTitleClick: PropTypes.func.isRequired,
   onHover: PropTypes.func.isRequired
 };

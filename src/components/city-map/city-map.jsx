@@ -1,7 +1,9 @@
 import React, {PureComponent, createRef} from 'react';
 import leaflet from "leaflet";
 import PropTypes from "prop-types";
+
 import {OffersList} from "../offers-list/offers-list";
+
 
 export class CityMap extends PureComponent {
   constructor(props) {
@@ -14,7 +16,11 @@ export class CityMap extends PureComponent {
         iconUrl: `img/pin.svg`,
         iconSize: [30, 30]
       }),
-      zoom: 12
+      initialLocation: {
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13
+      }
     };
 
     this._initMap = this._initMap.bind(this);
@@ -43,7 +49,10 @@ export class CityMap extends PureComponent {
     const {icon} = this._mapConfig;
 
     items.forEach((item) => {
-      const offerCords = item.coordinates;
+      const offerCords = [
+        item.location.latitude,
+        item.location.longitude
+      ];
       leaflet
         .marker(offerCords, {icon})
         .addTo(this._map);
@@ -51,22 +60,26 @@ export class CityMap extends PureComponent {
   }
 
   _initMap() {
-    const {zoom} = this._mapConfig;
-    const {initialCity} = this.props;
+    const {currentCity} = this.props;
+    const {initialLocation} = this._mapConfig;
+
+    const location = currentCity ? currentCity.location : initialLocation;
 
     this._map = leaflet.map(this._mapRef.current, {
-      center: initialCity.coordinates,
-      zoom,
+      center: [location.latitude, location.longitude],
+      zoom: location.zoom,
       zoomControl: false,
       marker: true
     });
   }
 
   _setMapView() {
-    const {zoom} = this._mapConfig;
-    const {initialCity} = this.props;
+    const {currentCity} = this.props;
+    const {initialLocation} = this._mapConfig;
 
-    this._map.setView(initialCity.coordinates, zoom);
+    const location = currentCity ? currentCity.location : initialLocation;
+
+    this._map.setView([location.latitude, location.longitude], location.zoom);
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
@@ -77,8 +90,5 @@ export class CityMap extends PureComponent {
 
 CityMap.propTypes = {
   items: OffersList.propTypes.places,
-  initialCity: PropTypes.shape({
-    name: PropTypes.string,
-    coordinates: PropTypes.arrayOf(PropTypes.number)
-  })
+  currentCity: PropTypes.object
 };
