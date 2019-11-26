@@ -1,13 +1,11 @@
 import React, {PureComponent, createRef} from 'react';
 import leaflet from "leaflet";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
 
 import {OffersList} from "../offers-list/offers-list";
-import {receiveCityInfoSelector, receiveCityOffersSelector} from "../../reducer/data/selectors";
 
 
-class CityMap extends PureComponent {
+export class CityMap extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -94,12 +92,3 @@ CityMap.propTypes = {
   items: OffersList.propTypes.places,
   currentCity: PropTypes.object
 };
-
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  items: receiveCityOffersSelector(state),
-  currentCity: receiveCityInfoSelector(state)
-});
-
-
-export {CityMap};
-export default connect(mapStateToProps)(CityMap);
