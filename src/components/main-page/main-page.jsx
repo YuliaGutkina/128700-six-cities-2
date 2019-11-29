@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {OffersList} from "../offers-list/offers-list";
 import {CityMap} from "../city-map/city-map";
 import Locations from "../locations/locations";
-import withActiveItem from "../../hocs/with-active-item";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import {receiveCityInfoSelector, receiveCityOffersSelector} from "../../reducer/data/selectors";
 
 
