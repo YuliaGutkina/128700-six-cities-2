@@ -11,8 +11,8 @@ export const OffersList = (props) => {
       key={offer.id}
       offer={offer}
       onTitleClick={onCardTitleClick}
-      onHover={(e) => {
-        onSetActive(e, offer);
+      onHover={(item) => {
+        onSetActive(item);
       }}
     />)}
   </div>;

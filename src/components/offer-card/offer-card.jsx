@@ -4,14 +4,15 @@ import PropTypes from "prop-types";
 
 export const OfferCard = (props) => {
   const {offer, onTitleClick, onHover} = props;
-  const mouseLeaveHandler = () => {
-    onHover(null);
-  };
 
   return <article
     className="cities__place-card place-card"
-    onMouseEnter={onHover}
-    onMouseLeave={mouseLeaveHandler}
+    onMouseEnter={(item) => {
+      onHover(item);
+    }}
+    onMouseLeave={() => {
+      onHover(null);
+    }}
   >
     {offer[`is_premium`] &&
     <div className="place-card__mark">
