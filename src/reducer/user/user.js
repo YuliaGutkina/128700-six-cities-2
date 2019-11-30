@@ -1,5 +1,5 @@
 const initialState = {
-  isAuthorizationRequired: true
+  userData: null
 };
 
 const ActionType = {
@@ -33,10 +33,6 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.REQUIRE_AUTHORIZATION:
-      return Object.assign({}, state, {
-        isAuthorizationRequired: action.payload
-      });
     case ActionType.AUTHORIZE_USER:
       return Object.assign({}, state, {
         userData: action.payload
