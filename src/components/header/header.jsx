@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+
+import {receiveUserDataSelector} from "../../reducer/user/selectors";
 
 
-export const Header = (props) => {
+const Header = (props) => {
   const {userData} = props;
 
   return <header className="header">
@@ -16,14 +20,17 @@ export const Header = (props) => {
         <nav className="header__nav">
           <ul className="header__nav-list">
             <li className="header__nav-item user">
-              <a className="header__nav-link header__nav-link--profile" href="#">
+              <Link
+                className="header__nav-link header__nav-link--profile"
+                to={!userData ? `/login` : `/favorites`}
+              >
                 <div className="header__avatar-wrapper user__avatar-wrapper">
                 </div>
                 {!userData ?
                   <span className="header__login">Sign in</span> :
                   <span className="header__user-name user__name">{userData.email}</span>
                 }
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -35,3 +42,11 @@ export const Header = (props) => {
 Header.propTypes = {
   userData: PropTypes.object
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  userData: receiveUserDataSelector(state)
+});
+
+
+export {Header};
+export default connect(mapStateToProps)(Header);
