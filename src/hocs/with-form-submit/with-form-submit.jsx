@@ -1,5 +1,8 @@
 import React, {PureComponent} from 'react';
-// import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+
+import {Operation} from "../../reducer/user/user";
 
 
 const withFormSubmit = (Component) => {
@@ -30,14 +33,29 @@ const withFormSubmit = (Component) => {
       });
     }
 
-    _formSubmitHandler() {
-      return this.state;
+    _formSubmitHandler(e) {
+      const {onRequireAuthorization, history} = this.props;
+
+      e.preventDefault();
+      onRequireAuthorization(this.state);
+      history.push(`/`);
     }
   }
 
-  WithFormSubmit.propTypes = {};
+  WithFormSubmit.propTypes = {
+    onRequireAuthorization: PropTypes.func.isRequired,
+    history: PropTypes.object
+  };
 
-  return WithFormSubmit;
+  const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {});
+
+  const mapDispatchToProps = (dispatch) => ({
+    onRequireAuthorization: ({email, password}) => {
+      dispatch(Operation.authorizeUser({email, password}));
+    },
+  });
+
+  return connect(mapStateToProps, mapDispatchToProps)(WithFormSubmit);
 };
 
 

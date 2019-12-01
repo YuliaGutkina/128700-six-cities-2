@@ -25,6 +25,15 @@ const Header = (props) => {
                 to={!userData ? `/login` : `/favorites`}
               >
                 <div className="header__avatar-wrapper user__avatar-wrapper">
+                  {userData &&
+                  <img
+                    className="header__avatar user__avatar"
+                    src={userData.avatar}
+                    width="20"
+                    height="20"
+                    alt="User avatar"
+                  />
+                  }
                 </div>
                 {!userData ?
                   <span className="header__login">Sign in</span> :

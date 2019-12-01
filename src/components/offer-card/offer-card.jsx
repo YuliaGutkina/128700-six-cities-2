@@ -7,8 +7,8 @@ export const OfferCard = (props) => {
 
   return <article
     className="cities__place-card place-card"
-    onMouseEnter={(item) => {
-      onHover(item);
+    onMouseEnter={() => {
+      onHover(offer);
     }}
     onMouseLeave={() => {
       onHover(null);

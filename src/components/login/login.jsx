@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
 
 import Header from "../header/header";
-import {Operation} from "../../reducer/user/user";
 
 
-const Login = (props) => {
-  const {onFormSubmit, onRequireAuthorization, onInputChange} = props;
+export const Login = (props) => {
+  const {onFormSubmit, onInputChange} = props;
 
   return <div className="page page--gray page--login">
     <Header/>
@@ -19,10 +17,7 @@ const Login = (props) => {
             className="login__form form"
             action="#"
             method="post"
-            onSubmit={(e) => {
-              e.preventDefault(e);
-              onRequireAuthorization(onFormSubmit());
-            }}
+            onSubmit={onFormSubmit}
           >
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">E-mail</label>
@@ -63,18 +58,5 @@ const Login = (props) => {
 
 Login.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
-  onRequireAuthorization: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired
 };
-
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {});
-
-const mapDispatchToProps = (dispatch) => ({
-  onRequireAuthorization: ({email, password}) => {
-    dispatch(Operation.requireAuthorization({email, password}));
-  },
-});
-
-
-export {Login};
-export default connect(mapStateToProps, mapDispatchToProps)(Login);

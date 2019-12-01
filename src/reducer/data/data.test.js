@@ -54,11 +54,3 @@ describe(`Action Creators work correctly`, () => {
     });
   });
 });
-
-describe(`Selectors work correctly`, () => {
-  it(`Selector for receiving offers returns correct value`, () => {});
-
-  it(`Selector for receiving city coordinates returns correct value`, () => {});
-
-  it(`Selector for receiving list of cities returns correct value`, () => {});
-});

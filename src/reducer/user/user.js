@@ -8,24 +8,30 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRE_AUTHORIZATION,
-    payload: status,
-  }),
   authorizeUser: (userInfo) => ({
     type: ActionType.AUTHORIZE_USER,
     payload: userInfo
   })
 };
 
+const transformApiUser = (apiUser, baseUrl) => {
+  return {
+    id: apiUser.id,
+    email: apiUser.email,
+    name: apiUser.name,
+    avatar: baseUrl + apiUser[`avatar_url`],
+    isPro: apiUser[`is_pro`]
+  };
+};
+
 const Operation = {
-  requireAuthorization: ({email, password}) => (dispatch, _getState, api) => {
+  authorizeUser: ({email, password}) => (dispatch, _getState, api) => {
     if (!email || !password) {
       throw new Error(`No email or password`);
     } else {
       return api.post(`/login`, {email, password})
         .then((response) => {
-          dispatch(ActionCreator.authorizeUser(response.data));
+          dispatch(ActionCreator.authorizeUser(transformApiUser(response.data, api.defaults.baseURL)));
         });
     }
   },

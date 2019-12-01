@@ -19,11 +19,15 @@ const ActionCreator = {
   })
 };
 
+const transformApiOffers = (apiOffers) => {
+  return apiOffers;
+};
+
 const Operation = {
   loadOffers: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        dispatch(ActionCreator.loadOffers(response.data));
+        dispatch(ActionCreator.loadOffers(transformApiOffers(response.data)));
       });
   }
 };

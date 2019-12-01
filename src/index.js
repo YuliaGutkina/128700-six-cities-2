@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 import thunk from "redux-thunk";
 import {compose} from "recompose";
 import {BrowserRouter as Router} from "react-router-dom";
+import {createBrowserHistory} from "history";
 
 import {App} from "./components/app/app";
 import reducer from "./reducer";
@@ -12,8 +13,10 @@ import {createAPI} from "./api";
 import {Operation} from "./reducer/data/data";
 
 
+const history = createBrowserHistory();
+
 const init = () => {
-  const api = createAPI((...args) => store.dispatch(...args));
+  const api = createAPI(() => history.push(`/login`));
   const store = createStore(
       reducer,
       compose(
@@ -25,7 +28,7 @@ const init = () => {
   store.dispatch(Operation.loadOffers());
 
   ReactDOM.render(<Provider store={store}>
-    <Router>
+    <Router history={history}>
       <App/>
     </Router>
   </Provider>,
