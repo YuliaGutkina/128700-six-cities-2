@@ -14,14 +14,14 @@ export const OfferCard = (props) => {
       onHover(null);
     }}
   >
-    {offer[`is_premium`] &&
+    {offer.isFavorite &&
     <div className="place-card__mark">
       <span>Premium</span>
     </div>
     }
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#">
-        <img className="place-card__image" src={offer[`preview_image`]} width={260} height={200} alt="Place image" />
+        <img className="place-card__image" src={offer.preview} width={260} height={200} alt="Place image" />
       </a>
     </div>
     <div className="place-card__info">
@@ -52,7 +52,40 @@ export const OfferCard = (props) => {
 };
 
 OfferCard.propTypes = {
-  offer: PropTypes.object,
+  offer: PropTypes.shape({
+    id: PropTypes.number,
+    city: PropTypes.shape({
+      name: PropTypes.string,
+      location: PropTypes.shape({
+        latitude: PropTypes.number,
+        longitude: PropTypes.number,
+        zoom: PropTypes.number
+      })
+    }),
+    preview: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    isPremium: PropTypes.bool,
+    rating: PropTypes.number,
+    type: PropTypes.string,
+    bedrooms: PropTypes.number,
+    maxAdults: PropTypes.number,
+    price: PropTypes.number,
+    goods: PropTypes.arrayOf(PropTypes.string),
+    host: PropTypes.shape({
+      id: PropTypes.number,
+      isPro: PropTypes.bool,
+      name: PropTypes.string,
+      avatar: PropTypes.string
+    }),
+    description: PropTypes.string,
+    location: PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      zoom: PropTypes.number
+    })
+  }),
   onTitleClick: PropTypes.func.isRequired,
   onHover: PropTypes.func.isRequired
 };

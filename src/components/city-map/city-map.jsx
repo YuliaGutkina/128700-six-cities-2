@@ -94,5 +94,12 @@ export class CityMap extends PureComponent {
 
 CityMap.propTypes = {
   items: OffersList.propTypes.places,
-  currentCity: PropTypes.object
+  currentCity: PropTypes.shape({
+    name: PropTypes.string,
+    location: PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      zoom: PropTypes.number
+    })
+  })
 };

@@ -7,9 +7,11 @@ it(`Main page correctly renders after relaunch`, () => {
   const renderer = new ShallowRenderer();
   renderer.render(
       <MainPage
-        city="Amsterdam"
+        city={{
+          name: `Amsterdam`
+        }}
+        citiesList={[]}
         cityOffers={[{}, {}]}
-        cityCoordinates={[0, 0]}
       />
   );
   const result = renderer.getRenderOutput();

@@ -8,6 +8,7 @@ it(`Offers list correctly renders after relaunch`, () => {
     .create(
         <Locations
           currentCity="Paris"
+          citiesList={[]}
           onTabClick={jest.fn()}
         />)
     .toJSON();

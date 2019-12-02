@@ -1,7 +1,8 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import ShallowRenderer from "react-test-renderer/shallow";
+
 import {CityMap} from "./city-map";
-import {offersData} from "../../mocks/offers-data";
+
 
 function createNodeMock(element) {
   if (element.type === `section`) {
@@ -14,15 +15,40 @@ function createNodeMock(element) {
 
 it(`Map correctly renders after relaunch`, () => {
   const options = {createNodeMock};
-  const tree = renderer
-    .create(<CityMap
-      items={offersData}
-      initialCity={{
-        name: `Amsterdam`,
-        coordinates: [52.38333, 4.9]
-      }}
-    />, options)
-    .toJSON();
+  const renderer = new ShallowRenderer();
+  renderer.render(
+      <CityMap
+        items={[{
+          city: {
+            name: `Amsterdam`,
+            location: {
+              latitude: 0,
+              longitude: 0,
+              zoom: 0
+            }
+          },
+        }, {
+          city: {
+            name: `Amsterdam`,
+            location: {
+              latitude: 0,
+              longitude: 0,
+              zoom: 0
+            }
+          },
+        }]}
+        currentCity={{
+          name: `Amsterdam`,
+          location: {
+            latitude: 0,
+            longitude: 0,
+            zoom: 0
+          }
+        }}
+      />,
+      options
+  );
+  const result = renderer.getRenderOutput();
 
-  expect(tree).toMatchSnapshot();
+  expect(result).toMatchSnapshot();
 });

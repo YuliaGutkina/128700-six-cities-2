@@ -3,7 +3,6 @@ const initialState = {
 };
 
 const ActionType = {
-  REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
   AUTHORIZE_USER: `AUTHORIZE_USER`
 };
 

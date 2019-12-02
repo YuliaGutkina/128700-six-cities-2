@@ -1,122 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Main page correctly renders after relaunch 1`] = `
-<main
-  className="page__main page__main--index"
+<div
+  className="page page--gray page--main"
 >
-  <h1
-    className="visually-hidden"
+  <Memo(Connect(Header)) />
+  <main
+    className="page__main page__main--index"
   >
-    Cities
-  </h1>
-  <Memo(Connect(Locations)) />
-  <div
-    className="cities"
-  >
-    <div
-      className="cities__places-container container"
+    <h1
+      className="visually-hidden"
     >
-      <section
-        className="cities__places places"
+      Cities
+    </h1>
+    <Memo(Connect(Locations))
+      currentCity="Amsterdam"
+    />
+    <div
+      className="cities"
+    >
+      <div
+        className="cities__places-container container"
       >
-        <h2
-          className="visually-hidden"
+        <section
+          className="cities__places places"
         >
-          Places
-        </h2>
-        <b
-          className="places__found"
-        >
-          2
-           places to stay in 
-          Amsterdam
-        </b>
-        <form
-          action="#"
-          className="places__sorting"
-          method="get"
-        >
-          <span
-            className="places__sorting-caption"
+          <h2
+            className="visually-hidden"
           >
-            Sort by
-          </span>
-          <span
-            className="places__sorting-type"
-            tabIndex={0}
+            Places
+          </h2>
+          <b
+            className="places__found"
           >
-            Popular
-            <svg
-              className="places__sorting-arrow"
-              height={4}
-              width={7}
+            2
+             places to stay in 
+            Amsterdam
+          </b>
+          <form
+            action="#"
+            className="places__sorting"
+            method="get"
+          >
+            <span
+              className="places__sorting-caption"
             >
-              <use
-                xlinkHref="#icon-arrow-select"
-              />
-            </svg>
-          </span>
-          <ul
-            className="places__options places__options--custom places__options--opened"
-          >
-            <li
-              className="places__option places__option--active"
+              Sort by
+            </span>
+            <span
+              className="places__sorting-type"
               tabIndex={0}
             >
               Popular
-            </li>
-            <li
-              className="places__option"
-              tabIndex={0}
-            >
-              Price: low to high
-            </li>
-            <li
-              className="places__option"
-              tabIndex={0}
-            >
-              Price: high to low
-            </li>
-            <li
-              className="places__option"
-              tabIndex={0}
-            >
-              Top rated first
-            </li>
-          </ul>
-        </form>
-        <OffersList
-          onCardTitleClick={[Function]}
-          places={
-            Array [
-              Object {},
-              Object {},
-            ]
-          }
-        />
-      </section>
-      <div
-        className="cities__right-section"
-      >
-        <CityMap
-          initialCity={
-            Object {
-              "coordinates": Array [
-                0,
-                0,
-              ],
-              "name": "Amsterdam",
+              <svg
+                className="places__sorting-arrow"
+                height={4}
+                width={7}
+              >
+                <use
+                  xlinkHref="#icon-arrow-select"
+                />
+              </svg>
+            </span>
+          </form>
+          <WithActiveItem
+            onCardTitleClick={[Function]}
+            places={
+              Array [
+                Object {},
+                Object {},
+              ]
             }
-          }
-          items={
-            Array [
-              Object {},
-              Object {},
-            ]
-          }
-        />
+          />
+        </section>
+        <div
+          className="cities__right-section"
+        >
+          <CityMap
+            currentCity={
+              Object {
+                "name": "Amsterdam",
+              }
+            }
+            items={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          />
+        </div>
       </div>
     </div>
-  </div>
-</main>
+  </main>
+</div>
 `;
