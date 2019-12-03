@@ -19,6 +19,7 @@ it(`Click on title works correctly`, () => {
     }}
     onTitleClick={clickHandler}
     onHover={jest.fn()}
+    onFavoriteClick={jest.fn()}
   />);
 
   const title = card.find(`.place-card__name a`);
@@ -41,6 +42,7 @@ it(`Hover on card return correct data`, () => {
     }}
     onTitleClick={jest.fn()}
     onHover={hoverHandler}
+    onFavoriteClick={jest.fn}
   />);
 
   card.simulate(`mouseenter`);

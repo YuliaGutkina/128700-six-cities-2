@@ -42,6 +42,7 @@ it(`Offer card correctly renders after relaunch`, () => {
           }}
           onTitleClick={jest.fn()}
           onHover={jest.fn()}
+          onFavoriteClick={jest.fn}
         />)
     .toJSON();
 

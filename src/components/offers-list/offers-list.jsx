@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {OfferCard} from "../offer-card/offer-card";
+import OfferCard from "../offer-card/offer-card";
 
 
 export const OffersList = (props) => {
@@ -21,7 +21,8 @@ export const OffersList = (props) => {
 
 OffersList.propTypes = {
   places: PropTypes.arrayOf(
-      OfferCard.propTypes.offer
+      // OfferCard.propTypes.offer
+      PropTypes.object
   ),
   onCardTitleClick: PropTypes.func.isRequired,
   onSetActive: PropTypes.func

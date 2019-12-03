@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import classNames from "classnames";
+import {connect} from "react-redux";
+
+import {ActionCreator, Operation} from "../../reducer/data/data";
 
 
-export const OfferCard = (props) => {
-  const {offer, onTitleClick, onHover} = props;
+const OfferCard = (props) => {
+  const {offer, onTitleClick, onFavoriteClick, onHover} = props;
 
   return <article
     className="cities__place-card place-card"
@@ -14,7 +18,7 @@ export const OfferCard = (props) => {
       onHover(null);
     }}
   >
-    {offer.isFavorite &&
+    {offer.isPremium &&
     <div className="place-card__mark">
       <span>Premium</span>
     </div>
@@ -30,7 +34,17 @@ export const OfferCard = (props) => {
           <b className="place-card__price-value">€{offer.price}</b>
           <span className="place-card__price-text">/&nbsp;night</span>
         </div>
-        <button className="place-card__bookmark-button button" type="button">
+        <button
+          className={classNames(
+              `button`,
+              `place-card__bookmark-button`,
+              {"place-card__bookmark-button--active": offer.isFavorite}
+          )}
+          type="button"
+          onClick={() => {
+            onFavoriteClick(offer);
+          }}
+        >
           <svg className="place-card__bookmark-icon" width={18} height={19}>
             <use xlinkHref="#icon-bookmark" />
           </svg>
@@ -87,5 +101,18 @@ OfferCard.propTypes = {
     })
   }),
   onTitleClick: PropTypes.func.isRequired,
-  onHover: PropTypes.func.isRequired
+  onHover: PropTypes.func.isRequired,
+  onFavoriteClick: PropTypes.func.isRequired
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFavoriteClick: (offer) => {
+    dispatch(Operation.toggleFavoriteStatus(offer));
+  },
+});
+
+
+export {OfferCard};
+export default connect(mapStateToProps, mapDispatchToProps)(OfferCard);
