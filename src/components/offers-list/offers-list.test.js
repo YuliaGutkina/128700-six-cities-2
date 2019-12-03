@@ -12,7 +12,6 @@ it(`Offers list correctly renders after relaunch`, () => {
         onCardTitleClick={jest.fn()}
         onSetActive={jest.fn()}
       />);
-
   const result = renderer.getRenderOutput();
 
   expect(result).toMatchSnapshot();
