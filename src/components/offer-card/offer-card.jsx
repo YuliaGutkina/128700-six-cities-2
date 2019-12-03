@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import {connect} from "react-redux";
 
-import {ActionCreator, Operation} from "../../reducer/data/data";
+import {Operation} from "../../reducer/data/data";
 
 
 const OfferCard = (props) => {

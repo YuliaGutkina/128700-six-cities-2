@@ -1,17 +1,19 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import ShallowRenderer from 'react-test-renderer/shallow';
+
 import {OffersList} from "./offers-list";
 
 
 it(`Offers list correctly renders after relaunch`, () => {
-  const tree = renderer
-    .create(
-        <OffersList
-          places={[{}, {}]}
-          onCardTitleClick={jest.fn()}
-          onSetActive={jest.fn()}
-        />)
-    .toJSON();
+  const renderer = new ShallowRenderer();
+  renderer.render(
+      <OffersList
+        places={[{}, {}]}
+        onCardTitleClick={jest.fn()}
+        onSetActive={jest.fn()}
+      />);
 
-  expect(tree).toMatchSnapshot();
+  const result = renderer.getRenderOutput();
+
+  expect(result).toMatchSnapshot();
 });
