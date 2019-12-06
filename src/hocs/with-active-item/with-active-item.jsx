@@ -13,15 +13,18 @@ const withActiveItem = (Component) => {
     }
 
     render() {
+      const {activeItem} = this.state;
+
       return <Component
         {...this.props}
         onSetActive={this._setActive}
+        activeItem={activeItem}
       />;
     }
 
-    _setActive(e, item) {
+    _setActive(item) {
       this.setState({
-        activeItem: e ? item : null
+        activeItem: item
       });
     }
   }

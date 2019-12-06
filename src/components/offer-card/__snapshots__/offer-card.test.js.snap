@@ -3,7 +3,7 @@
 exports[`Offer card correctly renders after relaunch 1`] = `
 <article
   className="cities__place-card place-card"
-  onMouseEnter={[MockFunction]}
+  onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
   <div
@@ -16,7 +16,6 @@ exports[`Offer card correctly renders after relaunch 1`] = `
         alt="Place image"
         className="place-card__image"
         height={200}
-        src="img/room.jpg"
         width={260}
       />
     </a>
@@ -34,7 +33,6 @@ exports[`Offer card correctly renders after relaunch 1`] = `
           className="place-card__price-value"
         >
           €
-          80
         </b>
         <span
           className="place-card__price-text"
@@ -43,7 +41,8 @@ exports[`Offer card correctly renders after relaunch 1`] = `
         </span>
       </div>
       <button
-        className="place-card__bookmark-button button"
+        className="button place-card__bookmark-button"
+        onClick={[Function]}
         type="button"
       >
         <svg
@@ -71,7 +70,7 @@ exports[`Offer card correctly renders after relaunch 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "undefined%",
             }
           }
         />
@@ -88,15 +87,11 @@ exports[`Offer card correctly renders after relaunch 1`] = `
       <a
         href="#"
         onClick={[MockFunction]}
-      >
-        Wood and stone place
-      </a>
+      />
     </h2>
     <p
       className="place-card__type"
-    >
-      Private room
-    </p>
+    />
   </div>
 </article>
 `;

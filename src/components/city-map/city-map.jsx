@@ -24,6 +24,9 @@ export class CityMap extends PureComponent {
     };
 
     this._initMap = this._initMap.bind(this);
+    this._getLocation = this._getLocation.bind(this);
+    this._setMapView = this._setMapView.bind(this);
+    this._renderMarkers = this._renderMarkers.bind(this);
   }
 
   render() {
@@ -59,11 +62,15 @@ export class CityMap extends PureComponent {
     });
   }
 
-  _initMap() {
+  _getLocation() {
     const {currentCity} = this.props;
     const {initialLocation} = this._mapConfig;
 
-    const location = currentCity ? currentCity.location : initialLocation;
+    return currentCity ? currentCity.location : initialLocation;
+  }
+
+  _initMap() {
+    const location = this._getLocation();
 
     this._map = leaflet.map(this._mapRef.current, {
       center: [location.latitude, location.longitude],
@@ -74,10 +81,7 @@ export class CityMap extends PureComponent {
   }
 
   _setMapView() {
-    const {currentCity} = this.props;
-    const {initialLocation} = this._mapConfig;
-
-    const location = currentCity ? currentCity.location : initialLocation;
+    const location = this._getLocation();
 
     this._map.setView([location.latitude, location.longitude], location.zoom);
     leaflet
@@ -90,5 +94,12 @@ export class CityMap extends PureComponent {
 
 CityMap.propTypes = {
   items: OffersList.propTypes.places,
-  currentCity: PropTypes.object
+  currentCity: PropTypes.shape({
+    name: PropTypes.string,
+    location: PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      zoom: PropTypes.number
+    })
+  })
 };

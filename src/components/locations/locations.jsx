@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 
 import {receiveCitiesListSelector} from "../../reducer/data/selectors";
 import {ActionCreator} from "../../reducer/data/data";
+import {CityMap} from "../city-map/city-map";
 
 const Locations = (props) => {
   const {citiesList, currentCity, onTabClick} = props;
@@ -35,7 +36,7 @@ const Locations = (props) => {
 
 Locations.propTypes = {
   currentCity: PropTypes.string,
-  citiesList: PropTypes.array,
+  citiesList: PropTypes.arrayOf(CityMap.propTypes.currentCity),
   onTabClick: PropTypes.func
 };
 

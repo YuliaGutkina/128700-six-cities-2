@@ -1,7 +1,9 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+
 import {OfferCard} from "./offer-card";
+import {offersData} from "../../mocks/offer-data";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -18,6 +20,7 @@ it(`Click on title works correctly`, () => {
     }}
     onTitleClick={clickHandler}
     onHover={jest.fn()}
+    onFavoriteClick={jest.fn()}
   />);
 
   const title = card.find(`.place-card__name a`);
@@ -28,22 +31,15 @@ it(`Click on title works correctly`, () => {
 
 it(`Hover on card return correct data`, () => {
   const hoverHandler = jest.fn();
-  const mockEvent = {target: `abc`};
 
   const card = shallow(<OfferCard
-    offer={{
-      title: `Wood and stone place`,
-      type: `Private room`,
-      isPremium: false,
-      src: `img/room.jpg`,
-      price: 80,
-      rating: 80
-    }}
+    offer={offersData[0]}
     onTitleClick={jest.fn()}
     onHover={hoverHandler}
+    onFavoriteClick={jest.fn}
   />);
 
-  card.simulate(`mouseenter`, mockEvent);
+  card.simulate(`mouseenter`);
 
-  expect(hoverHandler).toHaveBeenCalledWith(mockEvent);
+  expect(hoverHandler).toHaveBeenCalledWith(offersData[0]);
 });
