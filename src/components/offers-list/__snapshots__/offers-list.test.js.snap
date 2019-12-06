@@ -4,12 +4,12 @@ exports[`Offers list correctly renders after relaunch 1`] = `
 <div
   className="cities__places-list places__list tabs__content"
 >
-  <Memo(Connect(OfferCard))
+  <withRouter(Connect(OfferCard))
     offer={Object {}}
     onHover={[Function]}
     onTitleClick={[MockFunction]}
   />
-  <Memo(Connect(OfferCard))
+  <withRouter(Connect(OfferCard))
     offer={Object {}}
     onHover={[Function]}
     onTitleClick={[MockFunction]}

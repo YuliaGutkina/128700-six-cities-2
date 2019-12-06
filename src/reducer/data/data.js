@@ -7,8 +7,10 @@ const initialState = {
 const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   LOAD_OFFERS: `LOAD_OFFERS`,
+  LOAD_FAVORITE: `LOAD_FAVORITE`,
   TOGGLE_FAVORITE_STATUS: `TOGGLE_FAVORITE_STATUS`,
-  LOAD_FAVORITE: `LOAD_FAVORITE`
+  ADD_TO_FAVORITES: `ADD_TO_FAVORITES`,
+  REMOVE_FROM_FAVORITES: `REMOVE_FROM_FAVORITES`
 };
 
 const ActionCreator = {
@@ -25,11 +27,21 @@ const ActionCreator = {
     payload: favorite
   }),
   toggleFavoriteStatus: (offer) => {
+    offer.isFavorite = !offer.isFavorite;
+
     return {
       type: ActionType.TOGGLE_FAVORITE_STATUS,
       payload: offer
     };
-  }
+  },
+  addToFavorites: (offer) => ({
+    type: ActionType.ADD_TO_FAVORITES,
+    payload: offer
+  }),
+  removeFromFavorites: (offer) => ({
+    type: ActionType.REMOVE_FROM_FAVORITES,
+    payload: offer.id
+  })
 };
 
 const transformApiOffer = (offer) => ({
@@ -90,7 +102,13 @@ const Operation = {
 
     return api.post(`/favorite/${hotelId}/${status}`)
       .then((response) => {
-        dispatch(ActionCreator.toggleFavoriteStatus(transformApiOffer(response.data)));
+        ActionCreator.toggleFavoriteStatus(offer);
+
+        if (status === 1) {
+          dispatch(ActionCreator.addToFavorites(transformApiOffer(response.data)));
+        } else {
+          dispatch(ActionCreator.removeFromFavorites(transformApiOffer(response.data)));
+        }
       });
   }
 };
@@ -106,7 +124,15 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FAVORITE: return Object.assign({}, state, {
       offers: action.payload
     });
-    case ActionType.TOGGLE_FAVORITE_STATUS: return Object.assign({}, state, {});
+    case ActionType.ADD_TO_FAVORITES: return Object.assign({}, state, {
+      favorite: [...state.favorite, action.payload]
+    });
+    case ActionType.REMOVE_FROM_FAVORITES: return Object.assign({}, state, {
+      favorite: state.favorite.filter((offer) => offer.id !== action.payload)
+    });
+    case ActionType.TOGGLE_FAVORITE_STATUS: return Object.assign({}, state, {
+      offers: state.offers
+    });
   }
 
   return state;

@@ -16,7 +16,6 @@ exports[`Offer card correctly renders after relaunch 1`] = `
         alt="Place image"
         className="place-card__image"
         height={200}
-        src="img/1.png"
         width={260}
       />
     </a>
@@ -34,7 +33,6 @@ exports[`Offer card correctly renders after relaunch 1`] = `
           className="place-card__price-value"
         >
           €
-          120
         </b>
         <span
           className="place-card__price-text"
@@ -72,7 +70,7 @@ exports[`Offer card correctly renders after relaunch 1`] = `
         <span
           style={
             Object {
-              "width": "4.8%",
+              "width": "undefined%",
             }
           }
         />
@@ -89,15 +87,11 @@ exports[`Offer card correctly renders after relaunch 1`] = `
       <a
         href="#"
         onClick={[MockFunction]}
-      >
-        Beautiful & luxurious studio at great location
-      </a>
+      />
     </h2>
     <p
       className="place-card__type"
-    >
-      apartment
-    </p>
+    />
   </div>
 </article>
 `;

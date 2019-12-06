@@ -2,6 +2,7 @@ import React from "react";
 import ShallowRenderer from "react-test-renderer/shallow";
 
 import {CityMap} from "./city-map";
+import {offersData} from "../../mocks/offer-data";
 
 
 function createNodeMock(element) {
@@ -18,33 +19,7 @@ it(`Map correctly renders after relaunch`, () => {
   const renderer = new ShallowRenderer();
   renderer.render(
       <CityMap
-        items={[{
-          city: {
-            name: `Amsterdam`,
-            location: {
-              latitude: 0,
-              longitude: 0,
-              zoom: 0
-            }
-          },
-        }, {
-          city: {
-            name: `Amsterdam`,
-            location: {
-              latitude: 0,
-              longitude: 0,
-              zoom: 0
-            }
-          },
-        }]}
-        currentCity={{
-          name: `Amsterdam`,
-          location: {
-            latitude: 0,
-            longitude: 0,
-            zoom: 0
-          }
-        }}
+        items={[offersData[0], offersData[1]]}
       />,
       options
   );

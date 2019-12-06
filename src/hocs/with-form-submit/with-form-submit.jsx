@@ -34,11 +34,10 @@ const withFormSubmit = (Component) => {
     }
 
     _formSubmitHandler(e) {
-      const {onRequireAuthorization, history} = this.props;
+      const {onRequireAuthorization} = this.props;
 
       e.preventDefault();
       onRequireAuthorization(this.state);
-      history.push(`/`);
     }
   }
 

@@ -3,6 +3,7 @@ import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import {OfferCard} from "./offer-card";
+import {offersData} from "../../mocks/offer-data";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -32,14 +33,7 @@ it(`Hover on card return correct data`, () => {
   const hoverHandler = jest.fn();
 
   const card = shallow(<OfferCard
-    offer={{
-      title: `Wood and stone place`,
-      type: `Private room`,
-      isPremium: false,
-      src: `img/room.jpg`,
-      price: 80,
-      rating: 80
-    }}
+    offer={offersData[0]}
     onTitleClick={jest.fn()}
     onHover={hoverHandler}
     onFavoriteClick={jest.fn}
@@ -47,12 +41,5 @@ it(`Hover on card return correct data`, () => {
 
   card.simulate(`mouseenter`);
 
-  expect(hoverHandler).toHaveBeenCalledWith({
-    title: `Wood and stone place`,
-    type: `Private room`,
-    isPremium: false,
-    src: `img/room.jpg`,
-    price: 80,
-    rating: 80
-  });
+  expect(hoverHandler).toHaveBeenCalledWith(offersData[0]);
 });

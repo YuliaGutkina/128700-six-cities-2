@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-export const createAPI = (logout) => {
+export const createAPI = (goToLogin) => {
   const api = axios.create({
     baseURL: `https://htmlacademy-react-2.appspot.com/six-cities`,
     timeout: 5000,
@@ -11,7 +11,7 @@ export const createAPI = (logout) => {
   const onSuccess = (responce) => responce;
   const onError = (err) => {
     if (err.response.status === 401) {
-      logout();
+      goToLogin();
     }
 
     return Promise.reject(err);
