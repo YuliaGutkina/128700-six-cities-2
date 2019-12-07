@@ -1,18 +1,447 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Offers list correctly renders after relaunch 1`] = `
-<div
-  className="cities__places-list places__list tabs__content"
->
-  <withRouter(Connect(OfferCard))
-    offer={Object {}}
+<React.Fragment>
+  <Memo(Connect(withRouter(OfferCard)))
+    offer={
+      Object {
+        "bedrooms": 3,
+        "city": Object {
+          "location": Object {
+            "latitude": 52.370216,
+            "longitude": 4.895168,
+            "zoom": 10,
+          },
+          "name": "Amsterdam",
+        },
+        "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+        "goods": Array [
+          "Heating",
+          "Kitchen",
+          "Cable TV",
+          "Washing machine",
+          "Coffee machine",
+          "Dishwasher",
+        ],
+        "host": Object {
+          "avatar": "img/1.png",
+          "id": 3,
+          "isPro": true,
+          "name": "Angelina",
+        },
+        "id": 1,
+        "images": Array [
+          "img/1.png",
+          "img/2.png",
+        ],
+        "isFavorite": false,
+        "isPremium": false,
+        "location": Object {
+          "latitude": 52.35514938496378,
+          "longitude": 4.673877537499948,
+          "zoom": 8,
+        },
+        "maxAdults": 4,
+        "preview": "img/1.png",
+        "price": 120,
+        "rating": 4.8,
+        "title": "Beautiful & luxurious studio at great location",
+        "type": "apartment",
+      }
+    }
     onHover={[Function]}
-    onTitleClick={[MockFunction]}
   />
-  <withRouter(Connect(OfferCard))
-    offer={Object {}}
+  <Memo(Connect(withRouter(OfferCard)))
+    offer={
+      Object {
+        "bedrooms": 3,
+        "city": Object {
+          "location": Object {
+            "latitude": 52.370216,
+            "longitude": 4.895168,
+            "zoom": 10,
+          },
+          "name": "Amsterdam",
+        },
+        "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+        "goods": Array [
+          "Heating",
+          "Kitchen",
+          "Cable TV",
+          "Washing machine",
+          "Coffee machine",
+          "Dishwasher",
+        ],
+        "host": Object {
+          "avatar": "img/1.png",
+          "id": 3,
+          "isPro": true,
+          "name": "Angelina",
+        },
+        "id": 2,
+        "images": Array [
+          "img/1.png",
+          "img/2.png",
+        ],
+        "isFavorite": false,
+        "isPremium": false,
+        "location": Object {
+          "latitude": 52.35514938496378,
+          "longitude": 4.673877537499948,
+          "zoom": 8,
+        },
+        "maxAdults": 4,
+        "preview": "img/1.png",
+        "price": 120,
+        "rating": 4.8,
+        "title": "Beautiful & luxurious studio at great location",
+        "type": "apartment",
+      }
+    }
     onHover={[Function]}
-    onTitleClick={[MockFunction]}
   />
-</div>
+  <Memo(Connect(withRouter(OfferCard)))
+    offer={
+      Object {
+        "bedrooms": 3,
+        "city": Object {
+          "location": Object {
+            "latitude": 52.370216,
+            "longitude": 4.895168,
+            "zoom": 10,
+          },
+          "name": "Tel Aviv",
+        },
+        "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+        "goods": Array [
+          "Heating",
+          "Kitchen",
+          "Cable TV",
+          "Washing machine",
+          "Coffee machine",
+          "Dishwasher",
+        ],
+        "host": Object {
+          "avatar": "img/1.png",
+          "id": 3,
+          "isPro": true,
+          "name": "Angelina",
+        },
+        "id": 3,
+        "images": Array [
+          "img/1.png",
+          "img/2.png",
+        ],
+        "isFavorite": false,
+        "isPremium": false,
+        "location": Object {
+          "latitude": 52.35514938496378,
+          "longitude": 4.673877537499948,
+          "zoom": 8,
+        },
+        "maxAdults": 4,
+        "preview": "img/1.png",
+        "price": 120,
+        "rating": 4.8,
+        "title": "Beautiful & luxurious studio at great location",
+        "type": "apartment",
+      }
+    }
+    onHover={[Function]}
+  />
+  <Memo(Connect(withRouter(OfferCard)))
+    offer={
+      Object {
+        "bedrooms": 3,
+        "city": Object {
+          "location": Object {
+            "latitude": 52.370216,
+            "longitude": 4.895168,
+            "zoom": 10,
+          },
+          "name": "Amsterdam",
+        },
+        "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+        "goods": Array [
+          "Heating",
+          "Kitchen",
+          "Cable TV",
+          "Washing machine",
+          "Coffee machine",
+          "Dishwasher",
+        ],
+        "host": Object {
+          "avatar": "img/1.png",
+          "id": 3,
+          "isPro": true,
+          "name": "Angelina",
+        },
+        "id": 4,
+        "images": Array [
+          "img/1.png",
+          "img/2.png",
+        ],
+        "isFavorite": false,
+        "isPremium": false,
+        "location": Object {
+          "latitude": 52.35514938496378,
+          "longitude": 4.673877537499948,
+          "zoom": 8,
+        },
+        "maxAdults": 4,
+        "preview": "img/1.png",
+        "price": 120,
+        "rating": 4.8,
+        "title": "Beautiful & luxurious studio at great location",
+        "type": "apartment",
+      }
+    }
+    onHover={[Function]}
+  />
+  <Memo(Connect(withRouter(OfferCard)))
+    offer={
+      Object {
+        "bedrooms": 3,
+        "city": Object {
+          "location": Object {
+            "latitude": 52.370216,
+            "longitude": 4.895168,
+            "zoom": 10,
+          },
+          "name": "Amsterdam",
+        },
+        "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+        "goods": Array [
+          "Heating",
+          "Kitchen",
+          "Cable TV",
+          "Washing machine",
+          "Coffee machine",
+          "Dishwasher",
+        ],
+        "host": Object {
+          "avatar": "img/1.png",
+          "id": 3,
+          "isPro": true,
+          "name": "Angelina",
+        },
+        "id": 5,
+        "images": Array [
+          "img/1.png",
+          "img/2.png",
+        ],
+        "isFavorite": false,
+        "isPremium": false,
+        "location": Object {
+          "latitude": 52.35514938496378,
+          "longitude": 4.673877537499948,
+          "zoom": 8,
+        },
+        "maxAdults": 4,
+        "preview": "img/1.png",
+        "price": 120,
+        "rating": 4.8,
+        "title": "Beautiful & luxurious studio at great location",
+        "type": "apartment",
+      }
+    }
+    onHover={[Function]}
+  />
+  <Memo(Connect(withRouter(OfferCard)))
+    offer={
+      Object {
+        "bedrooms": 3,
+        "city": Object {
+          "location": Object {
+            "latitude": 52.370216,
+            "longitude": 4.895168,
+            "zoom": 10,
+          },
+          "name": "Amsterdam",
+        },
+        "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+        "goods": Array [
+          "Heating",
+          "Kitchen",
+          "Cable TV",
+          "Washing machine",
+          "Coffee machine",
+          "Dishwasher",
+        ],
+        "host": Object {
+          "avatar": "img/1.png",
+          "id": 3,
+          "isPro": true,
+          "name": "Angelina",
+        },
+        "id": 6,
+        "images": Array [
+          "img/1.png",
+          "img/2.png",
+        ],
+        "isFavorite": false,
+        "isPremium": false,
+        "location": Object {
+          "latitude": 52.35514938496378,
+          "longitude": 4.673877537499948,
+          "zoom": 8,
+        },
+        "maxAdults": 4,
+        "preview": "img/1.png",
+        "price": 120,
+        "rating": 4.8,
+        "title": "Beautiful & luxurious studio at great location",
+        "type": "apartment",
+      }
+    }
+    onHover={[Function]}
+  />
+  <Memo(Connect(withRouter(OfferCard)))
+    offer={
+      Object {
+        "bedrooms": 3,
+        "city": Object {
+          "location": Object {
+            "latitude": 52.370216,
+            "longitude": 4.895168,
+            "zoom": 10,
+          },
+          "name": "Amsterdam",
+        },
+        "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+        "goods": Array [
+          "Heating",
+          "Kitchen",
+          "Cable TV",
+          "Washing machine",
+          "Coffee machine",
+          "Dishwasher",
+        ],
+        "host": Object {
+          "avatar": "img/1.png",
+          "id": 3,
+          "isPro": true,
+          "name": "Angelina",
+        },
+        "id": 7,
+        "images": Array [
+          "img/1.png",
+          "img/2.png",
+        ],
+        "isFavorite": false,
+        "isPremium": false,
+        "location": Object {
+          "latitude": 52.35514938496378,
+          "longitude": 4.673877537499948,
+          "zoom": 8,
+        },
+        "maxAdults": 4,
+        "preview": "img/1.png",
+        "price": 120,
+        "rating": 4.8,
+        "title": "Beautiful & luxurious studio at great location",
+        "type": "apartment",
+      }
+    }
+    onHover={[Function]}
+  />
+  <Memo(Connect(withRouter(OfferCard)))
+    offer={
+      Object {
+        "bedrooms": 3,
+        "city": Object {
+          "location": Object {
+            "latitude": 52.370216,
+            "longitude": 4.895168,
+            "zoom": 10,
+          },
+          "name": "Paris",
+        },
+        "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+        "goods": Array [
+          "Heating",
+          "Kitchen",
+          "Cable TV",
+          "Washing machine",
+          "Coffee machine",
+          "Dishwasher",
+        ],
+        "host": Object {
+          "avatar": "img/1.png",
+          "id": 3,
+          "isPro": true,
+          "name": "Angelina",
+        },
+        "id": 8,
+        "images": Array [
+          "img/1.png",
+          "img/2.png",
+        ],
+        "isFavorite": false,
+        "isPremium": false,
+        "location": Object {
+          "latitude": 52.35514938496378,
+          "longitude": 4.673877537499948,
+          "zoom": 8,
+        },
+        "maxAdults": 4,
+        "preview": "img/1.png",
+        "price": 120,
+        "rating": 4.8,
+        "title": "Beautiful & luxurious studio at great location",
+        "type": "apartment",
+      }
+    }
+    onHover={[Function]}
+  />
+  <Memo(Connect(withRouter(OfferCard)))
+    offer={
+      Object {
+        "bedrooms": 3,
+        "city": Object {
+          "location": Object {
+            "latitude": 52.370216,
+            "longitude": 4.895168,
+            "zoom": 10,
+          },
+          "name": "Paris",
+        },
+        "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+        "goods": Array [
+          "Heating",
+          "Kitchen",
+          "Cable TV",
+          "Washing machine",
+          "Coffee machine",
+          "Dishwasher",
+        ],
+        "host": Object {
+          "avatar": "img/1.png",
+          "id": 3,
+          "isPro": true,
+          "name": "Angelina",
+        },
+        "id": 9,
+        "images": Array [
+          "img/1.png",
+          "img/2.png",
+        ],
+        "isFavorite": false,
+        "isPremium": false,
+        "location": Object {
+          "latitude": 52.35514938496378,
+          "longitude": 4.673877537499948,
+          "zoom": 8,
+        },
+        "maxAdults": 4,
+        "preview": "img/1.png",
+        "price": 120,
+        "rating": 4.8,
+        "title": "Beautiful & luxurious studio at great location",
+        "type": "apartment",
+      }
+    }
+    onHover={[Function]}
+  />
+</React.Fragment>
 `;

@@ -2,46 +2,378 @@
 
 exports[`Favorites page correctly renders after relaunch 1`] = `
 <div
-  className="page page--favorites-empty"
+  className="page page--favorites"
 >
   <Memo(Connect(Header)) />
   <main
-    className="page__main page__main--favorites page__main--favorites-empty"
+    className="page__main page__main--favorites"
   >
     <div
       className="page__favorites-container container"
     >
       <section
-        className="favorites favorites--empty"
+        className="favorites"
       >
         <h1
-          className="visually-hidden"
+          className="favorites__title"
         >
-          Favorites (empty)
+          Saved listing
         </h1>
-        <div
-          className="favorites__status-wrapper"
+        <ul
+          className="favorites__list"
         >
-          <b
-            className="favorites__status"
+          <li
+            className="favorites__locations-items"
           >
-            Nothing yet saved.
-          </b>
-          <p
-            className="favorites__status-description"
+            <div
+              className="favorites__locations locations locations--current"
+            >
+              <div
+                className="locations__item"
+              >
+                <ForwardRef
+                  className="locations__item-link"
+                  to="/"
+                >
+                  <span>
+                    Object {
+                      "location": Object {
+                        "latitude": 52.370216,
+                        "longitude": 4.895168,
+                        "zoom": 10,
+                      },
+                      "name": "Amsterdam",
+                    }
+                  </span>
+                </ForwardRef>
+              </div>
+            </div>
+            <div
+              className="favorites__places"
+            >
+              <WithActiveItem
+                cardClassName="favorites__card"
+                cardInfoClassName="favorites__card-info"
+                imageHeight={110}
+                imageWidth={150}
+                imageWrapperClassName="favorites__image-wrapper"
+              />
+            </div>
+          </li>
+          <li
+            className="favorites__locations-items"
           >
-            Save properties to narrow down search or plan yor future trips.
-          </p>
-        </div>
+            <div
+              className="favorites__locations locations locations--current"
+            >
+              <div
+                className="locations__item"
+              >
+                <ForwardRef
+                  className="locations__item-link"
+                  to="/"
+                >
+                  <span>
+                    Object {
+                      "location": Object {
+                        "latitude": 52.370216,
+                        "longitude": 4.895168,
+                        "zoom": 10,
+                      },
+                      "name": "Amsterdam",
+                    }
+                  </span>
+                </ForwardRef>
+              </div>
+            </div>
+            <div
+              className="favorites__places"
+            >
+              <WithActiveItem
+                cardClassName="favorites__card"
+                cardInfoClassName="favorites__card-info"
+                imageHeight={110}
+                imageWidth={150}
+                imageWrapperClassName="favorites__image-wrapper"
+              />
+            </div>
+          </li>
+          <li
+            className="favorites__locations-items"
+          >
+            <div
+              className="favorites__locations locations locations--current"
+            >
+              <div
+                className="locations__item"
+              >
+                <ForwardRef
+                  className="locations__item-link"
+                  to="/"
+                >
+                  <span>
+                    Object {
+                      "location": Object {
+                        "latitude": 52.370216,
+                        "longitude": 4.895168,
+                        "zoom": 10,
+                      },
+                      "name": "Tel Aviv",
+                    }
+                  </span>
+                </ForwardRef>
+              </div>
+            </div>
+            <div
+              className="favorites__places"
+            >
+              <WithActiveItem
+                cardClassName="favorites__card"
+                cardInfoClassName="favorites__card-info"
+                imageHeight={110}
+                imageWidth={150}
+                imageWrapperClassName="favorites__image-wrapper"
+              />
+            </div>
+          </li>
+          <li
+            className="favorites__locations-items"
+          >
+            <div
+              className="favorites__locations locations locations--current"
+            >
+              <div
+                className="locations__item"
+              >
+                <ForwardRef
+                  className="locations__item-link"
+                  to="/"
+                >
+                  <span>
+                    Object {
+                      "location": Object {
+                        "latitude": 52.370216,
+                        "longitude": 4.895168,
+                        "zoom": 10,
+                      },
+                      "name": "Amsterdam",
+                    }
+                  </span>
+                </ForwardRef>
+              </div>
+            </div>
+            <div
+              className="favorites__places"
+            >
+              <WithActiveItem
+                cardClassName="favorites__card"
+                cardInfoClassName="favorites__card-info"
+                imageHeight={110}
+                imageWidth={150}
+                imageWrapperClassName="favorites__image-wrapper"
+              />
+            </div>
+          </li>
+          <li
+            className="favorites__locations-items"
+          >
+            <div
+              className="favorites__locations locations locations--current"
+            >
+              <div
+                className="locations__item"
+              >
+                <ForwardRef
+                  className="locations__item-link"
+                  to="/"
+                >
+                  <span>
+                    Object {
+                      "location": Object {
+                        "latitude": 52.370216,
+                        "longitude": 4.895168,
+                        "zoom": 10,
+                      },
+                      "name": "Amsterdam",
+                    }
+                  </span>
+                </ForwardRef>
+              </div>
+            </div>
+            <div
+              className="favorites__places"
+            >
+              <WithActiveItem
+                cardClassName="favorites__card"
+                cardInfoClassName="favorites__card-info"
+                imageHeight={110}
+                imageWidth={150}
+                imageWrapperClassName="favorites__image-wrapper"
+              />
+            </div>
+          </li>
+          <li
+            className="favorites__locations-items"
+          >
+            <div
+              className="favorites__locations locations locations--current"
+            >
+              <div
+                className="locations__item"
+              >
+                <ForwardRef
+                  className="locations__item-link"
+                  to="/"
+                >
+                  <span>
+                    Object {
+                      "location": Object {
+                        "latitude": 52.370216,
+                        "longitude": 4.895168,
+                        "zoom": 10,
+                      },
+                      "name": "Amsterdam",
+                    }
+                  </span>
+                </ForwardRef>
+              </div>
+            </div>
+            <div
+              className="favorites__places"
+            >
+              <WithActiveItem
+                cardClassName="favorites__card"
+                cardInfoClassName="favorites__card-info"
+                imageHeight={110}
+                imageWidth={150}
+                imageWrapperClassName="favorites__image-wrapper"
+              />
+            </div>
+          </li>
+          <li
+            className="favorites__locations-items"
+          >
+            <div
+              className="favorites__locations locations locations--current"
+            >
+              <div
+                className="locations__item"
+              >
+                <ForwardRef
+                  className="locations__item-link"
+                  to="/"
+                >
+                  <span>
+                    Object {
+                      "location": Object {
+                        "latitude": 52.370216,
+                        "longitude": 4.895168,
+                        "zoom": 10,
+                      },
+                      "name": "Amsterdam",
+                    }
+                  </span>
+                </ForwardRef>
+              </div>
+            </div>
+            <div
+              className="favorites__places"
+            >
+              <WithActiveItem
+                cardClassName="favorites__card"
+                cardInfoClassName="favorites__card-info"
+                imageHeight={110}
+                imageWidth={150}
+                imageWrapperClassName="favorites__image-wrapper"
+              />
+            </div>
+          </li>
+          <li
+            className="favorites__locations-items"
+          >
+            <div
+              className="favorites__locations locations locations--current"
+            >
+              <div
+                className="locations__item"
+              >
+                <ForwardRef
+                  className="locations__item-link"
+                  to="/"
+                >
+                  <span>
+                    Object {
+                      "location": Object {
+                        "latitude": 52.370216,
+                        "longitude": 4.895168,
+                        "zoom": 10,
+                      },
+                      "name": "Paris",
+                    }
+                  </span>
+                </ForwardRef>
+              </div>
+            </div>
+            <div
+              className="favorites__places"
+            >
+              <WithActiveItem
+                cardClassName="favorites__card"
+                cardInfoClassName="favorites__card-info"
+                imageHeight={110}
+                imageWidth={150}
+                imageWrapperClassName="favorites__image-wrapper"
+              />
+            </div>
+          </li>
+          <li
+            className="favorites__locations-items"
+          >
+            <div
+              className="favorites__locations locations locations--current"
+            >
+              <div
+                className="locations__item"
+              >
+                <ForwardRef
+                  className="locations__item-link"
+                  to="/"
+                >
+                  <span>
+                    Object {
+                      "location": Object {
+                        "latitude": 52.370216,
+                        "longitude": 4.895168,
+                        "zoom": 10,
+                      },
+                      "name": "Paris",
+                    }
+                  </span>
+                </ForwardRef>
+              </div>
+            </div>
+            <div
+              className="favorites__places"
+            >
+              <WithActiveItem
+                cardClassName="favorites__card"
+                cardInfoClassName="favorites__card-info"
+                imageHeight={110}
+                imageWidth={150}
+                imageWrapperClassName="favorites__image-wrapper"
+              />
+            </div>
+          </li>
+        </ul>
       </section>
     </div>
   </main>
   <footer
     className="footer"
   >
-    <a
+    <ForwardRef
       className="footer__logo-link"
-      href="main.html"
+      to="/"
     >
       <img
         alt="6 cities logo"
@@ -50,7 +382,7 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
         src="img/logo.svg"
         width={64}
       />
-    </a>
+    </ForwardRef>
   </footer>
 </div>
 `;

@@ -131,13 +131,6 @@ const reducer = (state = initialState, action) => {
       favorite: state.favorite.filter((offer) => offer.id !== action.payload)
     });
     case ActionType.TOGGLE_FAVORITE_STATUS: return Object.assign({}, state, {
-      // offersOld: [...state.offers.map(((offer) => {
-      //   if (offer.id === action.payload.id) {
-      //     return action.payload;
-      //   } else {
-      //     return offer;
-      //   }
-      // }))],
       offers: [...state.offers.map((offer) => (offer.id === action.payload.id) ? action.payload : offer)]
     });
   }

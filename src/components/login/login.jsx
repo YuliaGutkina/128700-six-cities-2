@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 import Header from "../header/header";
+import {receiveCityInfoSelector} from "../../reducer/data/selectors";
 
 
-export const Login = (props) => {
-  const {onFormSubmit, onInputChange} = props;
+const Login = (props) => {
+  const {city, onFormSubmit, onInputChange} = props;
+  const cityName = city ? city.name : ``;
 
   return <div className="page page--gray page--login">
     <Header/>
@@ -46,9 +50,9 @@ export const Login = (props) => {
         </section>
         <section className="locations locations--login locations--current">
           <div className="locations__item">
-            <a className="locations__item-link" href="#">
-              <span>Amsterdam</span>
-            </a>
+            <Link className="locations__item-link" to="/">
+              <span>{cityName}</span>
+            </Link>
           </div>
         </section>
       </div>
@@ -57,6 +61,15 @@ export const Login = (props) => {
 };
 
 Login.propTypes = {
+  city: PropTypes.object,
   onFormSubmit: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  city: receiveCityInfoSelector(state),
+});
+
+
+export {Login};
+export default connect(mapStateToProps)(Login);

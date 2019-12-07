@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
 import {Operation} from "../../reducer/data/data";
 import {receiveUserDataSelector} from "../../reducer/user/selectors";
@@ -33,9 +33,9 @@ class OfferCard extends PureComponent {
       </div>
       }
       <div className={classNames(`place-card__image-wrapper`, imageWrapperClassName)}>
-        <a href="#">
+        <Link to={`/offer/${offer.id}`}>
           <img className="place-card__image" src={offer.preview} width={imageWidth} height={imageHeight} alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className={classNames(`place-card__info`, cardInfoClassName)}>
         <div className="place-card__price-wrapper">
@@ -73,7 +73,11 @@ class OfferCard extends PureComponent {
   }
 
   _handleFavoriteClick() {
-    const {offer, onFavoriteClick} = this.props;
+    const {offer, userData, history, onFavoriteClick} = this.props;
+
+    if (!userData) {
+      history.push(`/login`);
+    }
 
     onFavoriteClick(offer);
   }
@@ -121,7 +125,8 @@ OfferCard.propTypes = {
   imageWrapperClassName: PropTypes.string,
   cardInfoClassName: PropTypes.string,
   imageWidth: PropTypes.number,
-  imageHeight: PropTypes.number
+  imageHeight: PropTypes.number,
+  history: PropTypes.object
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -136,4 +141,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 export {OfferCard};
-export default connect(mapStateToProps, mapDispatchToProps)(OfferCard);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(OfferCard));
