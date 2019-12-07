@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
 import {Operation} from "../../reducer/data/data";
 import {receiveUserDataSelector} from "../../reducer/user/selectors";
@@ -16,10 +16,10 @@ class OfferCard extends PureComponent {
   }
 
   render() {
-    const {offer, onTitleClick, onHover} = this.props;
+    const {offer, onHover, cardClassName, imageWrapperClassName, cardInfoClassName, imageWidth, imageHeight} = this.props;
 
     return <article
-      className="cities__place-card place-card"
+      className={classNames(`place-card`, cardClassName)}
       onMouseEnter={() => {
         onHover(offer);
       }}
@@ -32,12 +32,12 @@ class OfferCard extends PureComponent {
         <span>Premium</span>
       </div>
       }
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
-          <img className="place-card__image" src={offer.preview} width={260} height={200} alt="Place image" />
-        </a>
+      <div className={classNames(`place-card__image-wrapper`, imageWrapperClassName)}>
+        <Link to={`/offer/${offer.id}`}>
+          <img className="place-card__image" src={offer.preview} width={imageWidth} height={imageHeight} alt="Place image" />
+        </Link>
       </div>
-      <div className="place-card__info">
+      <div className={classNames(`place-card__info`, cardInfoClassName)}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">€{offer.price}</b>
@@ -65,7 +65,7 @@ class OfferCard extends PureComponent {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onClick={onTitleClick}>{offer.title}</a>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
@@ -73,11 +73,10 @@ class OfferCard extends PureComponent {
   }
 
   _handleFavoriteClick() {
-    const {offer, history, userData, onFavoriteClick} = this.props;
+    const {offer, userData, history, onFavoriteClick} = this.props;
 
     if (!userData) {
       history.push(`/login`);
-      return;
     }
 
     onFavoriteClick(offer);
@@ -119,10 +118,14 @@ OfferCard.propTypes = {
       zoom: PropTypes.number
     })
   }),
-  onTitleClick: PropTypes.func.isRequired,
   onHover: PropTypes.func.isRequired,
   onFavoriteClick: PropTypes.func.isRequired,
   userData: PropTypes.object,
+  cardClassName: PropTypes.string,
+  imageWrapperClassName: PropTypes.string,
+  cardInfoClassName: PropTypes.string,
+  imageWidth: PropTypes.number,
+  imageHeight: PropTypes.number,
   history: PropTypes.object
 };
 
@@ -138,4 +141,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 export {OfferCard};
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OfferCard));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(OfferCard));

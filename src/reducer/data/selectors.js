@@ -26,9 +26,20 @@ const receiveCityInfoSelector = (state) => {
   return currentCity;
 };
 
+const receiveFavorite = (state) => {
+  const favorite = state[NAME_SPACE].favorite;
+  const cities = Array.from(new Set(favorite.map((offer) => offer.city.name)));
+
+  return cities.map((cityName) => ({
+    city: cityName,
+    offers: favorite.filter((item) => item.city.name === cityName)
+  }));
+};
+
 
 export {
   receiveCityInfoSelector,
   receiveCityOffersSelector,
   receiveCitiesListSelector,
+  receiveFavorite
 };

@@ -13,8 +13,9 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
       <div
         className="header__left"
       >
-        <a
+        <ForwardRef
           className="header__logo-link header__logo-link--active"
+          to="/"
         >
           <img
             alt="6 cities logo"
@@ -23,7 +24,7 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
             src="img/logo.svg"
             width={81}
           />
-        </a>
+        </ForwardRef>
       </div>
       <nav
         className="header__nav"

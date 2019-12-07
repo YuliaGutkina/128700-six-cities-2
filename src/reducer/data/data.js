@@ -102,7 +102,7 @@ const Operation = {
 
     return api.post(`/favorite/${hotelId}/${status}`)
       .then((response) => {
-        ActionCreator.toggleFavoriteStatus(offer);
+        dispatch(ActionCreator.toggleFavoriteStatus(offer));
 
         if (status === 1) {
           dispatch(ActionCreator.addToFavorites(transformApiOffer(response.data)));
@@ -122,7 +122,7 @@ const reducer = (state = initialState, action) => {
       offers: action.payload
     });
     case ActionType.LOAD_FAVORITE: return Object.assign({}, state, {
-      offers: action.payload
+      favorite: action.payload
     });
     case ActionType.ADD_TO_FAVORITES: return Object.assign({}, state, {
       favorite: [...state.favorite, action.payload]
@@ -131,7 +131,7 @@ const reducer = (state = initialState, action) => {
       favorite: state.favorite.filter((offer) => offer.id !== action.payload)
     });
     case ActionType.TOGGLE_FAVORITE_STATUS: return Object.assign({}, state, {
-      offers: state.offers
+      offers: [...state.offers.map((offer) => (offer.id === action.payload.id) ? action.payload : offer)]
     });
   }
 
