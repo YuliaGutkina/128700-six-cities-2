@@ -13,7 +13,6 @@ import {receiveCityInfoSelector, receiveCityOffersSelector} from "../../reducer/
 const OffersListWrapped = withActiveItem(OffersList);
 
 const MainPage = (props) => {
-  const onCardTitleClick = () => {};
   const {city, cityOffers} = props;
   const cityName = city ? city.name : ``;
 
@@ -54,10 +53,15 @@ const MainPage = (props) => {
                 </select>
                 */}
             </form>
-            <OffersListWrapped
-              places={cityOffers}
-              onCardTitleClick={onCardTitleClick}
-            />
+            <div className="cities__places-list places__list tabs__content">
+              <OffersListWrapped
+                places={cityOffers}
+                cardClassName="cities__place-card"
+                imageWrapperClassName="cities__image-wrapper"
+                imageWidth={260}
+                imageHeight={200}
+              />
+            </div>
           </section>
           <div className="cities__right-section">
             <CityMap

@@ -4,26 +4,31 @@ import OfferCard from "../offer-card/offer-card";
 
 
 export const OffersList = (props) => {
-  const {places, onCardTitleClick, onSetActive} = props;
+  const {places, onSetActive, cardClassName, imageWrapperClassName, cardInfoClassName, imageWidth, imageHeight} = props;
 
-  return <div className="cities__places-list places__list tabs__content">
+  return <>
     {places.map((offer) => <OfferCard
+      cardClassName={cardClassName}
+      imageWrapperClassName={imageWrapperClassName}
+      cardInfoClassName={cardInfoClassName}
+      imageWidth={imageWidth}
+      imageHeight={imageHeight}
       key={offer.id}
       offer={offer}
-      onTitleClick={onCardTitleClick}
       onHover={(item) => {
         onSetActive(item);
       }}
     />)}
-  </div>;
+  </>;
 };
 
 
 OffersList.propTypes = {
-  places: PropTypes.arrayOf(
-      // OfferCard.propTypes.offer
-      PropTypes.object
-  ),
-  onCardTitleClick: PropTypes.func.isRequired,
-  onSetActive: PropTypes.func
+  places: PropTypes.arrayOf(PropTypes.object),
+  onSetActive: PropTypes.func,
+  cardClassName: PropTypes.string,
+  imageWrapperClassName: PropTypes.string,
+  cardInfoClassName: PropTypes.string,
+  imageWidth: PropTypes.number,
+  imageHeight: PropTypes.number
 };
