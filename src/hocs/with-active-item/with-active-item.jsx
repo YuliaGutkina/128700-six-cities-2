@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 
+
 const withActiveItem = (Component) => {
   class WithActiveItem extends PureComponent {
     constructor(props) {
@@ -33,5 +34,6 @@ const withActiveItem = (Component) => {
 
   return WithActiveItem;
 };
+
 
 export default withActiveItem;
