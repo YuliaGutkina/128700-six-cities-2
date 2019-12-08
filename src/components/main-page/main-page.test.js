@@ -3,6 +3,7 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 
 import {MainPage} from "./main-page";
 
+
 it(`Main page correctly renders after relaunch`, () => {
   const renderer = new ShallowRenderer();
   renderer.render(

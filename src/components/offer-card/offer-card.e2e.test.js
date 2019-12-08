@@ -6,6 +6,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import {OfferCard} from "./offer-card";
 import {offersData} from "../../mocks/offer-data";
 
+
 Enzyme.configure({adapter: new Adapter()});
 
 // it(`Includes link to offer page`, () => {

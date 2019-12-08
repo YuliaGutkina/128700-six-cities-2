@@ -4,6 +4,7 @@ import {MemoryRouter} from "react-router-dom";
 import {OfferCard} from "./offer-card";
 import {offersData} from "../../mocks/offer-data";
 
+
 it(`Offer card correctly renders after relaunch`, () => {
   const tree = renderer
     .create(
