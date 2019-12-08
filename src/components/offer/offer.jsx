@@ -1,8 +1,10 @@
 import React, {PureComponent} from 'react';
 import {withRouter} from "react-router-dom";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 import Header from "../header/header";
+import {receiveOfferSelector} from "../../reducer/data/selectors";
 
 
 class Offer extends PureComponent {
@@ -11,7 +13,7 @@ class Offer extends PureComponent {
   }
 
   render() {
-    // const {history} = this.props;
+    // const {offerData} = this.props;
 
     return <div className="page">
       <Header/>
@@ -46,7 +48,7 @@ class Offer extends PureComponent {
               </div>
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  Beautiful &amp; luxurious studio at great location
+                  {/* {offerData.title}*/}
                 </h1>
                 <button className="property__bookmark-button button" type="button">
                   <svg className="property__bookmark-icon" width={31} height={33}>
@@ -312,9 +314,15 @@ class Offer extends PureComponent {
   }
 }
 
-Offer.propTypes = {};
+Offer.propTypes = {
+  offerData: PropTypes.object
+};
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  offerData: receiveOfferSelector(state, ownProps.match.params.id)
+});
 
 
 export {Offer};
-export default withRouter(Offer);
+export default connect(mapStateToProps)(withRouter(Offer));
 

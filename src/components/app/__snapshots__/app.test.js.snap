@@ -42,7 +42,15 @@ exports[`App correctly renders after relaunch 1`] = `
     path="/login"
   />
   <Route
-    component={[Function]}
+    component={
+      Object {
+        "$$typeof": Symbol(react.memo),
+        "WrappedComponent": [Function],
+        "compare": null,
+        "displayName": "Connect(withRouter(Offer))",
+        "type": [Function],
+      }
+    }
     exact={true}
     path="/offer/:id"
   />

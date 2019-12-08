@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 import Header from "../header/header";
 import {receiveUserDataSelector} from "../../reducer/user/selectors";
-import {receiveFavorite} from "../../reducer/data/selectors";
+import {receiveFavoriteSelector} from "../../reducer/data/selectors";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import {OffersList} from "../offers-list/offers-list";
 
@@ -77,7 +77,7 @@ Favorites.propTypes = {
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   userData: receiveUserDataSelector(state),
-  favorite: receiveFavorite(state)
+  favorite: receiveFavoriteSelector(state)
 });
 
 
