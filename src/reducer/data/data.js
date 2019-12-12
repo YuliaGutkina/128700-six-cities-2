@@ -1,7 +1,8 @@
 const initialState = {
   city: `Amsterdam`,
   offers: [],
-  favorite: []
+  favorite: [],
+  sortingOrder: `popular`
 };
 
 const ActionType = {
@@ -12,6 +13,7 @@ const ActionType = {
   ADD_TO_FAVORITES: `ADD_TO_FAVORITES`,
   REMOVE_FROM_FAVORITES: `REMOVE_FROM_FAVORITES`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
+  CHANGE_SORTING: `CHANGE_SORTING`
 };
 
 const ActionCreator = {
@@ -46,6 +48,10 @@ const ActionCreator = {
   setActiveOffer: (offer) => ({
     type: ActionType.SET_ACTIVE_OFFER,
     payload: offer
+  }),
+  changeSorting: (sortBy) => ({
+    type: ActionType.CHANGE_SORTING,
+    payload: sortBy
   })
 };
 
@@ -140,6 +146,9 @@ const reducer = (state = initialState, action) => {
     });
     case ActionType.SET_ACTIVE_OFFER: return Object.assign({}, state, {
       activeOffer: action.payload
+    });
+    case ActionType.CHANGE_SORTING: return Object.assign({}, state, {
+      sortingOrder: action.payload
     });
   }
 
