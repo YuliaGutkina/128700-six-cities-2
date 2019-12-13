@@ -58,12 +58,6 @@ class OfferCard extends PureComponent {
       </div>
     </article>;
   }
-
-  componentWillUnmount() {
-    const {onHover} = this.props;
-
-    onHover(null);
-  }
 }
 
 OfferCard.propTypes = {

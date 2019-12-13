@@ -37,16 +37,15 @@ const Favorites = (props) => {
                     </Link>
                   </div>
                 </div>
-                <div className="favorites__places">
-                  <OffersListWrapped
-                    places={cityGroup.offers}
-                    cardClassName="favorites__card"
-                    imageWrapperClassName="favorites__image-wrapper"
-                    cardInfoClassName="favorites__card-info"
-                    imageWidth={150}
-                    imageHeight={110}
-                  />
-                </div>
+                <OffersListWrapped
+                  className="favorites__places"
+                  places={cityGroup.offers}
+                  cardClassName="favorites__card"
+                  imageWrapperClassName="favorites__image-wrapper"
+                  cardInfoClassName="favorites__card-info"
+                  imageWidth={150}
+                  imageHeight={110}
+                />
               </li>
               )}
             </ul>

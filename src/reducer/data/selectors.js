@@ -23,6 +23,10 @@ const receiveCityOffersSortedSelector = (state) => {
   return cityOffers;
 };
 
+const receiveNearbyOffersSelector = (state) => {
+  return state[NAME_SPACE].offers;
+};
+
 const receiveCitiesListSelector = (state) => {
   const offers = state[NAME_SPACE].offers;
 
@@ -73,5 +77,6 @@ export {
   receiveFavoriteSelector,
   getActiveOfferSelector,
   getSortingOrder,
-  getFavoriteStatusSelector
+  getFavoriteStatusSelector,
+  receiveNearbyOffersSelector
 };

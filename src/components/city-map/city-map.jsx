@@ -1,6 +1,7 @@
 import React, {PureComponent, createRef} from 'react';
 import leaflet from "leaflet";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 import {OffersList} from "../offers-list/offers-list";
 
@@ -29,8 +30,13 @@ export class CityMap extends PureComponent {
   }
 
   render() {
+    const {className} = this.props;
+
     return <section
-      className="cities__map map"
+      className={classNames(
+          `map`,
+          className
+      )}
       ref={this._mapRef}
     />;
   }
@@ -63,9 +69,9 @@ export class CityMap extends PureComponent {
   }
 
   _getLocation() {
-    const {currentCity} = this.props;
+    const {initialLocation} = this.props;
 
-    return currentCity && currentCity.location;
+    return initialLocation;
   }
 
   _initMap() {
@@ -93,13 +99,11 @@ export class CityMap extends PureComponent {
 
 CityMap.propTypes = {
   items: OffersList.propTypes.places,
-  currentCity: PropTypes.shape({
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number,
-      longitude: PropTypes.number,
-      zoom: PropTypes.number
-    })
+  initialLocation: PropTypes.shape({
+    latitude: PropTypes.number,
+    longitude: PropTypes.number,
+    zoom: PropTypes.number
   }),
-  activeItem: PropTypes.object
+  activeItem: PropTypes.object,
+  className: PropTypes.string
 };
