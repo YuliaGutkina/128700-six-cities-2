@@ -1,9 +1,16 @@
 import React from 'react';
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {ActionCreator} from "../../reducer/data/data";
+import {getSortingOrder} from "../../reducer/data/selectors";
 
 
-export const Sorting = (props) => {
-  const {onSortingChange, sortBy, defaultValue} = props;
+const Sorting = (props) => {
+  const {onChangeSorting, sortingOrder} = props;
+
+  const _handleChange = (e) => {
+    onChangeSorting(e.target.value);
+  };
 
   return <form className="places__sorting" action="#" method="get" onSubmit={(e) => {
     e.preventDefault();
@@ -22,9 +29,8 @@ export const Sorting = (props) => {
     {/* <li className="places__option" tabIndex={0}>Top rated first</li>*/}
     {/* </ul>*/}
     <select
-      onChange={onSortingChange}
-      value={sortBy}
-      defaultValue={defaultValue}
+      onChange={_handleChange}
+      value={sortingOrder}
       className="places__sorting-type"
       id="places-sorting"
     >
@@ -36,9 +42,21 @@ export const Sorting = (props) => {
   </form>;
 };
 
-
 Sorting.propTypes = {
-  onSortingChange: PropTypes.func,
-  sortBy: PropTypes.oneOf([`popular`, `to-high`, `to-low`, `top-rated`]),
-  defaultValue: PropTypes.oneOf([`popular`, `to-high`, `to-low`, `top-rated`])
+  onChangeSorting: PropTypes.func.isRequired,
+  sortingOrder: PropTypes.oneOf([`popular`, `to-high`, `to-low`, `top-rated`]),
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  sortingOrder: getSortingOrder(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onChangeSorting: (sortBy) => {
+    dispatch(ActionCreator.changeSorting(sortBy));
+  },
+});
+
+
+export {Sorting};
+export default connect(mapStateToProps, mapDispatchToProps)(Sorting);

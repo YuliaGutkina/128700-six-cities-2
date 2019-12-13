@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 import OffersList from "../offers-list/offers-list";
 import {CityMap} from "../city-map/city-map";
-import {Sorting} from "../sorting/sorting";
+import Sorting from "../sorting/sorting";
 import Header from "../header/header";
 import Locations from "../locations/locations";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
@@ -14,11 +14,9 @@ import {
   receiveCityInfoSelector,
   receiveCityOffersSortedSelector
 } from "../../reducer/data/selectors";
-import withSelect from "../../hocs/with-select/with-select";
 
 
 const OffersListWrapped = withActiveItem(OffersList);
-const SortingWrapped = withSelect(Sorting);
 
 const MainPage = (props) => {
   const {city, cityOffers, activeOffer} = props;
@@ -39,7 +37,7 @@ const MainPage = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{cityOffers.length} places to stay in {cityName}</b>
-              <SortingWrapped/>
+              <Sorting/>
               <div className="cities__places-list places__list tabs__content">
                 <OffersListWrapped
                   places={cityOffers}
