@@ -2,7 +2,7 @@
 
 exports[`Offers list correctly renders after relaunch 1`] = `
 <React.Fragment>
-  <Memo(Connect(withRouter(OfferCard)))
+  <withRouter(OfferCard)
     offer={
       Object {
         "bedrooms": 3,
@@ -51,7 +51,7 @@ exports[`Offers list correctly renders after relaunch 1`] = `
     }
     onHover={[Function]}
   />
-  <Memo(Connect(withRouter(OfferCard)))
+  <withRouter(OfferCard)
     offer={
       Object {
         "bedrooms": 3,
@@ -100,7 +100,7 @@ exports[`Offers list correctly renders after relaunch 1`] = `
     }
     onHover={[Function]}
   />
-  <Memo(Connect(withRouter(OfferCard)))
+  <withRouter(OfferCard)
     offer={
       Object {
         "bedrooms": 3,
@@ -149,7 +149,7 @@ exports[`Offers list correctly renders after relaunch 1`] = `
     }
     onHover={[Function]}
   />
-  <Memo(Connect(withRouter(OfferCard)))
+  <withRouter(OfferCard)
     offer={
       Object {
         "bedrooms": 3,
@@ -198,7 +198,7 @@ exports[`Offers list correctly renders after relaunch 1`] = `
     }
     onHover={[Function]}
   />
-  <Memo(Connect(withRouter(OfferCard)))
+  <withRouter(OfferCard)
     offer={
       Object {
         "bedrooms": 3,
@@ -247,7 +247,7 @@ exports[`Offers list correctly renders after relaunch 1`] = `
     }
     onHover={[Function]}
   />
-  <Memo(Connect(withRouter(OfferCard)))
+  <withRouter(OfferCard)
     offer={
       Object {
         "bedrooms": 3,
@@ -296,7 +296,7 @@ exports[`Offers list correctly renders after relaunch 1`] = `
     }
     onHover={[Function]}
   />
-  <Memo(Connect(withRouter(OfferCard)))
+  <withRouter(OfferCard)
     offer={
       Object {
         "bedrooms": 3,
@@ -345,7 +345,7 @@ exports[`Offers list correctly renders after relaunch 1`] = `
     }
     onHover={[Function]}
   />
-  <Memo(Connect(withRouter(OfferCard)))
+  <withRouter(OfferCard)
     offer={
       Object {
         "bedrooms": 3,
@@ -394,7 +394,7 @@ exports[`Offers list correctly renders after relaunch 1`] = `
     }
     onHover={[Function]}
   />
-  <Memo(Connect(withRouter(OfferCard)))
+  <withRouter(OfferCard)
     offer={
       Object {
         "bedrooms": 3,

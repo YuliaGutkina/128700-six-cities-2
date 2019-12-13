@@ -3,13 +3,7 @@ import {
   receiveCitiesListSelector,
   receiveCityInfoSelector,
   receiveCityOffersSelector,
-  receiveOfferSelector
-} from "./selectors";
-import {offersData} from "../../mocks/offer-data";
-import {
-  receiveCitiesListSelector,
-  receiveCityInfoSelector,
-  receiveCityOffersSelector,
+  receiveOfferSelector,
   receiveCityOffersSortedSelector
 } from "./selectors";
 import {offersData} from "../../mocks/offer-data";

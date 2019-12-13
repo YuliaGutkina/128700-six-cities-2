@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select correctly renders after relaunch 1`] = `
+<select
+  className="test"
+  id="0"
+  onChange={[Function]}
+>
+  <option
+    className="test-option"
+    value="1"
+  >
+    fake1
+  </option>
+  <option
+    className="test-option"
+    value="2"
+  >
+    fake2
+  </option>
+</select>
+`;

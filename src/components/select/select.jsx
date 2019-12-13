@@ -20,7 +20,7 @@ export const Select = (props) => {
       className={optionClassName}
       value={option.value}>
       {option.text}
-      t</option>
+    </option>
     )}
   </select>;
 };

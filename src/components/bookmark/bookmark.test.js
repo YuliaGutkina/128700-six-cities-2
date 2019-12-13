@@ -1,19 +1,19 @@
 import React from "react";
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import {OfferCard} from "./offer-card";
 import {offersData} from "../../mocks/offer-data";
+import {Bookmark} from "./bookmark";
 
 
-it(`Offer card correctly renders after relaunch`, () => {
+it(`Bookmark correctly renders after relaunch`, () => {
   const renderer = new ShallowRenderer();
   renderer.render(
-      <OfferCard
+      <Bookmark
         offer={offersData[0]}
-        onHover={jest.fn()}
-        onFavoriteClick={jest.fn}
-        imageWidth={10}
-        imageHeight={10}
+        onFavoriteClick={jest.fn()}
+        userData={{fake: true}}
+        history={{push: jest.fn}}
+        isFavorite={true}
       />);
   const result = renderer.getRenderOutput();
 

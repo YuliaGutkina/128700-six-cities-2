@@ -7,7 +7,7 @@ import {ActionCreator} from "../../reducer/data/data";
 
 
 const OffersList = (props) => {
-  const {places, onSetActive, cardClassName, imageWrapperClassName, cardInfoClassName, imageWidth, imageHeight, onSetActiveOffer} = props;
+  const {places, onSetActive, cardClassName, imageWrapperClassName, cardInfoClassName, imageWidth, imageHeight, onSetActiveOffer = () => {}} = props;
 
   return <>
     {places.map((offer) => <OfferCard

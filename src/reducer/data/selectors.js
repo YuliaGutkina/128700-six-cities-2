@@ -50,12 +50,18 @@ const receiveFavoriteSelector = (state) => {
 };
 
 const receiveOfferSelector = (state, id) => {
-  return state[NAME_SPACE].offers.find((item) => item.id === id);
+  return state[NAME_SPACE].offers.find((item) => item.id.toString() === id.toString());
 };
 
 const getActiveOfferSelector = (state) => state[NAME_SPACE].activeOffer;
 
 const getSortingOrder = (state) => state[NAME_SPACE].sortingOrder;
+
+const getFavoriteStatusSelector = (state, id) => {
+  const offer = receiveOfferSelector(state, id);
+
+  return offer.isFavorite;
+};
 
 
 export {
@@ -63,9 +69,9 @@ export {
   receiveCityOffersSelector,
   receiveCityOffersSortedSelector,
   receiveCitiesListSelector,
-  receiveFavoriteSelector,
-  receiveOfferSelector
+  receiveOfferSelector,
   receiveFavoriteSelector,
   getActiveOfferSelector,
-  getSortingOrder
+  getSortingOrder,
+  getFavoriteStatusSelector
 };
