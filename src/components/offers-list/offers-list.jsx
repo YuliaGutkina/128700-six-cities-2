@@ -12,7 +12,7 @@ class OffersList extends PureComponent {
   }
 
   render() {
-    const {places, onSetActive, className, cardClassName, imageWrapperClassName, cardInfoClassName, imageWidth, imageHeight, onSetActiveOffer = () => {}} = this.props;
+    const {places, className, cardClassName, imageWrapperClassName, cardInfoClassName, imageWidth, imageHeight, onSetActiveOffer = () => {}} = this.props;
 
     return <div className={className}>
       {places.map((offer) => <OfferCard
@@ -24,7 +24,6 @@ class OffersList extends PureComponent {
         key={offer.id}
         offer={offer}
         onHover={(item) => {
-          onSetActive(item);
           onSetActiveOffer(item);
         }}
       />)}
@@ -40,7 +39,6 @@ class OffersList extends PureComponent {
 
 OffersList.propTypes = {
   places: PropTypes.arrayOf(PropTypes.object),
-  onSetActive: PropTypes.func,
   onSetActiveOffer: PropTypes.func,
   className: PropTypes.string,
   cardClassName: PropTypes.string,

@@ -7,11 +7,8 @@ import classNames from "classnames";
 import Header from "../header/header";
 import {receiveUserDataSelector} from "../../reducer/user/selectors";
 import {receiveFavoriteSelector} from "../../reducer/data/selectors";
-import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import {OffersList} from "../offers-list/offers-list";
 
-
-const OffersListWrapped = withActiveItem(OffersList);
 
 const Favorites = (props) => {
   const {favorite} = props;
@@ -37,7 +34,7 @@ const Favorites = (props) => {
                     </Link>
                   </div>
                 </div>
-                <OffersListWrapped
+                <OffersList
                   className="favorites__places"
                   places={cityGroup.offers}
                   cardClassName="favorites__card"

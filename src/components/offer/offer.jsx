@@ -13,10 +13,7 @@ import Bookmark from "../bookmark/bookmark";
 import {ReviewsList} from "../reviews-list/reviews-list";
 import {CityMap} from "../city-map/city-map";
 import {OffersList} from "../offers-list/offers-list";
-import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
-
-const OffersListWrapped = withActiveItem(OffersList);
 
 class Offer extends PureComponent {
   constructor(props) {
@@ -178,7 +175,7 @@ class Offer extends PureComponent {
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <OffersListWrapped
+              <OffersList
                 className="near-places__list"
                 places={nearbyOffers}
                 cardClassName="near-places__card"

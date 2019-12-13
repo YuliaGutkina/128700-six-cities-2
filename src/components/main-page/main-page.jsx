@@ -8,15 +8,12 @@ import {CityMap} from "../city-map/city-map";
 import Sorting from "../sorting/sorting";
 import Header from "../header/header";
 import Locations from "../locations/locations";
-import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import {
   getActiveOfferSelector,
   receiveCityInfoSelector,
   receiveCityOffersSortedSelector
 } from "../../reducer/data/selectors";
 
-
-const OffersListWrapped = withActiveItem(OffersList);
 
 const MainPage = (props) => {
   const {city, cityOffers, activeOffer} = props;
@@ -38,7 +35,7 @@ const MainPage = (props) => {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{cityOffers.length} places to stay in {cityName}</b>
               <Sorting/>
-              <OffersListWrapped
+              <OffersList
                 className="cities__places-list places__list tabs__content"
                 places={cityOffers}
                 cardClassName="cities__place-card"
