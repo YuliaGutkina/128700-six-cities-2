@@ -10,6 +10,19 @@ const receiveCityOffersSelector = (state) => {
   return state[NAME_SPACE].offers.filter((offer) => (offer.city.name === currentCity));
 };
 
+const receiveCityOffersSortedSelector = (state) => {
+  const sortingOrder = state[NAME_SPACE].sortingOrder;
+  const cityOffers = receiveCityOffersSelector(state);
+
+  switch (sortingOrder) {
+    case `to-high`: return cityOffers.sort((a, b) => a.price - b.price);
+    case `to-low`: return cityOffers.sort((a, b) => b.price - a.price);
+    case `top-rated`: return cityOffers.sort((a, b) => a.rating - b.rating);
+  }
+
+  return cityOffers;
+};
+
 const receiveCitiesListSelector = (state) => {
   const offers = state[NAME_SPACE].offers;
 
@@ -26,7 +39,7 @@ const receiveCityInfoSelector = (state) => {
   return currentCity;
 };
 
-const receiveFavorite = (state) => {
+const receiveFavoriteSelector = (state) => {
   const favorite = state[NAME_SPACE].favorite;
   const cities = Array.from(new Set(favorite.map((offer) => offer.city.name)));
 
@@ -36,10 +49,17 @@ const receiveFavorite = (state) => {
   }));
 };
 
+const getActiveOfferSelector = (state) => state[NAME_SPACE].activeOffer;
+
+const getSortingOrder = (state) => state[NAME_SPACE].sortingOrder;
+
 
 export {
   receiveCityInfoSelector,
   receiveCityOffersSelector,
+  receiveCityOffersSortedSelector,
   receiveCitiesListSelector,
-  receiveFavorite
+  receiveFavoriteSelector,
+  getActiveOfferSelector,
+  getSortingOrder
 };

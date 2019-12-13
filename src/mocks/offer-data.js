@@ -18,7 +18,7 @@ export const offersData = [
     type: `apartment`,
     bedrooms: 3,
     maxAdults: 4,
-    price: 120,
+    price: 1200,
     goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
     host: {
       id: 3,
@@ -120,7 +120,7 @@ export const offersData = [
     type: `apartment`,
     bedrooms: 3,
     maxAdults: 4,
-    price: 120,
+    price: 320,
     goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
     host: {
       id: 3,

@@ -12,8 +12,12 @@ export class CityMap extends PureComponent {
     this._mapRef = createRef();
     this._map = null;
     this._mapConfig = {
-      icon: leaflet.icon({
-        iconUrl: `img/pin.svg`,
+      iconDefault: leaflet.icon({
+        iconUrl: `/img/pin.svg`,
+        iconSize: [30, 30]
+      }),
+      iconActive: leaflet.icon({
+        iconUrl: `/img/pin-active.svg`,
         iconSize: [30, 30]
       }),
       initialLocation: {
@@ -48,14 +52,15 @@ export class CityMap extends PureComponent {
   }
 
   _renderMarkers() {
-    const {items} = this.props;
-    const {icon} = this._mapConfig;
+    const {items, activeItem} = this.props;
+    const {iconDefault, iconActive} = this._mapConfig;
 
     items.forEach((item) => {
       const offerCords = [
         item.location.latitude,
         item.location.longitude
       ];
+      const icon = (activeItem && item.id === activeItem.id) ? iconActive : iconDefault;
       leaflet
         .marker(offerCords, {icon})
         .addTo(this._map);
@@ -101,5 +106,6 @@ CityMap.propTypes = {
       longitude: PropTypes.number,
       zoom: PropTypes.number
     })
-  })
+  }),
+  activeItem: PropTypes.object
 };
