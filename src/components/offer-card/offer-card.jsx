@@ -1,22 +1,18 @@
 import React, {PureComponent} from 'react';
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
 
-import {Operation} from "../../reducer/data/data";
-import {receiveUserDataSelector} from "../../reducer/user/selectors";
+import Bookmark from "../bookmark/bookmark";
 
 
 class OfferCard extends PureComponent {
   constructor(props) {
     super(props);
-
-    this._handleFavoriteClick = this._handleFavoriteClick.bind(this);
   }
 
   render() {
-    const {offer, onHover, cardClassName, imageWrapperClassName, cardInfoClassName, imageWidth, imageHeight} = this.props;
+    const {offer, onHover = () => {}, cardClassName, imageWrapperClassName, cardInfoClassName, imageWidth, imageHeight} = this.props;
 
     return <article
       className={classNames(`place-card`, cardClassName)}
@@ -43,24 +39,15 @@ class OfferCard extends PureComponent {
             <b className="place-card__price-value">€{offer.price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button
-            className={classNames(
-                `button`,
-                `place-card__bookmark-button`,
-                {"place-card__bookmark-button--active": offer.isFavorite}
-            )}
-            type="button"
-            onClick={this._handleFavoriteClick}
-          >
-            <svg className="place-card__bookmark-icon" width={18} height={19}>
-              <use xlinkHref="#icon-bookmark" />
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <Bookmark
+            offer={offer}
+            className="place-card__bookmark-button"
+            iconClassName="place-card__bookmark-icon"
+          />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${offer.rating}%`}} />
+            <span style={{width: `${Math.round(offer.rating) * 20}%`}} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -72,14 +59,10 @@ class OfferCard extends PureComponent {
     </article>;
   }
 
-  _handleFavoriteClick() {
-    const {offer, userData, history, onFavoriteClick} = this.props;
+  componentWillUnmount() {
+    const {onHover} = this.props;
 
-    if (!userData) {
-      history.push(`/login`);
-    }
-
-    onFavoriteClick(offer);
+    onHover(null);
   }
 }
 
@@ -119,26 +102,13 @@ OfferCard.propTypes = {
     })
   }),
   onHover: PropTypes.func.isRequired,
-  onFavoriteClick: PropTypes.func.isRequired,
-  userData: PropTypes.object,
   cardClassName: PropTypes.string,
   imageWrapperClassName: PropTypes.string,
   cardInfoClassName: PropTypes.string,
   imageWidth: PropTypes.number,
   imageHeight: PropTypes.number,
-  history: PropTypes.object
 };
-
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  userData: receiveUserDataSelector(state)
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onFavoriteClick: (offer) => {
-    dispatch(Operation.toggleFavoriteStatus(offer));
-  },
-});
 
 
 export {OfferCard};
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(OfferCard));
+export default (withRouter(OfferCard));

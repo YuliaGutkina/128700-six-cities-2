@@ -19,12 +19,7 @@ export class CityMap extends PureComponent {
       iconActive: leaflet.icon({
         iconUrl: `/img/pin-active.svg`,
         iconSize: [30, 30]
-      }),
-      initialLocation: {
-        latitude: 52.37454,
-        longitude: 4.897976,
-        zoom: 13
-      }
+      })
     };
 
     this._initMap = this._initMap.bind(this);
@@ -69,9 +64,8 @@ export class CityMap extends PureComponent {
 
   _getLocation() {
     const {currentCity} = this.props;
-    const {initialLocation} = this._mapConfig;
 
-    return currentCity ? currentCity.location : initialLocation;
+    return currentCity && currentCity.location;
   }
 
   _initMap() {

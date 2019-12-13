@@ -3,6 +3,7 @@ import {
   receiveCitiesListSelector,
   receiveCityInfoSelector,
   receiveCityOffersSelector,
+  receiveOfferSelector,
   receiveCityOffersSortedSelector
 } from "./selectors";
 import {offersData} from "../../mocks/offer-data";
@@ -71,30 +72,23 @@ describe(`Selectors work correctly`, () => {
     expect(receiveCityInfoSelector({
       [NAME_SPACE]: {
         city: `Amsterdam`,
-        offers: [
-          {
-            city: {
-              name: `Amsterdam`,
-              location: []
-            }
-          },
-          {
-            city: {
-              name: `Amsterdam`,
-              location: []
-            }
-          },
-          {
-            city: {
-              name: `Paris`,
-              location: []
-            }
-          }
-        ]
+        offers: offersData
       }
     })).toEqual({
       name: `Amsterdam`,
-      location: []
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
+      }
     });
+  });
+  it(`Selector for receiving offer by id works correctly`, () => {
+    expect(receiveOfferSelector({
+      [NAME_SPACE]: {
+        city: `Amsterdam`,
+        offers: offersData
+      }
+    }, 1)).toEqual(offersData[0]);
   });
 });
