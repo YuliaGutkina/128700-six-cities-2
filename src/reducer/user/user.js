@@ -1,5 +1,6 @@
 import {Operation as DataOperation} from "../data/data";
 
+
 const initialState = {
   userData: null
 };
@@ -51,6 +52,7 @@ const reducer = (state = initialState, action) => {
 
   return state;
 };
+
 
 export {
   ActionCreator,

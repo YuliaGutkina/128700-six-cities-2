@@ -1,20 +1,16 @@
 import React from "react";
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import {MainPage} from "./main-page";
+import {Sorting} from "./sorting";
 
 
-it(`Main page correctly renders after relaunch`, () => {
+it(`Sorting correctly renders after relaunch`, () => {
   const renderer = new ShallowRenderer();
   renderer.render(
-      <MainPage
-        city={{
-          name: `Amsterdam`
-        }}
-        citiesList={[]}
-        cityOffers={[{}, {}]}
-      />
-  );
+      <Sorting
+        sortingOrder="to-high"
+        onChangeSorting={jest.fn()}
+      />);
   const result = renderer.getRenderOutput();
 
   expect(result).toMatchSnapshot();

@@ -7,6 +7,7 @@ import {receiveCitiesListSelector} from "../../reducer/data/selectors";
 import {ActionCreator} from "../../reducer/data/data";
 import {CityMap} from "../city-map/city-map";
 
+
 const Locations = (props) => {
   const {citiesList, currentCity, onTabClick} = props;
 
@@ -49,6 +50,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeCity(city));
   },
 });
+
 
 export {Locations};
 export default connect(mapStateToProps, mapDispatchToProps)(Locations);

@@ -6,6 +6,13 @@ import {
   receiveOfferSelector
 } from "./selectors";
 import {offersData} from "../../mocks/offer-data";
+import {
+  receiveCitiesListSelector,
+  receiveCityInfoSelector,
+  receiveCityOffersSelector,
+  receiveCityOffersSortedSelector
+} from "./selectors";
+import {offersData} from "../../mocks/offer-data";
 
 
 const NAME_SPACE = NameSpace.DATA;
@@ -15,41 +22,19 @@ describe(`Selectors work correctly`, () => {
     expect(receiveCityOffersSelector({
       [NAME_SPACE]: {
         city: `Amsterdam`,
-        offers: [
-          {
-            city: {
-              name: `Amsterdam`,
-              location: []
-            }
-          },
-          {
-            city: {
-              name: `Amsterdam`,
-              location: []
-            }
-          },
-          {
-            city: {
-              name: `Paris`,
-              location: []
-            }
-          }
-        ]
+        offers: [offersData[0], offersData[1], offersData[2]]
       }
-    })).toEqual([
-      {
-        city: {
-          name: `Amsterdam`,
-          location: []
-        }
-      },
-      {
-        city: {
-          name: `Amsterdam`,
-          location: []
-        }
+    })).toEqual([offersData[0], offersData[1]]);
+  });
+
+  it(`Selector for receiving sorted offers returns correct value`, () => {
+    expect(receiveCityOffersSortedSelector({
+      [NAME_SPACE]: {
+        city: `Amsterdam`,
+        sortingOrder: `to-high`,
+        offers: [offersData[0], offersData[1], offersData[2], offersData[3]]
       }
-    ]);
+    })).toEqual([offersData[1], offersData[3], offersData[0]]);
   });
 
   it(`Selector for receiving city coordinates returns correct value`, () => {

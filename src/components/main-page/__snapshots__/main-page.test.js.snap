@@ -37,32 +37,7 @@ exports[`Main page correctly renders after relaunch 1`] = `
              places to stay in 
             Amsterdam
           </b>
-          <form
-            action="#"
-            className="places__sorting"
-            method="get"
-          >
-            <span
-              className="places__sorting-caption"
-            >
-              Sort by
-            </span>
-            <span
-              className="places__sorting-type"
-              tabIndex={0}
-            >
-              Popular
-              <svg
-                className="places__sorting-arrow"
-                height={4}
-                width={7}
-              >
-                <use
-                  xlinkHref="#icon-arrow-select"
-                />
-              </svg>
-            </span>
-          </form>
+          <Memo(Connect(Sorting)) />
           <div
             className="cities__places-list places__list tabs__content"
           >

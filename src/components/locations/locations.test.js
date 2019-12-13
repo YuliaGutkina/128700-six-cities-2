@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 
 import {Locations} from "./locations";
 
+
 it(`Offers list correctly renders after relaunch`, () => {
   const tree = renderer
     .create(

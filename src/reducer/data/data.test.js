@@ -181,7 +181,8 @@ describe(`Reducers work correctly`, () => {
     expect(reducer(undefined, {})).toEqual({
       city: `Amsterdam`,
       offers: [],
-      favorite: []
+      favorite: [],
+      sortingOrder: `popular`
     });
   });
 

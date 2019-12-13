@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import {OfferCard} from "./offer-card";
 import {offersData} from "../../mocks/offer-data";
 
+
 Enzyme.configure({adapter: new Adapter()});
 
 it(`Includes link to offer page`, () => {
