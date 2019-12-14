@@ -182,7 +182,8 @@ describe(`Reducers work correctly`, () => {
       city: `Amsterdam`,
       offers: [],
       favorite: [],
-      sortingOrder: `popular`
+      sortingOrder: `popular`,
+      comments: {}
     });
   });
 

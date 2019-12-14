@@ -1,15 +1,20 @@
 import React from 'react';
-// import PropTypes from "prop-types";
-// import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
 import {Review} from "../review/review";
 
 
-const ReviewsList = () => {
+export const ReviewsList = (props) => {
+  const {comments} = props;
+
   return <ul className="reviews__list">
-    <Review/>
+    {comments.map((item) => <Review
+      key={item.id}
+      commentData={item}
+    />)}
   </ul>;
 };
 
-
-export {ReviewsList};
+ReviewsList.propTypes = {
+  comments: PropTypes.array
+};

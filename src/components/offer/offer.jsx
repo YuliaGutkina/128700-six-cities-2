@@ -6,13 +6,15 @@ import classNames from "classnames";
 
 import Header from "../header/header";
 import {
-  receiveNearbyOffersSelector,
+  receiveNearbyOffersSelector, receiveOfferCommentsSelector,
   receiveOfferSelector
 } from "../../reducer/data/selectors";
 import Bookmark from "../bookmark/bookmark";
 import {ReviewsList} from "../reviews-list/reviews-list";
 import {CityMap} from "../city-map/city-map";
 import {OffersList} from "../offers-list/offers-list";
+import {Operation} from "../../reducer/data/data";
+import {Rating} from "../rating/rating";
 
 
 class Offer extends PureComponent {
@@ -21,7 +23,7 @@ class Offer extends PureComponent {
   }
 
   render() {
-    const {offerData, nearbyOffers} = this.props;
+    const {offerData, nearbyOffers, comments = []} = this.props;
 
     return <div className="page">
       <Header/>
@@ -57,13 +59,11 @@ class Offer extends PureComponent {
                     isLarge
                   />
                 </div>
-                <div className="property__rating rating">
-                  <div className="property__stars rating__stars">
-                    <span style={{width: `${Math.round(offerData.rating) * 20}%`}} />
-                    <span className="visually-hidden">Rating</span>
-                  </div>
-                  <span className="property__rating-value rating__value">{offerData.rating}</span>
-                </div>
+                <Rating
+                  className="property__rating"
+                  starsClassName="property__stars"
+                  value={offerData.rating}
+                />
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
                     {offerData.type}
@@ -118,8 +118,8 @@ class Offer extends PureComponent {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews · <span className="reviews__amount">1</span></h2>
-                  <ReviewsList/>
+                  <h2 className="reviews__title">Reviews · <span className="reviews__amount">{comments.length}</span></h2>
+                  <ReviewsList comments={comments}/>
                   <form className="reviews__form form" action="#" method="post">
                     <label className="reviews__label form__label" htmlFor="review">Your review</label>
                     <div className="reviews__rating-form form__rating">
@@ -189,19 +189,35 @@ class Offer extends PureComponent {
       }
     </div>;
   }
+
+  componentDidMount() {
+    const {onLoadComments, match} = this.props;
+
+    onLoadComments(match.params.id);
+  }
 }
 
 Offer.propTypes = {
   offerData: PropTypes.object,
-  nearbyOffers: PropTypes.array
+  nearbyOffers: PropTypes.array,
+  onLoadComments: PropTypes.func,
+  match: PropTypes.object,
+  comments: PropTypes.array
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offerData: receiveOfferSelector(state, ownProps.match.params.id),
-  nearbyOffers: receiveNearbyOffersSelector(state, ownProps.offerData).slice(0, 3)
+  nearbyOffers: receiveNearbyOffersSelector(state, ownProps.match.params.id).slice(0, 3),
+  comments: receiveOfferCommentsSelector(state, ownProps.match.params.id)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadComments: (offerId) => {
+    dispatch(Operation.loadComments(offerId));
+  },
 });
 
 
 export {Offer};
-export default connect(mapStateToProps)(withRouter(Offer));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Offer));
 

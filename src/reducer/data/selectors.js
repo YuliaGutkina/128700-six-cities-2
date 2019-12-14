@@ -17,14 +17,10 @@ const receiveCityOffersSortedSelector = (state) => {
   switch (sortingOrder) {
     case `to-high`: return cityOffers.sort((a, b) => a.price - b.price);
     case `to-low`: return cityOffers.sort((a, b) => b.price - a.price);
-    case `top-rated`: return cityOffers.sort((a, b) => a.rating - b.rating);
+    case `top-rated`: return cityOffers.sort((a, b) => b.rating - a.rating);
   }
 
   return cityOffers;
-};
-
-const receiveNearbyOffersSelector = (state) => {
-  return state[NAME_SPACE].offers;
 };
 
 const receiveCitiesListSelector = (state) => {
@@ -57,6 +53,10 @@ const receiveOfferSelector = (state, id) => {
   return state[NAME_SPACE].offers.find((item) => item.id.toString() === id.toString());
 };
 
+const receiveNearbyOffersSelector = (state) => {
+  return state[NAME_SPACE].offers;
+};
+
 const getActiveOfferSelector = (state) => state[NAME_SPACE].activeOffer;
 
 const getSortingOrder = (state) => state[NAME_SPACE].sortingOrder;
@@ -67,6 +67,7 @@ const getFavoriteStatusSelector = (state, id) => {
   return offer.isFavorite;
 };
 
+const receiveOfferCommentsSelector = (state, id) => state[NAME_SPACE].comments[id];
 
 export {
   receiveCityInfoSelector,
@@ -78,5 +79,6 @@ export {
   getActiveOfferSelector,
   getSortingOrder,
   getFavoriteStatusSelector,
-  receiveNearbyOffersSelector
+  receiveNearbyOffersSelector,
+  receiveOfferCommentsSelector
 };

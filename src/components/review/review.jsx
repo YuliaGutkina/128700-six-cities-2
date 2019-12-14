@@ -1,32 +1,35 @@
 import React from 'react';
-// import PropTypes from "prop-types";
-// import {connect} from "react-redux";
+import PropTypes from "prop-types";
+import moment from "moment";
+import {Rating} from "../rating/rating";
 
 
-const Review = () => {
+export const Review = (props) => {
+  const {commentData} = props;
+
   return <li className="reviews__item">
     <div className="reviews__user user">
       <div className="reviews__avatar-wrapper user__avatar-wrapper">
-        <img className="reviews__avatar user__avatar" src="/img/avatar-max.jpg" width={54} height={54} alt="Reviews avatar" />
+        <img className="reviews__avatar user__avatar" src={commentData.user.avatar} width={54} height={54} alt="Reviews avatar" />
       </div>
       <span className="reviews__user-name">
-        Max
+        {commentData.user.name}
       </span>
     </div>
     <div className="reviews__info">
-      <div className="reviews__rating rating">
-        <div className="reviews__stars rating__stars">
-          <span style={{width: `94%`}} />
-          <span className="visually-hidden">Rating</span>
-        </div>
-      </div>
+      <Rating
+        className="reviews__rating"
+        starsClassName="reviews__stars"
+        value={commentData.rating}
+      />
       <p className="reviews__text">
-        A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+        {commentData.comment}
       </p>
-      <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+      <time className="reviews__time" dateTime={moment(commentData.date).format()}>{moment(commentData.date).format(`MMMM YYYY`)}</time>
     </div>
   </li>;
 };
 
-
-export {Review};
+Review.propTypes = {
+  commentData: PropTypes.object
+};

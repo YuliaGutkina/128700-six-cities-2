@@ -2,7 +2,8 @@ const initialState = {
   city: `Amsterdam`,
   offers: [],
   favorite: [],
-  sortingOrder: `popular`
+  sortingOrder: `popular`,
+  comments: {}
 };
 
 const ActionType = {
@@ -13,7 +14,8 @@ const ActionType = {
   ADD_TO_FAVORITES: `ADD_TO_FAVORITES`,
   REMOVE_FROM_FAVORITES: `REMOVE_FROM_FAVORITES`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
-  CHANGE_SORTING: `CHANGE_SORTING`
+  CHANGE_SORTING: `CHANGE_SORTING`,
+  LOAD_COMMENTS: `LOAD_COMMENTS`
 };
 
 const ActionCreator = {
@@ -52,6 +54,10 @@ const ActionCreator = {
   changeSorting: (sortBy) => ({
     type: ActionType.CHANGE_SORTING,
     payload: sortBy
+  }),
+  loadComments: (id, comments) => ({
+    type: ActionType.LOAD_COMMENTS,
+    payload: {id, comments}
   })
 };
 
@@ -94,6 +100,21 @@ const transformApiOffers = (apiOffers) => {
   return apiOffers.map((offer) => transformApiOffer(offer));
 };
 
+const transformApiComments = (apiComments) => {
+  return apiComments.map((comment) => ({
+    id: comment.id,
+    user: {
+      id: comment.user.id,
+      isPro: comment.user[`is_pro`],
+      name: comment.user.name,
+      avatar: comment.user[`avatar_url`]
+    },
+    rating: comment.rating,
+    comment: comment.comment,
+    date: comment.date
+  }));
+};
+
 const Operation = {
   loadOffers: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
@@ -120,6 +141,12 @@ const Operation = {
         } else {
           dispatch(ActionCreator.removeFromFavorites(transformApiOffer(response.data)));
         }
+      });
+  },
+  loadComments: (offerId) => (dispatch, _getState, api) => {
+    return api.get(`/comments/${offerId}`)
+      .then((response) => {
+        dispatch(ActionCreator.loadComments(offerId, transformApiComments(response.data)));
       });
   }
 };
@@ -149,6 +176,11 @@ const reducer = (state = initialState, action) => {
     });
     case ActionType.CHANGE_SORTING: return Object.assign({}, state, {
       sortingOrder: action.payload
+    });
+    case ActionType.LOAD_COMMENTS: return Object.assign({}, state, {
+      comments: Object.assign({}, state.comments, {
+        [action.payload.id]: action.payload.comments
+      })
     });
   }
 
