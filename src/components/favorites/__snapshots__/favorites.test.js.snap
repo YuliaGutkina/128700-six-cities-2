@@ -48,17 +48,14 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
                 </ForwardRef>
               </div>
             </div>
-            <div
+            <OffersList
+              cardClassName="favorites__card"
+              cardInfoClassName="favorites__card-info"
               className="favorites__places"
-            >
-              <WithActiveItem
-                cardClassName="favorites__card"
-                cardInfoClassName="favorites__card-info"
-                imageHeight={110}
-                imageWidth={150}
-                imageWrapperClassName="favorites__image-wrapper"
-              />
-            </div>
+              imageHeight={110}
+              imageWidth={150}
+              imageWrapperClassName="favorites__image-wrapper"
+            />
           </li>
           <li
             className="favorites__locations-items"
@@ -86,17 +83,14 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
                 </ForwardRef>
               </div>
             </div>
-            <div
+            <OffersList
+              cardClassName="favorites__card"
+              cardInfoClassName="favorites__card-info"
               className="favorites__places"
-            >
-              <WithActiveItem
-                cardClassName="favorites__card"
-                cardInfoClassName="favorites__card-info"
-                imageHeight={110}
-                imageWidth={150}
-                imageWrapperClassName="favorites__image-wrapper"
-              />
-            </div>
+              imageHeight={110}
+              imageWidth={150}
+              imageWrapperClassName="favorites__image-wrapper"
+            />
           </li>
           <li
             className="favorites__locations-items"
@@ -124,17 +118,14 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
                 </ForwardRef>
               </div>
             </div>
-            <div
+            <OffersList
+              cardClassName="favorites__card"
+              cardInfoClassName="favorites__card-info"
               className="favorites__places"
-            >
-              <WithActiveItem
-                cardClassName="favorites__card"
-                cardInfoClassName="favorites__card-info"
-                imageHeight={110}
-                imageWidth={150}
-                imageWrapperClassName="favorites__image-wrapper"
-              />
-            </div>
+              imageHeight={110}
+              imageWidth={150}
+              imageWrapperClassName="favorites__image-wrapper"
+            />
           </li>
           <li
             className="favorites__locations-items"
@@ -162,17 +153,14 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
                 </ForwardRef>
               </div>
             </div>
-            <div
+            <OffersList
+              cardClassName="favorites__card"
+              cardInfoClassName="favorites__card-info"
               className="favorites__places"
-            >
-              <WithActiveItem
-                cardClassName="favorites__card"
-                cardInfoClassName="favorites__card-info"
-                imageHeight={110}
-                imageWidth={150}
-                imageWrapperClassName="favorites__image-wrapper"
-              />
-            </div>
+              imageHeight={110}
+              imageWidth={150}
+              imageWrapperClassName="favorites__image-wrapper"
+            />
           </li>
           <li
             className="favorites__locations-items"
@@ -200,17 +188,14 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
                 </ForwardRef>
               </div>
             </div>
-            <div
+            <OffersList
+              cardClassName="favorites__card"
+              cardInfoClassName="favorites__card-info"
               className="favorites__places"
-            >
-              <WithActiveItem
-                cardClassName="favorites__card"
-                cardInfoClassName="favorites__card-info"
-                imageHeight={110}
-                imageWidth={150}
-                imageWrapperClassName="favorites__image-wrapper"
-              />
-            </div>
+              imageHeight={110}
+              imageWidth={150}
+              imageWrapperClassName="favorites__image-wrapper"
+            />
           </li>
           <li
             className="favorites__locations-items"
@@ -238,17 +223,14 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
                 </ForwardRef>
               </div>
             </div>
-            <div
+            <OffersList
+              cardClassName="favorites__card"
+              cardInfoClassName="favorites__card-info"
               className="favorites__places"
-            >
-              <WithActiveItem
-                cardClassName="favorites__card"
-                cardInfoClassName="favorites__card-info"
-                imageHeight={110}
-                imageWidth={150}
-                imageWrapperClassName="favorites__image-wrapper"
-              />
-            </div>
+              imageHeight={110}
+              imageWidth={150}
+              imageWrapperClassName="favorites__image-wrapper"
+            />
           </li>
           <li
             className="favorites__locations-items"
@@ -276,17 +258,14 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
                 </ForwardRef>
               </div>
             </div>
-            <div
+            <OffersList
+              cardClassName="favorites__card"
+              cardInfoClassName="favorites__card-info"
               className="favorites__places"
-            >
-              <WithActiveItem
-                cardClassName="favorites__card"
-                cardInfoClassName="favorites__card-info"
-                imageHeight={110}
-                imageWidth={150}
-                imageWrapperClassName="favorites__image-wrapper"
-              />
-            </div>
+              imageHeight={110}
+              imageWidth={150}
+              imageWrapperClassName="favorites__image-wrapper"
+            />
           </li>
           <li
             className="favorites__locations-items"
@@ -314,17 +293,14 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
                 </ForwardRef>
               </div>
             </div>
-            <div
+            <OffersList
+              cardClassName="favorites__card"
+              cardInfoClassName="favorites__card-info"
               className="favorites__places"
-            >
-              <WithActiveItem
-                cardClassName="favorites__card"
-                cardInfoClassName="favorites__card-info"
-                imageHeight={110}
-                imageWidth={150}
-                imageWrapperClassName="favorites__image-wrapper"
-              />
-            </div>
+              imageHeight={110}
+              imageWidth={150}
+              imageWrapperClassName="favorites__image-wrapper"
+            />
           </li>
           <li
             className="favorites__locations-items"
@@ -352,17 +328,14 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
                 </ForwardRef>
               </div>
             </div>
-            <div
+            <OffersList
+              cardClassName="favorites__card"
+              cardInfoClassName="favorites__card-info"
               className="favorites__places"
-            >
-              <WithActiveItem
-                cardClassName="favorites__card"
-                cardInfoClassName="favorites__card-info"
-                imageHeight={110}
-                imageWidth={150}
-                imageWrapperClassName="favorites__image-wrapper"
-              />
-            </div>
+              imageHeight={110}
+              imageWidth={150}
+              imageWrapperClassName="favorites__image-wrapper"
+            />
           </li>
         </ul>
       </section>

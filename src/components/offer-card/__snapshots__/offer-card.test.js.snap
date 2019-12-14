@@ -93,26 +93,11 @@ exports[`Offer card correctly renders after relaunch 1`] = `
         }
       />
     </div>
-    <div
-      className="place-card__rating rating"
-    >
-      <div
-        className="place-card__stars rating__stars"
-      >
-        <span
-          style={
-            Object {
-              "width": "100%",
-            }
-          }
-        />
-        <span
-          className="visually-hidden"
-        >
-          Rating
-        </span>
-      </div>
-    </div>
+    <Rating
+      className="place-card__rating"
+      starsClassName="place-card__stars"
+      value={4.8}
+    />
     <h2
       className="place-card__name"
     >

@@ -4,6 +4,7 @@ import classNames from "classnames";
 import {Link, withRouter} from "react-router-dom";
 
 import Bookmark from "../bookmark/bookmark";
+import {Rating} from "../rating/rating";
 
 
 class OfferCard extends PureComponent {
@@ -45,24 +46,17 @@ class OfferCard extends PureComponent {
             iconClassName="place-card__bookmark-icon"
           />
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: `${Math.round(offer.rating) * 20}%`}} />
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <Rating
+          className="place-card__rating"
+          starsClassName="place-card__stars"
+          value={offer.rating}
+        />
         <h2 className="place-card__name">
           <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
     </article>;
-  }
-
-  componentWillUnmount() {
-    const {onHover} = this.props;
-
-    onHover(null);
   }
 }
 

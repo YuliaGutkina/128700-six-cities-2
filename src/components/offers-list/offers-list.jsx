@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
@@ -6,31 +6,41 @@ import OfferCard from "../offer-card/offer-card";
 import {ActionCreator} from "../../reducer/data/data";
 
 
-const OffersList = (props) => {
-  const {places, onSetActive, cardClassName, imageWrapperClassName, cardInfoClassName, imageWidth, imageHeight, onSetActiveOffer = () => {}} = props;
+class OffersList extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return <>
-    {places.map((offer) => <OfferCard
-      cardClassName={cardClassName}
-      imageWrapperClassName={imageWrapperClassName}
-      cardInfoClassName={cardInfoClassName}
-      imageWidth={imageWidth}
-      imageHeight={imageHeight}
-      key={offer.id}
-      offer={offer}
-      onHover={(item) => {
-        onSetActive(item);
-        onSetActiveOffer(item);
-      }}
-    />)}
-  </>;
-};
+  render() {
+    const {places, className, cardClassName, imageWrapperClassName, cardInfoClassName, imageWidth, imageHeight, onSetActiveOffer = () => {}} = this.props;
+
+    return <div className={className}>
+      {places.map((offer) => <OfferCard
+        cardClassName={cardClassName}
+        imageWrapperClassName={imageWrapperClassName}
+        cardInfoClassName={cardInfoClassName}
+        imageWidth={imageWidth}
+        imageHeight={imageHeight}
+        key={offer.id}
+        offer={offer}
+        onHover={(item) => {
+          onSetActiveOffer(item);
+        }}
+      />)}
+    </div>;
+  }
+
+  componentWillUnmount() {
+    const {onSetActiveOffer = () => {}} = this.props;
+
+    onSetActiveOffer(null);
+  }
+}
 
 OffersList.propTypes = {
   places: PropTypes.arrayOf(PropTypes.object),
-  // activeItem: PropTypes.object,
-  onSetActive: PropTypes.func,
   onSetActiveOffer: PropTypes.func,
+  className: PropTypes.string,
   cardClassName: PropTypes.string,
   imageWrapperClassName: PropTypes.string,
   cardInfoClassName: PropTypes.string,

@@ -38,32 +38,25 @@ exports[`Main page correctly renders after relaunch 1`] = `
             Amsterdam
           </b>
           <Memo(Connect(Sorting)) />
-          <div
+          <Memo(Connect(OffersList))
+            cardClassName="cities__place-card"
             className="cities__places-list places__list tabs__content"
-          >
-            <WithActiveItem
-              cardClassName="cities__place-card"
-              imageHeight={200}
-              imageWidth={260}
-              imageWrapperClassName="cities__image-wrapper"
-              places={
-                Array [
-                  Object {},
-                  Object {},
-                ]
-              }
-            />
-          </div>
+            imageHeight={200}
+            imageWidth={260}
+            imageWrapperClassName="cities__image-wrapper"
+            places={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          />
         </section>
         <div
           className="cities__right-section"
         >
           <CityMap
-            currentCity={
-              Object {
-                "name": "Amsterdam",
-              }
-            }
+            className="cities__map"
             items={
               Array [
                 Object {},
