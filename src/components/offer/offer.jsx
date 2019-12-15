@@ -67,7 +67,9 @@ class Offer extends PureComponent {
                 <Rating
                   className="property__rating"
                   starsClassName="property__stars"
+                  valueClassName="property__rating-value"
                   value={offerData.rating}
+                  isValueVisible
                 />
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
