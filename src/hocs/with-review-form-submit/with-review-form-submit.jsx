@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {ActionCreator, Operation} from "../../reducer/data/data";
+import {Operation} from "../../reducer/data/data";
 
 
 const withReviewFormSubmit = (Component) => {
@@ -12,7 +12,7 @@ const withReviewFormSubmit = (Component) => {
       this.state = {
         rating: null,
         comment: ``,
-        isDisabled: !this.props.isDisabled
+        isDisabled: false
       };
 
       this._inputChangeHandler = this._inputChangeHandler.bind(this);
@@ -52,9 +52,7 @@ const withReviewFormSubmit = (Component) => {
     isDisabled: PropTypes.bool
   };
 
-  const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-    isDisabled: ActionCreator.isReviewFormEnabled
-  });
+  const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {});
 
   const mapDispatchToProps = (dispatch) => ({
     onSendReview: (offerId, values) => {
