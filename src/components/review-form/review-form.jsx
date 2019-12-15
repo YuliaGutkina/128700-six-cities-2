@@ -3,14 +3,9 @@ import PropTypes from "prop-types";
 
 
 export const ReviewForm = (props) => {
-  const {offerId, onFormSubmit, onInputChange, isDisabled} = props;
+  const {onFormSubmit, onInputChange, isDisabled} = props;
 
-  const _formSubmitHandler = (e) => {
-    e.preventDefault();
-    onFormSubmit(offerId);
-  };
-
-  return <form className="reviews__form form" action="#" method="post" onSubmit={_formSubmitHandler}>
+  return <form className="reviews__form form" action="#" method="post" onSubmit={onFormSubmit}>
     <label className="reviews__label form__label" htmlFor="review">Your review</label>
     <div className="reviews__rating-form form__rating">
       <input onChange={onInputChange} className="form__rating-input visually-hidden" name="rating" defaultValue={5} id="5-stars" type="radio" />

@@ -87,7 +87,13 @@ Bookmark.propTypes = {
     })
   }).isRequired,
   onFavoriteClick: PropTypes.func.isRequired,
-  userData: PropTypes.object,
+  userData: PropTypes.shape({
+    id: PropTypes.number,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatar: PropTypes.string,
+    isPro: PropTypes.bool
+  }),
   history: PropTypes.object,
   isFavorite: PropTypes.bool,
   className: PropTypes.string,

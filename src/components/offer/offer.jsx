@@ -20,7 +20,7 @@ import {ReviewForm} from "../review-form/review-form";
 import {receiveUserDataSelector} from "../../reducer/user/selectors";
 
 
-const ReviewFormWrapped = withReviewFormSubmit(ReviewForm)
+const ReviewFormWrapped = withReviewFormSubmit(ReviewForm);
 
 class Offer extends PureComponent {
   constructor(props) {
@@ -166,7 +166,13 @@ class Offer extends PureComponent {
 }
 
 Offer.propTypes = {
-  userData: PropTypes.object,
+  userData: PropTypes.shape({
+    id: PropTypes.number,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatar: PropTypes.string,
+    isPro: PropTypes.bool
+  }),
   offerData: PropTypes.object,
   nearbyOffers: PropTypes.array,
   onLoadComments: PropTypes.func,

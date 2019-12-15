@@ -12,11 +12,13 @@ const withReviewFormSubmit = (Component) => {
       this.state = {
         rating: null,
         comment: ``,
-        isDisabled: true
+        isDisabled: true,
       };
 
       this._inputChangeHandler = this._inputChangeHandler.bind(this);
       this._formSubmitHandler = this._formSubmitHandler.bind(this);
+      this._sendReviewHandler = this._sendReviewHandler.bind(this);
+      this._formResetHandler = this._formResetHandler.bind(this);
     }
 
     render() {
@@ -39,16 +41,34 @@ const withReviewFormSubmit = (Component) => {
       });
     }
 
-    _formSubmitHandler(offerId) {
-      const {onSendReview} = this.props;
+    _formResetHandler() {
+      this.setState({
+        rating: null,
+        comment: ``,
+      });
+    }
+
+    _sendReviewHandler() {
+      const {onSendReview, offerId} = this.props;
       const {rating, comment} = this.state;
 
       onSendReview(offerId, {rating, comment});
+    }
+
+    _formSubmitHandler(e) {
+      e.preventDefault();
+
+      this.setState({
+        isDisabled: true
+      });
+
+      this._sendReviewHandler.then(this._formResetHandler);
     }
   }
 
   WithReviewFormSubmit.propTypes = {
     onSendReview: PropTypes.func.isRequired,
+    offerId: PropTypes.number
   };
 
   const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {});

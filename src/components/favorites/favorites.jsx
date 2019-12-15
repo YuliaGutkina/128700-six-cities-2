@@ -68,7 +68,13 @@ const Favorites = (props) => {
 
 Favorites.propTypes = {
   favorite: PropTypes.arrayOf(PropTypes.object),
-  userData: PropTypes.object
+  userData: PropTypes.shape({
+    id: PropTypes.number,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatar: PropTypes.string,
+    isPro: PropTypes.bool
+  })
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
