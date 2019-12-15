@@ -3,7 +3,8 @@ const initialState = {
   offers: [],
   favorite: [],
   sortingOrder: `popular`,
-  comments: {}
+  comments: {},
+  isReviewFormEnabled: false
 };
 
 const ActionType = {
@@ -15,7 +16,8 @@ const ActionType = {
   REMOVE_FROM_FAVORITES: `REMOVE_FROM_FAVORITES`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
   CHANGE_SORTING: `CHANGE_SORTING`,
-  LOAD_COMMENTS: `LOAD_COMMENTS`
+  LOAD_COMMENTS: `LOAD_COMMENTS`,
+  DISABLE_REVIEW_FORM: `DISABLE_REVIEW_FORM`
 };
 
 const ActionCreator = {
@@ -58,6 +60,10 @@ const ActionCreator = {
   loadComments: (id, comments) => ({
     type: ActionType.LOAD_COMMENTS,
     payload: {id, comments}
+  }),
+  disableReviewForm: () => ({
+    type: ActionCreator.DISABLE_REVIEW_FORM,
+    payload: false
   })
 };
 
@@ -148,6 +154,15 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.loadComments(offerId, transformApiComments(response.data)));
       });
+  },
+  sendReview: (offerId, values) => (dispatch, _getState, api) => {
+    return api.post(`/comments/${offerId}`, values)
+      .then((response) => {
+        dispatch(ActionCreator.loadComments(offerId, transformApiComments(response.data)));
+      })
+      .then(() => {
+        dispatch(ActionCreator.disableReviewForm);
+      });
   }
 };
 
@@ -181,6 +196,9 @@ const reducer = (state = initialState, action) => {
       comments: Object.assign({}, state.comments, {
         [action.payload.id]: action.payload.comments
       })
+    });
+    case ActionType.DISABLE_REVIEW_FORM: return Object.assign({}, state, {
+      isReviewFormEnabled: action.payload
     });
   }
 

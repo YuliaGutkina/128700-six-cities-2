@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import {Operation} from "../../reducer/user/user";
 
 
-const withFormSubmit = (Component) => {
-  class WithFormSubmit extends PureComponent {
+const withLoginFormSubmit = (Component) => {
+  class WithLoginFormSubmit extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -41,7 +41,7 @@ const withFormSubmit = (Component) => {
     }
   }
 
-  WithFormSubmit.propTypes = {
+  WithLoginFormSubmit.propTypes = {
     onRequireAuthorization: PropTypes.func.isRequired,
     history: PropTypes.object
   };
@@ -54,8 +54,8 @@ const withFormSubmit = (Component) => {
     },
   });
 
-  return connect(mapStateToProps, mapDispatchToProps)(WithFormSubmit);
+  return connect(mapStateToProps, mapDispatchToProps)(WithLoginFormSubmit);
 };
 
 
-export default withFormSubmit;
+export default withLoginFormSubmit;

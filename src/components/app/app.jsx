@@ -3,14 +3,14 @@ import {Switch, Route} from "react-router-dom";
 
 import MainPage from "../main-page/main-page";
 import Login from "../login/login";
-import withFormSubmit from "../../hocs/with-form-submit/with-form-submit";
+import withLoginFormSubmit from "../../hocs/with-login-form-submit/with-login-form-submit";
 import Favorites from "../favorites/favorites";
 import Offer from "../offer/offer";
 import withAuth from "../../hocs/with-auth/with-auth";
 import withoutAuth from "../../hocs/without-auth/without-auth";
 
 
-const LoginWrapped = withFormSubmit(Login);
+const LoginWrapped = withLoginFormSubmit(Login);
 
 export const App = () => {
   return (
