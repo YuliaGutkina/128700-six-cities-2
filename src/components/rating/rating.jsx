@@ -12,7 +12,7 @@ export const Rating = (props) => {
       <span className="visually-hidden">Rating</span>
     </div>
     {isValueVisible &&
-      <span className={classNames(`rating__value`, valueClassName)}>4.8</span>
+      <span className={classNames(`rating__value`, valueClassName)}>{value}</span>
     }
   </div>;
 };
