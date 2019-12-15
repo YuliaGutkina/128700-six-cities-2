@@ -8,6 +8,7 @@ import Header from "../header/header";
 import {receiveUserDataSelector} from "../../reducer/user/selectors";
 import {receiveFavoriteSelector} from "../../reducer/data/selectors";
 import {OffersList} from "../offers-list/offers-list";
+import {ComplexPropType} from "../../types/types";
 
 
 const Favorites = (props) => {
@@ -60,21 +61,20 @@ const Favorites = (props) => {
     </main>
     <footer className="footer">
       <Link className="footer__logo-link" to="/">
-        <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width={64} height={33} />
+        <img className="footer__logo" src="/img/logo.svg" alt="6 cities logo" width={64} height={33} />
       </Link>
     </footer>
   </div>;
 };
 
 Favorites.propTypes = {
-  favorite: PropTypes.arrayOf(PropTypes.object),
-  userData: PropTypes.shape({
-    id: PropTypes.number,
-    email: PropTypes.string,
-    name: PropTypes.string,
-    avatar: PropTypes.string,
-    isPro: PropTypes.bool
-  })
+  favorite: PropTypes.arrayOf(
+      PropTypes.shape({
+        city: PropTypes.string,
+        offers: PropTypes.arrayOf(ComplexPropType.OFFER)
+      })
+  ),
+  userData: ComplexPropType.USER_DATA
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

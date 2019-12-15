@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import moment from "moment";
 import {Rating} from "../rating/rating";
+import {ComplexPropType} from "../../types/types";
 
 
 export const Review = (props) => {
@@ -31,5 +31,5 @@ export const Review = (props) => {
 };
 
 Review.propTypes = {
-  commentData: PropTypes.object
+  commentData: ComplexPropType.COMMENT
 };

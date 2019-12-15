@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 import {Review} from "../review/review";
+import {ComplexPropType} from "../../types/types";
 
 
 export const ReviewsList = (props) => {
@@ -16,5 +17,5 @@ export const ReviewsList = (props) => {
 };
 
 ReviewsList.propTypes = {
-  comments: PropTypes.array
+  comments: PropTypes.arrayOf(ComplexPropType.COMMENT)
 };

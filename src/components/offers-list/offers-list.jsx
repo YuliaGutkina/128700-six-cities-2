@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 
 import OfferCard from "../offer-card/offer-card";
 import {ActionCreator} from "../../reducer/data/data";
+import {ComplexPropType} from "../../types/types";
 
 
 class OffersList extends PureComponent {
@@ -38,7 +39,7 @@ class OffersList extends PureComponent {
 }
 
 OffersList.propTypes = {
-  places: PropTypes.arrayOf(PropTypes.object),
+  places: PropTypes.arrayOf(ComplexPropType.OFFER),
   onSetActiveOffer: PropTypes.func,
   className: PropTypes.string,
   cardClassName: PropTypes.string,

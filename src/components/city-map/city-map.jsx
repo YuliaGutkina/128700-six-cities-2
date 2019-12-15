@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import {OffersList} from "../offers-list/offers-list";
+import {ComplexPropType} from "../../types/types";
 
 
 export class CityMap extends PureComponent {
@@ -99,11 +100,7 @@ export class CityMap extends PureComponent {
 
 CityMap.propTypes = {
   items: OffersList.propTypes.places,
-  initialLocation: PropTypes.shape({
-    latitude: PropTypes.number,
-    longitude: PropTypes.number,
-    zoom: PropTypes.number
-  }),
-  activeItem: PropTypes.object,
+  initialLocation: ComplexPropType.LOCATION,
+  activeItem: ComplexPropType.OFFER,
   className: PropTypes.string
 };

@@ -31,5 +31,8 @@ Select.propTypes = {
   className: PropTypes.string,
   optionClassName: PropTypes.string,
   id: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.object),
+  options: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.string,
+    text: PropTypes.string
+  })),
 };

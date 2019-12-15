@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {receiveUserDataSelector} from "../../reducer/user/selectors";
+import {ComplexPropType} from "../../types/types";
 
 
 const Header = (props) => {
@@ -49,13 +49,7 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  userData: PropTypes.shape({
-    id: PropTypes.number,
-    email: PropTypes.string,
-    name: PropTypes.string,
-    avatar: PropTypes.string,
-    isPro: PropTypes.bool
-  })
+  userData: ComplexPropType.USER_DATA
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

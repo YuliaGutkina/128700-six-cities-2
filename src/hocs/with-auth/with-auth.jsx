@@ -1,9 +1,9 @@
 import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
-import PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
 
 import {receiveUserDataSelector} from "../../reducer/user/selectors";
+import {ComplexPropType} from "../../types/types";
 
 
 const withAuth = (Component) => {
@@ -22,13 +22,7 @@ const withAuth = (Component) => {
   }
 
   WithAuth.propTypes = {
-    userData: PropTypes.shape({
-      id: PropTypes.number,
-      email: PropTypes.string,
-      name: PropTypes.string,
-      avatar: PropTypes.string,
-      isPro: PropTypes.bool
-    })
+    userData: ComplexPropType.USER_DATA
   };
 
   const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

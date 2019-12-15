@@ -18,6 +18,7 @@ import {Rating} from "../rating/rating";
 import withReviewFormSubmit from "../../hocs/with-review-form-submit/with-review-form-submit";
 import {ReviewForm} from "../review-form/review-form";
 import {receiveUserDataSelector} from "../../reducer/user/selectors";
+import {ComplexPropType} from "../../types/types";
 
 
 const ReviewFormWrapped = withReviewFormSubmit(ReviewForm);
@@ -168,18 +169,12 @@ class Offer extends PureComponent {
 }
 
 Offer.propTypes = {
-  userData: PropTypes.shape({
-    id: PropTypes.number,
-    email: PropTypes.string,
-    name: PropTypes.string,
-    avatar: PropTypes.string,
-    isPro: PropTypes.bool
-  }),
-  offerData: PropTypes.object,
-  nearbyOffers: PropTypes.array,
+  userData: ComplexPropType.USER_DATA,
+  offerData: ComplexPropType.OFFER,
+  nearbyOffers: PropTypes.arrayOf(ComplexPropType.OFFER),
   onLoadComments: PropTypes.func,
   match: PropTypes.object,
-  comments: PropTypes.array
+  comments: PropTypes.arrayOf(ComplexPropType.COMMENT)
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

@@ -8,7 +8,7 @@ import {BrowserRouter as Router} from "react-router-dom";
 import {createBrowserHistory} from "history";
 
 import {App} from "./components/app/app";
-import reducer from "./reducer";
+import reducer from "./reducer/reducer";
 import {createAPI} from "./api";
 import {Operation} from "./reducer/data/data";
 

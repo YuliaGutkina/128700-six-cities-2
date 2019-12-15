@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 
 import Header from "../header/header";
 import {receiveCityInfoSelector} from "../../reducer/data/selectors";
+import {ComplexPropType} from "../../types/types";
 
 
 const Login = (props) => {
@@ -61,7 +62,7 @@ const Login = (props) => {
 };
 
 Login.propTypes = {
-  city: PropTypes.object,
+  city: ComplexPropType.CITY_INFO,
   onFormSubmit: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired
 };

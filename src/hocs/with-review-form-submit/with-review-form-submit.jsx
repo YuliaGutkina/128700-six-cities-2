@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+
 import {Operation} from "../../reducer/data/data";
 
 
@@ -12,12 +13,13 @@ const withReviewFormSubmit = (Component) => {
       this.state = {
         rating: null,
         comment: ``,
-        isDisabled: true,
+        isLoading: false,
       };
 
       this._inputChangeHandler = this._inputChangeHandler.bind(this);
       this._formSubmitHandler = this._formSubmitHandler.bind(this);
       this._formResetHandler = this._formResetHandler.bind(this);
+      this._isFormValid = this._isFormValid.bind(this);
     }
 
     render() {
@@ -25,7 +27,7 @@ const withReviewFormSubmit = (Component) => {
         {...this.props}
         onFormSubmit={this._formSubmitHandler}
         onInputChange={this._inputChangeHandler}
-        isDisabled={this.state.isDisabled}
+        isDisabled={this.state.isLoading || !this._isFormValid()}
         commentValue={this.state.comment}
         ratingValue={this.state.rating}
       />;
@@ -38,8 +40,11 @@ const withReviewFormSubmit = (Component) => {
 
       this.setState({
         [name]: value,
-        isDisabled: !this.state.rating || (this.state.comment.length < 50) || (this.state.comment.length > 300)
       });
+    }
+
+    _isFormValid() {
+      return (this.state.rating && (this.state.comment.length >= 50) && (this.state.comment.length <= 300));
     }
 
     _formResetHandler() {
@@ -59,8 +64,16 @@ const withReviewFormSubmit = (Component) => {
         isDisabled: true
       });
 
-      onSendReview(offerId, {rating, comment});
-      this._formResetHandler();
+      onSendReview(offerId, {rating, comment})
+        .then(() => this._formResetHandler())
+        .catch((err) => {
+          return new Error(err);
+        })
+        .then(() => {
+          this.setState({
+            isLoading: false
+          });
+        });
     }
   }
 
@@ -73,7 +86,7 @@ const withReviewFormSubmit = (Component) => {
 
   const mapDispatchToProps = (dispatch) => ({
     onSendReview: (offerId, values) => {
-      dispatch(Operation.sendReview(offerId, values));
+      return dispatch(Operation.sendReview(offerId, values));
     },
   });
 
