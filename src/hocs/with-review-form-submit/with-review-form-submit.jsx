@@ -17,7 +17,6 @@ const withReviewFormSubmit = (Component) => {
 
       this._inputChangeHandler = this._inputChangeHandler.bind(this);
       this._formSubmitHandler = this._formSubmitHandler.bind(this);
-      this._sendReviewHandler = this._sendReviewHandler.bind(this);
       this._formResetHandler = this._formResetHandler.bind(this);
     }
 
@@ -27,6 +26,8 @@ const withReviewFormSubmit = (Component) => {
         onFormSubmit={this._formSubmitHandler}
         onInputChange={this._inputChangeHandler}
         isDisabled={this.state.isDisabled}
+        commentValue={this.state.comment}
+        ratingValue={this.state.rating}
       />;
     }
 
@@ -48,21 +49,18 @@ const withReviewFormSubmit = (Component) => {
       });
     }
 
-    _sendReviewHandler() {
+    _formSubmitHandler(e) {
       const {onSendReview, offerId} = this.props;
       const {rating, comment} = this.state;
 
-      onSendReview(offerId, {rating, comment});
-    }
-
-    _formSubmitHandler(e) {
       e.preventDefault();
 
       this.setState({
         isDisabled: true
       });
 
-      this._sendReviewHandler.then(this._formResetHandler);
+      onSendReview(offerId, {rating, comment});
+      this._formResetHandler();
     }
   }
 
