@@ -12,7 +12,7 @@ const withReviewFormSubmit = (Component) => {
       this.state = {
         rating: null,
         comment: ``,
-        isDisabled: false
+        isDisabled: true
       };
 
       this._inputChangeHandler = this._inputChangeHandler.bind(this);
@@ -49,7 +49,6 @@ const withReviewFormSubmit = (Component) => {
 
   WithReviewFormSubmit.propTypes = {
     onSendReview: PropTypes.func.isRequired,
-    isDisabled: PropTypes.bool
   };
 
   const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {});
