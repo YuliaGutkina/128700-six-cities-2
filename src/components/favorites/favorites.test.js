@@ -2,7 +2,6 @@ import React from "react";
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 import {Favorites} from "./favorites";
-import {offersData} from "../../mocks/offer-data";
 
 
 it(`Favorites page correctly renders after relaunch`, () => {
@@ -10,7 +9,7 @@ it(`Favorites page correctly renders after relaunch`, () => {
   renderer
     .render(
         <Favorites
-          favorite={offersData}
+          favorite={[{}]}
         />);
   const result = renderer.getRenderOutput();
 
