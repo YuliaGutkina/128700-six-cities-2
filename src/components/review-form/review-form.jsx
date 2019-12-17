@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 
-export const ReviewForm = (props) => {
+const ReviewForm = (props) => {
   const {onFormSubmit, onInputChange, isDisabled, commentValue, ratingValue} = props;
 
   return <form className="reviews__form form" action="#" method="post" onSubmit={onFormSubmit}>
@@ -70,3 +70,5 @@ ReviewForm.propTypes = {
   ratingValue: PropTypes.string
 };
 
+
+export {ReviewForm};

@@ -7,7 +7,7 @@ import {OffersList} from "../offers-list/offers-list";
 import {ComplexPropType} from "../../types/types";
 
 
-export class CityMap extends PureComponent {
+class CityMap extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -104,3 +104,6 @@ CityMap.propTypes = {
   activeItem: ComplexPropType.OFFER,
   className: PropTypes.string
 };
+
+
+export {CityMap};

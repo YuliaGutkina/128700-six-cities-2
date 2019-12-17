@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 
-export const Select = (props) => {
+const Select = (props) => {
   const {onChange, defaultValue, options, className, optionClassName, id} = props;
 
   const _handleChange = (e) => {
@@ -36,3 +36,6 @@ Select.propTypes = {
     text: PropTypes.string
   })),
 };
+
+
+export {Select};

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 
-export const Rating = (props) => {
+const Rating = (props) => {
   const {value, className, starsClassName, valueClassName, isValueVisible} = props;
 
   return <div className={classNames(`rating`, className)}>
@@ -24,3 +24,6 @@ Rating.propTypes = {
   starsClassName: PropTypes.string,
   isValueVisible: PropTypes.bool,
 };
+
+
+export {Rating};

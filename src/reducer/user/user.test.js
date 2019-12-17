@@ -29,10 +29,3 @@ describe(`Action Creators work correctly`, () => {
   });
 });
 
-describe(`Operations work correctly`, () => {
-  it(``, () => {
-    // expect(reducer(undefined, {})).toEqual({
-    //   userData: null
-    // });
-  });
-});

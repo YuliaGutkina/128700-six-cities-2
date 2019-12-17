@@ -4,7 +4,7 @@ import {Rating} from "../rating/rating";
 import {ComplexPropType} from "../../types/types";
 
 
-export const Review = (props) => {
+const Review = (props) => {
   const {commentData} = props;
 
   return <li className="reviews__item">
@@ -33,3 +33,6 @@ export const Review = (props) => {
 Review.propTypes = {
   commentData: ComplexPropType.COMMENT
 };
+
+
+export {Review};

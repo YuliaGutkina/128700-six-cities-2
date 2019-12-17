@@ -39,9 +39,6 @@ const Operation = {
       return api.get(`/login`)
         .then((response) => {
           dispatch(ActionCreator.authorizeUser(transformApiUser(response.data, api.defaults.baseURL)));
-        })
-        .catch(() => {
-          // dispatch(ActionCreator.logout());
         });
     };
   }

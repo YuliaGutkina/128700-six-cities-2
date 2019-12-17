@@ -36,7 +36,10 @@ App.propTypes = {
   onAuthCheck: PropTypes.func
 };
 
-const mapDispatchToProps = {onAuthCheck: Operation.echoUser};
+const mapDispatchToProps = {
+  onAuthCheck: Operation.echoUser
+};
+
 
 export {App};
 export default connect(null, mapDispatchToProps)(App);
