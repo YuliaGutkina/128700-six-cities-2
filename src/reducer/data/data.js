@@ -153,9 +153,6 @@ const Operation = {
     return api.post(`/comments/${offerId}`, values)
       .then((response) => {
         dispatch(ActionCreator.loadComments(offerId, transformApiComments(response.data)));
-      })
-      .then(() => {
-
       });
   }
 };

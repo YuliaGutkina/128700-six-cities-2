@@ -8,7 +8,7 @@ describe(`Reducers work correctly`, () => {
     });
   });
 
-  it(`Reducer should `, () => {
+  it(`Reducer should change user data to given value`, () => {
     expect(reducer({
       userData: false
     }, {
@@ -26,5 +26,13 @@ describe(`Action Creators work correctly`, () => {
       type: ActionType.AUTHORIZE_USER,
       payload: {fake: true}
     });
+  });
+});
+
+describe(`Operations work correctly`, () => {
+  it(``, () => {
+    // expect(reducer(undefined, {})).toEqual({
+    //   userData: null
+    // });
   });
 });
