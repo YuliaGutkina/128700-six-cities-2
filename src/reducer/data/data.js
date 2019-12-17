@@ -1,3 +1,5 @@
+import {NotificationManager} from "react-notifications";
+
 const initialState = {
   city: `Amsterdam`,
   offers: [],
@@ -111,12 +113,18 @@ const Operation = {
     return api.get(`/hotels`)
       .then((response) => {
         dispatch(ActionCreator.loadOffers(transformApiOffers(response.data)));
+      })
+      .catch((e) => {
+        NotificationManager.error(e.message);
       });
   },
   loadFavorite: () => (dispatch, _getState, api) => {
     return api.get(`/favorite`)
       .then((response) => {
         dispatch(ActionCreator.loadFavorite(transformApiOffers(response.data)));
+      })
+      .catch((e) => {
+        NotificationManager.error(e.message);
       });
   },
   toggleFavoriteStatus: (offer) => (dispatch, _getState, api) => {
@@ -130,12 +138,18 @@ const Operation = {
         } else {
           dispatch(ActionCreator.removeFromFavorites(transformApiOffer(response.data)));
         }
+      })
+      .catch((e) => {
+        NotificationManager.error(e.message);
       });
   },
   loadComments: (offerId) => (dispatch, _getState, api) => {
     return api.get(`/comments/${offerId}`)
       .then((response) => {
         dispatch(ActionCreator.loadComments(offerId, transformApiComments(response.data)));
+      })
+      .catch((e) => {
+        NotificationManager.error(e.message);
       });
   },
   sendReview: (offerId, values) => (dispatch, _getState, api) => {

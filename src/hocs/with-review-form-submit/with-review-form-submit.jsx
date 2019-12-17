@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
 import {Operation} from "../../reducer/data/data";
+import {NotificationManager} from "react-notifications";
 
 
 const withReviewFormSubmit = (Component) => {
@@ -61,13 +62,13 @@ const withReviewFormSubmit = (Component) => {
       e.preventDefault();
 
       this.setState({
-        isDisabled: true
+        isLoading: true
       });
 
       onSendReview(offerId, {rating, comment})
         .then(() => this._formResetHandler())
         .catch((err) => {
-          return new Error(err);
+          NotificationManager.error(err.message);
         })
         .then(() => {
           this.setState({

@@ -116,7 +116,9 @@ exports[`Favorites page correctly renders after relaunch 1`] = `
             <li
               className="property__feature property__feature--entire"
             >
-              apartment
+              <PropertyType
+                type="apartment"
+              />
             </li>
             <li
               className="property__feature property__feature--bedrooms"

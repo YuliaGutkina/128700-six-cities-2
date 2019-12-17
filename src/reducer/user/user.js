@@ -1,6 +1,3 @@
-import {Operation as DataOperation} from "../data/data";
-
-
 const initialState = {
   userData: null
 };
@@ -34,12 +31,20 @@ const Operation = {
       return api.post(`/login`, {email, password})
         .then((response) => {
           dispatch(ActionCreator.authorizeUser(transformApiUser(response.data, api.defaults.baseURL)));
-        })
-        .then(() => {
-          dispatch(DataOperation.loadFavorite());
         });
     }
   },
+  echoUser: () => {
+    return (dispatch, getState, api) => {
+      return api.get(`/login`)
+        .then((response) => {
+          dispatch(ActionCreator.authorizeUser(transformApiUser(response.data, api.defaults.baseURL)));
+        })
+        .catch(() => {
+          // dispatch(ActionCreator.logout());
+        });
+    };
+  }
 };
 
 const reducer = (state = initialState, action) => {

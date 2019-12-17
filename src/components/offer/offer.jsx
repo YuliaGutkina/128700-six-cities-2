@@ -19,6 +19,7 @@ import withReviewFormSubmit from "../../hocs/with-review-form-submit/with-review
 import {ReviewForm} from "../review-form/review-form";
 import {receiveUserDataSelector} from "../../reducer/user/selectors";
 import {ComplexPropType} from "../../types/types";
+import {PropertyType} from "../property-type/property-type";
 
 
 const ReviewFormWrapped = withReviewFormSubmit(ReviewForm);
@@ -74,7 +75,7 @@ class Offer extends PureComponent {
                 />
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
-                    {offerData.type}
+                    <PropertyType type={offerData.type}/>
                   </li>
                   <li className="property__feature property__feature--bedrooms">
                     {offerData.bedrooms} Bedrooms

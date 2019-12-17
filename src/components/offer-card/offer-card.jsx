@@ -6,6 +6,7 @@ import {Link, withRouter} from "react-router-dom";
 import Bookmark from "../bookmark/bookmark";
 import {Rating} from "../rating/rating";
 import {ComplexPropType} from "../../types/types";
+import {PropertyType} from "../property-type/property-type";
 
 
 class OfferCard extends PureComponent {
@@ -55,7 +56,7 @@ class OfferCard extends PureComponent {
         <h2 className="place-card__name">
           <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type"><PropertyType type={offer.type}/></p>
       </div>
     </article>;
   }

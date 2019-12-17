@@ -6,8 +6,9 @@ import thunk from "redux-thunk";
 import {compose} from "recompose";
 import {BrowserRouter as Router} from "react-router-dom";
 import {createBrowserHistory} from "history";
+import {NotificationContainer} from "react-notifications";
 
-import {App} from "./components/app/app";
+import App from "./components/app/app";
 import reducer from "./reducer/reducer";
 import {createAPI} from "./api";
 import {Operation} from "./reducer/data/data";
@@ -31,6 +32,7 @@ const init = () => {
     <Router history={history}>
       <App/>
     </Router>
+    <NotificationContainer/>
   </Provider>,
   document.querySelector(`#root`)
   );
