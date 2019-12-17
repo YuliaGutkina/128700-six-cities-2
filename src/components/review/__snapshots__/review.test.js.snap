@@ -39,7 +39,7 @@ exports[`Bookmark correctly renders after relaunch 1`] = `
     </p>
     <time
       className="reviews__time"
-      dateTime="2019-05-08T17:13:56+03:00"
+      dateTime="2019-05-08T14:13:56.569Z"
     >
       May 2019
     </time>
