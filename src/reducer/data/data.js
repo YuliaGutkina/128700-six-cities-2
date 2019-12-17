@@ -10,7 +10,6 @@ const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_FAVORITE: `LOAD_FAVORITE`,
-  TOGGLE_FAVORITE_STATUS: `TOGGLE_FAVORITE_STATUS`,
   ADD_TO_FAVORITES: `ADD_TO_FAVORITES`,
   REMOVE_FROM_FAVORITES: `REMOVE_FROM_FAVORITES`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
@@ -31,14 +30,6 @@ const ActionCreator = {
     type: ActionType.LOAD_FAVORITE,
     payload: favorite
   }),
-  toggleFavoriteStatus: (offer) => {
-    offer.isFavorite = !offer.isFavorite;
-
-    return {
-      type: ActionType.TOGGLE_FAVORITE_STATUS,
-      payload: offer
-    };
-  },
   addToFavorites: (offer) => ({
     type: ActionType.ADD_TO_FAVORITES,
     payload: offer
@@ -169,13 +160,12 @@ const reducer = (state = initialState, action) => {
       favorite: action.payload
     });
     case ActionType.ADD_TO_FAVORITES: return Object.assign({}, state, {
-      favorite: [...state.favorite, action.payload]
+      favorite: [...state.favorite, action.payload],
+      offers: state.offers.map((offer) => (offer.id === action.payload.id) ? Object.assign({}, offer, {isFavorite: true}) : offer)
     });
     case ActionType.REMOVE_FROM_FAVORITES: return Object.assign({}, state, {
-      favorite: state.favorite.filter((offer) => offer.id !== action.payload)
-    });
-    case ActionType.TOGGLE_FAVORITE_STATUS: return Object.assign({}, state, {
-      offers: [...state.offers.map((offer) => (offer.id === action.payload.id) ? action.payload : offer)]
+      favorite: state.favorite.filter((offer) => offer.id !== action.payload),
+      offers: state.offers.map((offer) => (offer.id === action.payload) ? Object.assign({}, offer, {isFavorite: false}) : offer)
     });
     case ActionType.SET_ACTIVE_OFFER: return Object.assign({}, state, {
       activeOffer: action.payload
