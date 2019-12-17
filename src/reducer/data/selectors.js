@@ -1,4 +1,3 @@
-// import {createSelector} from "reselect";
 import NameSpace from "../name-spaces";
 
 
@@ -53,8 +52,10 @@ const receiveOfferSelector = (state, id) => {
   return state[NAME_SPACE].offers.find((item) => item.id.toString() === id.toString());
 };
 
-const receiveNearbyOffersSelector = (state) => {
-  return state[NAME_SPACE].offers;
+const receiveNearbyOffersSelector = (state, id) => {
+  const currentOffer = receiveOfferSelector(state, id);
+
+  return state[NAME_SPACE].offers.filter((offer) => (offer.city.name === currentOffer.city.name) && offer.id.toString() !== id.toString());
 };
 
 const getActiveOfferSelector = (state) => state[NAME_SPACE].activeOffer;

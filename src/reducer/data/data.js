@@ -125,8 +125,6 @@ const Operation = {
 
     return api.post(`/favorite/${hotelId}/${status}`)
       .then((response) => {
-        dispatch(ActionCreator.toggleFavoriteStatus(offer));
-
         if (status === 1) {
           dispatch(ActionCreator.addToFavorites(transformApiOffer(response.data)));
         } else {

@@ -239,6 +239,25 @@ describe(`Reducers work correctly`, () => {
     });
   });
 
+  it(`Reducer should has correct reaction to loading comments`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offers: [],
+      favorite: [],
+      sortingOrder: `popular`,
+      comments: {},
+    }, {
+      type: ActionType.LOAD_COMMENTS,
+      payload: {id: 0, comments: []}
+    })).toEqual({
+      city: `Amsterdam`,
+      offers: [],
+      favorite: [],
+      sortingOrder: `popular`,
+      comments: {0: []},
+    });
+  });
+
   it(`Reducer should has correct reaction to adding favorite offer`, () => {
     expect(reducer({
       city: `Amsterdam`,
