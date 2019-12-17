@@ -110,7 +110,9 @@ exports[`Offer card correctly renders after relaunch 1`] = `
     <p
       className="place-card__type"
     >
-      apartment
+      <PropertyType
+        type="apartment"
+      />
     </p>
   </div>
 </article>

@@ -2,6 +2,7 @@ import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api";
 
 import {ActionCreator, ActionType, Operation, reducer} from "./data";
+import {offersData} from "../../mocks/offer-data";
 
 
 describe(`Reducers work correctly`, () => {
@@ -199,6 +200,143 @@ describe(`Reducers work correctly`, () => {
       offers: [{a: `abc`}]
     });
   });
+
+  it(`Reducer should has correct reaction to loading offers`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offers: [],
+      favorite: [],
+      sortingOrder: `popular`,
+      comments: {},
+    }, {
+      type: ActionType.LOAD_OFFERS,
+      payload: [{}]
+    })).toEqual({
+      city: `Amsterdam`,
+      offers: [{}],
+      favorite: [],
+      sortingOrder: `popular`,
+      comments: {},
+    });
+  });
+
+  it(`Reducer should has correct reaction to loading favorite offers`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offers: [],
+      favorite: [],
+      sortingOrder: `popular`,
+      comments: {},
+    }, {
+      type: ActionType.LOAD_FAVORITE,
+      payload: [{}]
+    })).toEqual({
+      city: `Amsterdam`,
+      offers: [],
+      favorite: [{}],
+      sortingOrder: `popular`,
+      comments: {},
+    });
+  });
+
+  it(`Reducer should has correct reaction to loading comments`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offers: [],
+      favorite: [],
+      sortingOrder: `popular`,
+      comments: {},
+    }, {
+      type: ActionType.LOAD_COMMENTS,
+      payload: {id: 0, comments: []}
+    })).toEqual({
+      city: `Amsterdam`,
+      offers: [],
+      favorite: [],
+      sortingOrder: `popular`,
+      comments: {0: []},
+    });
+  });
+
+  it(`Reducer should has correct reaction to adding favorite offer`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offers: [{id: 0, isFavorite: false}, {id: 1, isFavorite: false}],
+      favorite: [],
+      sortingOrder: `popular`,
+      comments: {},
+    }, {
+      type: ActionType.ADD_TO_FAVORITES,
+      payload: {id: 0, isFavorite: true}
+    })).toEqual({
+      city: `Amsterdam`,
+      offers: [{id: 0, isFavorite: true}, {id: 1, isFavorite: false}],
+      favorite: [{id: 0, isFavorite: true}],
+      sortingOrder: `popular`,
+      comments: {},
+    });
+  });
+
+  it(`Reducer should has correct reaction to removing offer from favorite`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offers: [{id: 0, isFavorite: true}, {id: 1, isFavorite: false}],
+      favorite: [{id: 0, isFavorite: true}],
+      sortingOrder: `popular`,
+      comments: {},
+    }, {
+      type: ActionType.REMOVE_FROM_FAVORITES,
+      payload: 0
+    })).toEqual({
+      city: `Amsterdam`,
+      offers: [{id: 0, isFavorite: false}, {id: 1, isFavorite: false}],
+      favorite: [],
+      sortingOrder: `popular`,
+      comments: {},
+    });
+  });
+
+  it(`Reducer should has correct reaction to setting active offer`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offers: [],
+      favorite: [],
+      sortingOrder: `popular`,
+      comments: {},
+      activeOffer: null
+    }, {
+      type: ActionType.SET_ACTIVE_OFFER,
+      payload: {id: 0}
+    })).toEqual({
+      city: `Amsterdam`,
+      offers: [],
+      favorite: [],
+      sortingOrder: `popular`,
+      comments: {},
+      activeOffer: {id: 0}
+    });
+  });
+
+  it(`Reducer should has correct reaction to changing offers order`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offers: [],
+      favorite: [],
+      sortingOrder: `popular`,
+      comments: {},
+      activeOffer: {}
+    }, {
+      type: ActionType.CHANGE_SORTING,
+      payload: `to-high`
+    })).toEqual({
+      city: `Amsterdam`,
+      offers: [],
+      favorite: [],
+      sortingOrder: `to-high`,
+      comments: {},
+      activeOffer: {}
+    });
+  });
 });
 
 describe(`Action Creators work correctly`, () => {
@@ -206,6 +344,13 @@ describe(`Action Creators work correctly`, () => {
     expect(ActionCreator.changeCity(`Paris`)).toEqual({
       type: ActionType.CHANGE_CITY,
       payload: `Paris`
+    });
+  });
+
+  it(`Action Creator for loading offers returns correct action`, () => {
+    expect(ActionCreator.loadOffers(offersData)).toEqual({
+      type: ActionType.LOAD_OFFERS,
+      payload: offersData
     });
   });
 });

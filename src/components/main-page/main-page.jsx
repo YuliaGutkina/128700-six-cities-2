@@ -13,6 +13,7 @@ import {
   receiveCityInfoSelector,
   receiveCityOffersSortedSelector
 } from "../../reducer/data/selectors";
+import {ComplexPropType} from "../../types/types";
 
 
 const MainPage = (props) => {
@@ -69,10 +70,10 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  city: PropTypes.object,
-  citiesList: PropTypes.array,
-  cityOffers: PropTypes.array,
-  activeOffer: PropTypes.object,
+  city: ComplexPropType.CITY_INFO,
+  citiesList: PropTypes.arrayOf(ComplexPropType.CITY_INFO),
+  cityOffers: PropTypes.arrayOf(ComplexPropType.OFFER),
+  activeOffer: ComplexPropType.OFFER,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

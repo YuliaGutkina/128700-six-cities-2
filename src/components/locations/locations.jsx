@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 
 import {receiveCitiesListSelector} from "../../reducer/data/selectors";
 import {ActionCreator} from "../../reducer/data/data";
+import {ComplexPropType} from "../../types/types";
 
 
 const Locations = (props) => {
@@ -36,7 +37,7 @@ const Locations = (props) => {
 
 Locations.propTypes = {
   currentCity: PropTypes.string,
-  citiesList: PropTypes.array,
+  citiesList: PropTypes.arrayOf(ComplexPropType.CITY_INFO),
   onTabClick: PropTypes.func
 };
 

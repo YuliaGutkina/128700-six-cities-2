@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {receiveUserDataSelector} from "../../reducer/user/selectors";
 import {Operation} from "../../reducer/data/data";
 import {getFavoriteStatusSelector} from "../../reducer/data/selectors";
+import {ComplexPropType} from "../../types/types";
 
 
 class Bookmark extends PureComponent {
@@ -52,42 +53,9 @@ class Bookmark extends PureComponent {
 }
 
 Bookmark.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.number,
-    city: PropTypes.shape({
-      name: PropTypes.string,
-      location: PropTypes.shape({
-        latitude: PropTypes.number,
-        longitude: PropTypes.number,
-        zoom: PropTypes.number
-      })
-    }),
-    preview: PropTypes.string,
-    images: PropTypes.arrayOf(PropTypes.string),
-    title: PropTypes.string,
-    isFavorite: PropTypes.bool,
-    isPremium: PropTypes.bool,
-    rating: PropTypes.number,
-    type: PropTypes.string,
-    bedrooms: PropTypes.number,
-    maxAdults: PropTypes.number,
-    price: PropTypes.number,
-    goods: PropTypes.arrayOf(PropTypes.string),
-    host: PropTypes.shape({
-      id: PropTypes.number,
-      isPro: PropTypes.bool,
-      name: PropTypes.string,
-      avatar: PropTypes.string
-    }),
-    description: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number,
-      longitude: PropTypes.number,
-      zoom: PropTypes.number
-    })
-  }).isRequired,
+  offer: ComplexPropType.OFFER.isRequired,
   onFavoriteClick: PropTypes.func.isRequired,
-  userData: PropTypes.object,
+  userData: ComplexPropType.USER_DATA,
   history: PropTypes.object,
   isFavorite: PropTypes.bool,
   className: PropTypes.string,

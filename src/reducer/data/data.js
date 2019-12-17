@@ -1,21 +1,22 @@
+import {NotificationManager} from "react-notifications";
+
 const initialState = {
   city: `Amsterdam`,
   offers: [],
   favorite: [],
   sortingOrder: `popular`,
-  comments: {}
+  comments: {},
 };
 
 const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_FAVORITE: `LOAD_FAVORITE`,
-  TOGGLE_FAVORITE_STATUS: `TOGGLE_FAVORITE_STATUS`,
   ADD_TO_FAVORITES: `ADD_TO_FAVORITES`,
   REMOVE_FROM_FAVORITES: `REMOVE_FROM_FAVORITES`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
   CHANGE_SORTING: `CHANGE_SORTING`,
-  LOAD_COMMENTS: `LOAD_COMMENTS`
+  LOAD_COMMENTS: `LOAD_COMMENTS`,
 };
 
 const ActionCreator = {
@@ -31,14 +32,6 @@ const ActionCreator = {
     type: ActionType.LOAD_FAVORITE,
     payload: favorite
   }),
-  toggleFavoriteStatus: (offer) => {
-    offer.isFavorite = !offer.isFavorite;
-
-    return {
-      type: ActionType.TOGGLE_FAVORITE_STATUS,
-      payload: offer
-    };
-  },
   addToFavorites: (offer) => ({
     type: ActionType.ADD_TO_FAVORITES,
     payload: offer
@@ -120,12 +113,18 @@ const Operation = {
     return api.get(`/hotels`)
       .then((response) => {
         dispatch(ActionCreator.loadOffers(transformApiOffers(response.data)));
+      })
+      .catch((e) => {
+        NotificationManager.error(e.message);
       });
   },
   loadFavorite: () => (dispatch, _getState, api) => {
     return api.get(`/favorite`)
       .then((response) => {
         dispatch(ActionCreator.loadFavorite(transformApiOffers(response.data)));
+      })
+      .catch((e) => {
+        NotificationManager.error(e.message);
       });
   },
   toggleFavoriteStatus: (offer) => (dispatch, _getState, api) => {
@@ -134,17 +133,27 @@ const Operation = {
 
     return api.post(`/favorite/${hotelId}/${status}`)
       .then((response) => {
-        dispatch(ActionCreator.toggleFavoriteStatus(offer));
-
         if (status === 1) {
           dispatch(ActionCreator.addToFavorites(transformApiOffer(response.data)));
         } else {
           dispatch(ActionCreator.removeFromFavorites(transformApiOffer(response.data)));
         }
+      })
+      .catch((e) => {
+        NotificationManager.error(e.message);
       });
   },
   loadComments: (offerId) => (dispatch, _getState, api) => {
     return api.get(`/comments/${offerId}`)
+      .then((response) => {
+        dispatch(ActionCreator.loadComments(offerId, transformApiComments(response.data)));
+      })
+      .catch((e) => {
+        NotificationManager.error(e.message);
+      });
+  },
+  sendReview: (offerId, values) => (dispatch, _getState, api) => {
+    return api.post(`/comments/${offerId}`, values)
       .then((response) => {
         dispatch(ActionCreator.loadComments(offerId, transformApiComments(response.data)));
       });
@@ -163,13 +172,12 @@ const reducer = (state = initialState, action) => {
       favorite: action.payload
     });
     case ActionType.ADD_TO_FAVORITES: return Object.assign({}, state, {
-      favorite: [...state.favorite, action.payload]
+      favorite: [...state.favorite, action.payload],
+      offers: state.offers.map((offer) => (offer.id === action.payload.id) ? Object.assign({}, offer, {isFavorite: true}) : offer)
     });
     case ActionType.REMOVE_FROM_FAVORITES: return Object.assign({}, state, {
-      favorite: state.favorite.filter((offer) => offer.id !== action.payload)
-    });
-    case ActionType.TOGGLE_FAVORITE_STATUS: return Object.assign({}, state, {
-      offers: [...state.offers.map((offer) => (offer.id === action.payload.id) ? action.payload : offer)]
+      favorite: state.favorite.filter((offer) => offer.id !== action.payload),
+      offers: state.offers.map((offer) => (offer.id === action.payload) ? Object.assign({}, offer, {isFavorite: false}) : offer)
     });
     case ActionType.SET_ACTIVE_OFFER: return Object.assign({}, state, {
       activeOffer: action.payload

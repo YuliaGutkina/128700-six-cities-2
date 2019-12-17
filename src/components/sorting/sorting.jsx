@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {ActionCreator} from "../../reducer/data/data";
-import {getSortingOrder} from "../../reducer/data/selectors";
+import {getSortingOrderSelector} from "../../reducer/data/selectors";
 import {Select} from "../select/select";
 
 
@@ -37,7 +37,7 @@ Sorting.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  sortingOrder: getSortingOrder(state)
+  sortingOrder: getSortingOrderSelector(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

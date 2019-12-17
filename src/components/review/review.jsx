@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import moment from "moment";
 import {Rating} from "../rating/rating";
+import {ComplexPropType} from "../../types/types";
 
 
-export const Review = (props) => {
+const Review = (props) => {
   const {commentData} = props;
 
   return <li className="reviews__item">
@@ -25,11 +25,14 @@ export const Review = (props) => {
       <p className="reviews__text">
         {commentData.comment}
       </p>
-      <time className="reviews__time" dateTime={moment(commentData.date).format()}>{moment(commentData.date).format(`MMMM YYYY`)}</time>
+      <time className="reviews__time" dateTime={commentData.date}>{moment(commentData.date).format(`MMMM YYYY`)}</time>
     </div>
   </li>;
 };
 
 Review.propTypes = {
-  commentData: PropTypes.object
+  commentData: ComplexPropType.COMMENT
 };
+
+
+export {Review};

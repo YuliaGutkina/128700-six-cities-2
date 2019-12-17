@@ -1,4 +1,3 @@
-// import {createSelector} from "reselect";
 import NameSpace from "../name-spaces";
 
 
@@ -53,13 +52,15 @@ const receiveOfferSelector = (state, id) => {
   return state[NAME_SPACE].offers.find((item) => item.id.toString() === id.toString());
 };
 
-const receiveNearbyOffersSelector = (state) => {
-  return state[NAME_SPACE].offers;
+const receiveNearbyOffersSelector = (state, id) => {
+  const currentOffer = receiveOfferSelector(state, id);
+
+  return state[NAME_SPACE].offers.filter((offer) => (offer.city.name === currentOffer.city.name) && offer.id.toString() !== id.toString());
 };
 
 const getActiveOfferSelector = (state) => state[NAME_SPACE].activeOffer;
 
-const getSortingOrder = (state) => state[NAME_SPACE].sortingOrder;
+const getSortingOrderSelector = (state) => state[NAME_SPACE].sortingOrder;
 
 const getFavoriteStatusSelector = (state, id) => {
   const offer = receiveOfferSelector(state, id);
@@ -67,7 +68,7 @@ const getFavoriteStatusSelector = (state, id) => {
   return offer.isFavorite;
 };
 
-const receiveOfferCommentsSelector = (state, id) => state[NAME_SPACE].comments[id];
+const receiveOfferCommentsSelector = (state, id) => (state[NAME_SPACE].comments[id] || []).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 export {
   receiveCityInfoSelector,
@@ -77,7 +78,7 @@ export {
   receiveOfferSelector,
   receiveFavoriteSelector,
   getActiveOfferSelector,
-  getSortingOrder,
+  getSortingOrderSelector,
   getFavoriteStatusSelector,
   receiveNearbyOffersSelector,
   receiveOfferCommentsSelector

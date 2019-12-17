@@ -4,7 +4,7 @@ import {
   receiveCityInfoSelector,
   receiveCityOffersSelector,
   receiveOfferSelector,
-  receiveCityOffersSortedSelector
+  receiveCityOffersSortedSelector, receiveFavoriteSelector, getFavoriteStatusSelector
 } from "./selectors";
 import {offersData} from "../../mocks/offer-data";
 
@@ -83,6 +83,7 @@ describe(`Selectors work correctly`, () => {
       }
     });
   });
+
   it(`Selector for receiving offer by id works correctly`, () => {
     expect(receiveOfferSelector({
       [NAME_SPACE]: {
@@ -90,5 +91,42 @@ describe(`Selectors work correctly`, () => {
         offers: offersData
       }
     }, 1)).toEqual(offersData[0]);
+  });
+
+  it(`Selector for receiving favorite offers returns correct value`, () => {
+    expect(receiveFavoriteSelector({
+      [NAME_SPACE]: {
+        city: `Amsterdam`,
+        offers: [{fake: true}],
+        favorite: offersData,
+        sortingOrder: `popular`,
+        comments: {fake: true},
+      }
+    })).toEqual([
+      {
+        city: `Amsterdam`,
+        offers: [offersData[0], offersData[1], offersData[3], offersData[4], offersData[5], offersData[6]]
+      },
+      {
+        city: `Tel Aviv`,
+        offers: [offersData[2]]
+      },
+      {
+        city: `Paris`,
+        offers: [offersData[7], offersData[8]]
+      }
+    ]);
+  });
+
+  it(`Selector for getting favorite status works correctly`, () => {
+    expect(getFavoriteStatusSelector({
+      [NAME_SPACE]: {
+        city: `Amsterdam`,
+        offers: offersData,
+        favorite: [{fake: true}],
+        sortingOrder: `popular`,
+        comments: {fake: true},
+      }
+    }, 1)).toEqual(false);
   });
 });
