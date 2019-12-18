@@ -22,7 +22,7 @@ export const createAPI = (logout) => {
       throw new Error(`Ошибка. Данное действие доступно только для авторизованных пользователей`);
     }
 
-    if (err.status && err.status === HTTP_CODE_BAD_REQUEST) {
+    if (err.response && err.response.status === HTTP_CODE_BAD_REQUEST) {
       throw new Error(err.status && err.status.error);
     }
 
