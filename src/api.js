@@ -17,7 +17,7 @@ export const createAPI = (logout) => {
 
   const onSuccess = (responce) => responce;
   const onError = (err) => {
-    if (!checkRequest(err.config) && err.status && err.status === HTTP_CODE_FORBIDDEN) {
+    if (!checkRequest(err.config) && err.response && err.response.status === HTTP_CODE_FORBIDDEN) {
       logout();
       throw new Error(`Ошибка. Данное действие доступно только для авторизованных пользователей`);
     }
