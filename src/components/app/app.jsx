@@ -13,29 +13,29 @@ import withoutAuth from "../../hocs/without-auth/without-auth";
 import {Operation} from "../../reducer/user/user";
 import {receiveCityInfoSelector} from "../../reducer/data/selectors";
 import {ComplexPropType} from "../../types/types";
-import {getIsUserDataFetchingSelector} from "../../reducer/user/selectors";
+import {getIsUserDataFetchingSelector, getNeedLogoutSelector} from "../../reducer/user/selectors";
 
 
-const LoginWrapped = withLoginFormSubmit(Login);
+const LoginWrapped = withoutAuth(withLoginFormSubmit(Login));
+const FavoritesWrapped = withAuth(Favorites);
 
 class App extends PureComponent {
   componentDidMount() {
-    // this.props.onAuthCheck();
+    this.props.onAuthCheck();
   }
 
   render() {
-    const {city} = this.props;
+    const {city, isUserDataFetching, isNeedLogout} = this.props;
     const cityName = city ? city.name : ``;
 
-    return (
+    return isUserDataFetching ? <div>Loading...</div> : (
       <Switch>
-        <Route path="/" exact>
-          <Redirect to={`/main/${cityName}`} />
-        </Route>
+        <Route path="/login" exact component={LoginWrapped}/>
+        {isNeedLogout && <Redirect to="/login"/>}
         <Route path="/main/:city" exact component={MainPage}/>
-        <Route path="/favorites" exact component={withAuth(Favorites)}/>
-        <Route path="/login" exact component={withoutAuth(LoginWrapped)}/>
+        <Route path="/favorites" exact component={FavoritesWrapped}/>
         <Route path="/offer/:id" exact component={Offer}/>
+        <Redirect to={`/main/${cityName}`} />
       </Switch>
     );
   }
@@ -43,13 +43,15 @@ class App extends PureComponent {
 
 App.propTypes = {
   onAuthCheck: PropTypes.func,
+  isNeedLogout: PropTypes.func,
   city: ComplexPropType.CITY_INFO,
   isUserDataFetching: PropTypes.bool
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   city: receiveCityInfoSelector(state),
-  isUserDataFetching: getIsUserDataFetchingSelector(state)
+  isUserDataFetching: getIsUserDataFetchingSelector(state),
+  isNeedLogout: getNeedLogoutSelector(state)
 });
 
 const mapDispatchToProps = {

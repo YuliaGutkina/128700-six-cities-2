@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
-import {Operation} from "../../reducer/user/user";
+import {ActionCreator, Operation} from "../../reducer/user/user";
 
 
 const withLoginFormSubmit = (Component) => {
@@ -13,6 +13,10 @@ const withLoginFormSubmit = (Component) => {
       this.state = {};
       this._handleInputChange = this._handleInputChange.bind(this);
       this._handleFormSubmit = this._handleFormSubmit.bind(this);
+    }
+
+    componentDidMount() {
+      this.props.onNeedLogout(false);
     }
 
     _handleInputChange(e) {
@@ -43,16 +47,16 @@ const withLoginFormSubmit = (Component) => {
 
   WithLoginFormSubmit.propTypes = {
     onRequireAuthorization: PropTypes.func.isRequired,
-    history: PropTypes.object
+    history: PropTypes.object,
+    onNeedLogout: PropTypes.func
   };
 
   const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {});
 
-  const mapDispatchToProps = (dispatch) => ({
-    onRequireAuthorization: ({email, password}) => {
-      dispatch(Operation.authorizeUser({email, password}));
-    },
-  });
+  const mapDispatchToProps = {
+    onRequireAuthorization: Operation.authorizeUser,
+    onNeedLogout: ActionCreator.needLogout
+  };
 
   return connect(mapStateToProps, mapDispatchToProps)(WithLoginFormSubmit);
 };

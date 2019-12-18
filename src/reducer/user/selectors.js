@@ -11,8 +11,13 @@ const getIsUserDataFetchingSelector = (state) => {
   return state[NAME_SPACE].isUserDataFetching;
 };
 
+const getNeedLogoutSelector = (state) => {
+  return state[NAME_SPACE].needLogout;
+};
+
 
 export {
   receiveUserDataSelector,
-  getIsUserDataFetchingSelector
+  getIsUserDataFetchingSelector,
+  getNeedLogoutSelector
 };
