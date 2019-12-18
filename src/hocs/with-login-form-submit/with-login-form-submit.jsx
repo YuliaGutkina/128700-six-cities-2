@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
-import {Operation} from "../../reducer/user/user";
+import {ActionCreator, Operation} from "../../reducer/user/user";
 
 
 const withLoginFormSubmit = (Component) => {
@@ -11,19 +11,15 @@ const withLoginFormSubmit = (Component) => {
       super(props);
 
       this.state = {};
-      this._inputChangeHandler = this._inputChangeHandler.bind(this);
-      this._formSubmitHandler = this._formSubmitHandler.bind(this);
+      this._handleInputChange = this._handleInputChange.bind(this);
+      this._handleFormSubmit = this._handleFormSubmit.bind(this);
     }
 
-    render() {
-      return <Component
-        {...this.props}
-        onFormSubmit={this._formSubmitHandler}
-        onInputChange={this._inputChangeHandler}
-      />;
+    componentDidMount() {
+      this.props.onNeedLogout(false);
     }
 
-    _inputChangeHandler(e) {
+    _handleInputChange(e) {
       const target = e.target;
       const value = target.type === `checkbox` ? target.checked : target.value;
       const name = target.name;
@@ -33,26 +29,34 @@ const withLoginFormSubmit = (Component) => {
       });
     }
 
-    _formSubmitHandler(e) {
+    _handleFormSubmit(e) {
       const {onRequireAuthorization} = this.props;
 
       e.preventDefault();
       onRequireAuthorization(this.state);
     }
+
+    render() {
+      return <Component
+        {...this.props}
+        onFormSubmit={this._handleFormSubmit}
+        onInputChange={this._handleInputChange}
+      />;
+    }
   }
 
   WithLoginFormSubmit.propTypes = {
     onRequireAuthorization: PropTypes.func.isRequired,
-    history: PropTypes.object
+    history: PropTypes.object,
+    onNeedLogout: PropTypes.func
   };
 
   const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {});
 
-  const mapDispatchToProps = (dispatch) => ({
-    onRequireAuthorization: ({email, password}) => {
-      dispatch(Operation.authorizeUser({email, password}));
-    },
-  });
+  const mapDispatchToProps = {
+    onRequireAuthorization: Operation.authorizeUser,
+    onNeedLogout: ActionCreator.needLogout
+  };
 
   return connect(mapStateToProps, mapDispatchToProps)(WithLoginFormSubmit);
 };

@@ -12,12 +12,13 @@ import App from "./components/app/app";
 import reducer from "./reducer/reducer";
 import {createAPI} from "./api";
 import {Operation} from "./reducer/data/data";
+import {ActionCreator} from "./reducer/user/user";
 
 
 const history = createBrowserHistory();
 
 const init = () => {
-  const api = createAPI(() => history.push(`/login`));
+  const api = createAPI(() => store.dispatch(ActionCreator.needLogout(true)));
   const store = createStore(
       reducer,
       compose(

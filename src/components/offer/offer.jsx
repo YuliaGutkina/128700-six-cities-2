@@ -29,6 +29,12 @@ class Offer extends PureComponent {
     super(props);
   }
 
+  componentDidMount() {
+    const {onLoadComments, match} = this.props;
+
+    onLoadComments(match.params.id);
+  }
+
   render() {
     const {offerData, userData, nearbyOffers, comments = []} = this.props;
 
@@ -160,12 +166,6 @@ class Offer extends PureComponent {
         </main>
       }
     </div>;
-  }
-
-  componentDidMount() {
-    const {onLoadComments, match} = this.props;
-
-    onLoadComments(match.params.id);
   }
 }
 

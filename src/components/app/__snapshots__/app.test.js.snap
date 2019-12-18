@@ -8,12 +8,25 @@ exports[`App correctly renders after relaunch 1`] = `
         "$$typeof": Symbol(react.memo),
         "WrappedComponent": [Function],
         "compare": null,
+        "displayName": "Connect(WithoutAuth)",
+        "type": [Function],
+      }
+    }
+    exact={true}
+    path="/login"
+  />
+  <Route
+    component={
+      Object {
+        "$$typeof": Symbol(react.memo),
+        "WrappedComponent": [Function],
+        "compare": null,
         "displayName": "Connect(MainPage)",
         "type": [Function],
       }
     }
     exact={true}
-    path="/"
+    path="/main/:city"
   />
   <Route
     component={
@@ -34,25 +47,15 @@ exports[`App correctly renders after relaunch 1`] = `
         "$$typeof": Symbol(react.memo),
         "WrappedComponent": [Function],
         "compare": null,
-        "displayName": "Connect(WithoutAuth)",
-        "type": [Function],
-      }
-    }
-    exact={true}
-    path="/login"
-  />
-  <Route
-    component={
-      Object {
-        "$$typeof": Symbol(react.memo),
-        "WrappedComponent": [Function],
-        "compare": null,
         "displayName": "Connect(withRouter(Offer))",
         "type": [Function],
       }
     }
     exact={true}
     path="/offer/:id"
+  />
+  <Redirect
+    to="/main/"
   />
 </Switch>
 `;
