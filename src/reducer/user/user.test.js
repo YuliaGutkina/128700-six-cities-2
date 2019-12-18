@@ -18,6 +18,19 @@ describe(`Reducers work correctly`, () => {
       userData: {fake: true}
     });
   });
+
+  it(`Reducer should change change fetching state`, () => {
+    expect(reducer({
+      userData: {},
+      isUserDataFetching: false
+    }, {
+      type: ActionType.SET_USER_IS_FETCHING,
+      payload: true
+    })).toEqual({
+      userData: {},
+      isUserDataFetching: true
+    });
+  });
 });
 
 describe(`Action Creators work correctly`, () => {

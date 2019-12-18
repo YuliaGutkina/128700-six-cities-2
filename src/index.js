@@ -17,7 +17,7 @@ import {Operation} from "./reducer/data/data";
 const history = createBrowserHistory();
 
 const init = () => {
-  const api = createAPI(() => history.push(`/login`));
+  const api = createAPI();
   const store = createStore(
       reducer,
       compose(

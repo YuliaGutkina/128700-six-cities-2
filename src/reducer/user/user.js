@@ -1,15 +1,21 @@
 const initialState = {
-  userData: null
+  userData: null,
+  isUserDataFetching: false
 };
 
 const ActionType = {
-  AUTHORIZE_USER: `AUTHORIZE_USER`
+  AUTHORIZE_USER: `AUTHORIZE_USER`,
+  SET_USER_IS_FETCHING: `SET_USER_IS_FETCHING`
 };
 
 const ActionCreator = {
   authorizeUser: (userInfo) => ({
     type: ActionType.AUTHORIZE_USER,
     payload: userInfo
+  }),
+  setUserIsFetching: (isFetching) => ({
+    type: ActionType.SET_USER_IS_FETCHING,
+    payload: isFetching
   })
 };
 
@@ -28,9 +34,12 @@ const Operation = {
     if (!email || !password) {
       throw new Error(`No email or password`);
     } else {
+      dispatch(ActionCreator.setUserIsFetching(true));
+
       return api.post(`/login`, {email, password})
         .then((response) => {
           dispatch(ActionCreator.authorizeUser(transformApiUser(response.data, api.defaults.baseURL)));
+          dispatch(ActionCreator.setUserIsFetching(false));
         });
     }
   },
@@ -49,6 +58,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.AUTHORIZE_USER:
       return Object.assign({}, state, {
         userData: action.payload
+      });
+    case ActionType.SET_USER_IS_FETCHING:
+      return Object.assign({}, state, {
+        isUserDataFetching: action.payload
       });
   }
 
