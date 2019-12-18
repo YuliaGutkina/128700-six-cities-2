@@ -3,6 +3,14 @@
 exports[`App correctly renders after relaunch 1`] = `
 <Switch>
   <Route
+    exact={true}
+    path="/"
+  >
+    <Redirect
+      to="/"
+    />
+  </Route>
+  <Route
     component={
       Object {
         "$$typeof": Symbol(react.memo),
@@ -13,7 +21,7 @@ exports[`App correctly renders after relaunch 1`] = `
       }
     }
     exact={true}
-    path="/"
+    path="/:city"
   />
   <Route
     component={

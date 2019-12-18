@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import OfferCard from "../offer-card/offer-card";
+import {OfferCard} from "../offer-card/offer-card";
 import {ActionCreator} from "../../reducer/data/data";
 import {ComplexPropType} from "../../types/types";
 
@@ -10,6 +10,12 @@ import {ComplexPropType} from "../../types/types";
 class OffersList extends PureComponent {
   constructor(props) {
     super(props);
+  }
+
+  componentWillUnmount() {
+    const {onSetActiveOffer = () => {}} = this.props;
+
+    onSetActiveOffer(null);
   }
 
   render() {
@@ -29,12 +35,6 @@ class OffersList extends PureComponent {
         }}
       />)}
     </div>;
-  }
-
-  componentWillUnmount() {
-    const {onSetActiveOffer = () => {}} = this.props;
-
-    onSetActiveOffer(null);
   }
 }
 

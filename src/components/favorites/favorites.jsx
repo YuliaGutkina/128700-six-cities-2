@@ -12,6 +12,10 @@ import {Operation} from "../../reducer/data/data";
 
 
 class Favorites extends PureComponent {
+  componentDidMount() {
+    this.props.onLoadFavorite();
+  }
+
   render() {
     const {favorite} = this.props;
 
@@ -67,11 +71,6 @@ class Favorites extends PureComponent {
       </footer>
     </div>;
   }
-
-  componentDidMount() {
-    this.props.onLoadFavorite();
-  }
-
 }
 
 Favorites.propTypes = {

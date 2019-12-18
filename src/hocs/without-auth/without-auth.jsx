@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 
@@ -7,19 +7,13 @@ import {ComplexPropType} from "../../types/types";
 
 
 const withoutAuth = (Component) => {
-  class WithoutAuth extends PureComponent {
-    constructor(props) {
-      super(props);
-    }
+  const WithoutAuth = (props) => {
+    const {userData} = props;
 
-    render() {
-      const {userData} = this.props;
-
-      return (!userData) ? <Component
-        {...this.props}
-      /> : <Redirect to="/"/>;
-    }
-  }
+    return (!userData) ? <Component
+      {...props}
+    /> : <Redirect to="/"/>;
+  };
 
   WithoutAuth.propTypes = {
     userData: ComplexPropType.USER_DATA

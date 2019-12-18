@@ -30,18 +30,6 @@ class CityMap extends PureComponent {
     this._renderMarkers = this._renderMarkers.bind(this);
   }
 
-  render() {
-    const {className} = this.props;
-
-    return <section
-      className={classNames(
-          `map`,
-          className
-      )}
-      ref={this._mapRef}
-    />;
-  }
-
   componentDidMount() {
     this._initMap();
     this._setMapView();
@@ -95,6 +83,18 @@ class CityMap extends PureComponent {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(this._map);
+  }
+
+  render() {
+    const {className} = this.props;
+
+    return <section
+      className={classNames(
+          `map`,
+          className
+      )}
+      ref={this._mapRef}
+    />;
   }
 }
 

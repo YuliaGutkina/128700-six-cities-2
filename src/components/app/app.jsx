@@ -18,6 +18,10 @@ import {ComplexPropType} from "../../types/types";
 const LoginWrapped = withLoginFormSubmit(Login);
 
 class App extends PureComponent {
+  componentDidMount() {
+    this.props.onAuthCheck();
+  }
+
   render() {
     const {city} = this.props;
     const cityName = city ? city.name : ``;
@@ -33,10 +37,6 @@ class App extends PureComponent {
         <Route path="/offer/:id" exact component={Offer}/>
       </Switch>
     );
-  }
-
-  componentDidMount() {
-    this.props.onAuthCheck();
   }
 }
 

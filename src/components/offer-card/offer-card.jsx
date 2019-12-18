@@ -1,7 +1,7 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import {Link, withRouter} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import Bookmark from "../bookmark/bookmark";
 import {Rating} from "../rating/rating";
@@ -9,58 +9,52 @@ import {ComplexPropType} from "../../types/types";
 import {PropertyType} from "../property-type/property-type";
 
 
-class OfferCard extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const OfferCard = (props) => {
+  const {offer, onHover = () => {}, cardClassName, imageWrapperClassName, cardInfoClassName, imageWidth, imageHeight} = props;
 
-  render() {
-    const {offer, onHover = () => {}, cardClassName, imageWrapperClassName, cardInfoClassName, imageWidth, imageHeight} = this.props;
-
-    return <article
-      className={classNames(`place-card`, cardClassName)}
-      onMouseEnter={() => {
-        onHover(offer);
-      }}
-      onMouseLeave={() => {
-        onHover(null);
-      }}
-    >
-      {offer.isPremium &&
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
-      }
-      <div className={classNames(`place-card__image-wrapper`, imageWrapperClassName)}>
-        <Link to={`/offer/${offer.id}`}>
-          <img className="place-card__image" src={offer.preview} width={imageWidth} height={imageHeight} alt="Place image" />
-        </Link>
-      </div>
-      <div className={classNames(`place-card__info`, cardInfoClassName)}>
-        <div className="place-card__price-wrapper">
-          <div className="place-card__price">
-            <b className="place-card__price-value">€{offer.price}</b>
-            <span className="place-card__price-text">/&nbsp;night</span>
-          </div>
-          <Bookmark
-            offer={offer}
-            className="place-card__bookmark-button"
-            iconClassName="place-card__bookmark-icon"
-          />
+  return <article
+    className={classNames(`place-card`, cardClassName)}
+    onMouseEnter={() => {
+      onHover(offer);
+    }}
+    onMouseLeave={() => {
+      onHover(null);
+    }}
+  >
+    {offer.isPremium &&
+    <div className="place-card__mark">
+      <span>Premium</span>
+    </div>
+    }
+    <div className={classNames(`place-card__image-wrapper`, imageWrapperClassName)}>
+      <Link to={`/offer/${offer.id}`}>
+        <img className="place-card__image" src={offer.preview} width={imageWidth} height={imageHeight} alt="Place image" />
+      </Link>
+    </div>
+    <div className={classNames(`place-card__info`, cardInfoClassName)}>
+      <div className="place-card__price-wrapper">
+        <div className="place-card__price">
+          <b className="place-card__price-value">€{offer.price}</b>
+          <span className="place-card__price-text">/&nbsp;night</span>
         </div>
-        <Rating
-          className="place-card__rating"
-          starsClassName="place-card__stars"
-          value={offer.rating}
+        <Bookmark
+          offer={offer}
+          className="place-card__bookmark-button"
+          iconClassName="place-card__bookmark-icon"
         />
-        <h2 className="place-card__name">
-          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
-        </h2>
-        <p className="place-card__type"><PropertyType type={offer.type}/></p>
       </div>
-    </article>;
-  }
-}
+      <Rating
+        className="place-card__rating"
+        starsClassName="place-card__stars"
+        value={offer.rating}
+      />
+      <h2 className="place-card__name">
+        <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
+      </h2>
+      <p className="place-card__type"><PropertyType type={offer.type}/></p>
+    </div>
+  </article>;
+};
 
 OfferCard.propTypes = {
   offer: ComplexPropType.OFFER.isRequired,
@@ -74,4 +68,3 @@ OfferCard.propTypes = {
 
 
 export {OfferCard};
-export default (withRouter(OfferCard));

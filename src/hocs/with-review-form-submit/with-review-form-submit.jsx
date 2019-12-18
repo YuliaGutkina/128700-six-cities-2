@@ -17,24 +17,17 @@ const withReviewFormSubmit = (Component) => {
         isLoading: false,
       };
 
-      this._inputChangeHandler = this._inputChangeHandler.bind(this);
-      this._formSubmitHandler = this._formSubmitHandler.bind(this);
-      this._formResetHandler = this._formResetHandler.bind(this);
+      this._handleInputChange = this._handleInputChange.bind(this);
+      this._handleFormSubmit = this._handleFormSubmit.bind(this);
+      this._handleFormReset = this._handleFormReset.bind(this);
       this._isFormValid = this._isFormValid.bind(this);
     }
 
-    render() {
-      return <Component
-        {...this.props}
-        onFormSubmit={this._formSubmitHandler}
-        onInputChange={this._inputChangeHandler}
-        isDisabled={this.state.isLoading || !this._isFormValid()}
-        commentValue={this.state.comment}
-        ratingValue={this.state.rating}
-      />;
+    _isFormValid() {
+      return (this.state.rating && (this.state.comment.length >= 50) && (this.state.comment.length <= 300));
     }
 
-    _inputChangeHandler(e) {
+    _handleInputChange(e) {
       const target = e.target;
       const value = target.type === `checkbox` ? target.checked : target.value;
       const name = target.name;
@@ -44,18 +37,14 @@ const withReviewFormSubmit = (Component) => {
       });
     }
 
-    _isFormValid() {
-      return (this.state.rating && (this.state.comment.length >= 50) && (this.state.comment.length <= 300));
-    }
-
-    _formResetHandler() {
+    _handleFormReset() {
       this.setState({
         rating: null,
         comment: ``,
       });
     }
 
-    _formSubmitHandler(e) {
+    _handleFormSubmit(e) {
       const {onSendReview, offerId} = this.props;
       const {rating, comment} = this.state;
 
@@ -66,7 +55,7 @@ const withReviewFormSubmit = (Component) => {
       });
 
       onSendReview(offerId, {rating, comment})
-        .then(() => this._formResetHandler())
+        .then(() => this._handleFormReset())
         .catch((err) => {
           NotificationManager.error(err.message);
         })
@@ -75,6 +64,17 @@ const withReviewFormSubmit = (Component) => {
             isLoading: false
           });
         });
+    }
+
+    render() {
+      return <Component
+        {...this.props}
+        onFormSubmit={this._handleFormSubmit}
+        onInputChange={this._handleInputChange}
+        isDisabled={this.state.isLoading || !this._isFormValid()}
+        commentValue={this.state.comment}
+        ratingValue={this.state.rating}
+      />;
     }
   }
 

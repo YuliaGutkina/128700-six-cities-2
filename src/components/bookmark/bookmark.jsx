@@ -17,6 +17,17 @@ class Bookmark extends PureComponent {
     this._handleFavoriteClick = this._handleFavoriteClick.bind(this);
   }
 
+  _handleFavoriteClick() {
+    const {offer, userData, history, onFavoriteClick} = this.props;
+
+    if (!userData) {
+      history.push(`/login`);
+      return;
+    }
+
+    onFavoriteClick(offer);
+  }
+
   render() {
     const {offer, className, iconClassName, isLarge} = this.props;
 
@@ -38,17 +49,6 @@ class Bookmark extends PureComponent {
       </svg>
       <span className="visually-hidden">To bookmarks</span>
     </button>;
-  }
-
-  _handleFavoriteClick() {
-    const {offer, userData, history, onFavoriteClick} = this.props;
-
-    if (!userData) {
-      history.push(`/login`);
-      return;
-    }
-
-    onFavoriteClick(offer);
   }
 }
 
